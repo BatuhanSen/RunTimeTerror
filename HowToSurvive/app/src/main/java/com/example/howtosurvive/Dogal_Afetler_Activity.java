@@ -15,11 +15,10 @@ public class Dogal_Afetler_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         getSupportActionBar().hide(); //default action barı kaldır
-        drawerLayout = findViewById(R.id.drawer_layout);
-
         setContentView(R.layout.activity_dogal_afetler);
+
+        drawerLayout = findViewById(R.id.drawer_layout);
     }
 
     public void ClickMenu(View view){

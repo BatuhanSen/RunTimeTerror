@@ -11,20 +11,169 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginStart="130dp"
+            android:layout_marginLeft="130dp"
+            android:layout_marginEnd="131dp"
+            android:layout_marginRight="131dp"
+            android:layout_marginBottom="524dp"
+            android:src="@drawable/ic_baseline_android_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
         <TextView
+            android:id="@+id/uyg_ad"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="28dp"
-            android:layout_marginRight="28dp"
-            android:layout_marginBottom="572dp"
+            android:layout_marginStart="66dp"
+            android:layout_marginLeft="66dp"
+            android:layout_marginTop="200dp"
+            android:layout_marginEnd="68dp"
+            android:layout_marginRight="68dp"
+            android:layout_marginBottom="35dp"
             android:gravity="center_horizontal"
-            android:text="Kullanici Girisi Sayfası"
+            android:text="How To Survive"
             android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="36dp"
+            android:textColor="#FA6E4F"
+            android:textSize="40sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/detay"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/detay_giris"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="66dp"
+            android:layout_marginLeft="66dp"
+            android:layout_marginTop="288dp"
+            android:layout_marginEnd="251dp"
+            android:layout_marginRight="251dp"
+            android:layout_marginBottom="13dp"
+            android:text="Giriş yapınız"
+            android:textSize="18sp"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toTopOf="@+id/kullanici_ad"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+
+        <EditText
+            android:id="@+id/kullanici_ad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="75dp"
+            android:layout_marginLeft="75dp"
+            android:layout_marginEnd="75dp"
+            android:layout_marginRight="75dp"
+            android:layout_marginBottom="361dp"
+            android:hint="Kullanıcı Adı"
+            android:inputType="text"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/sifre"
+            android:layout_width="262dp"
+            android:layout_height="41dp"
+            android:layout_marginStart="75dp"
+            android:layout_marginLeft="75dp"
+            android:layout_marginEnd="75dp"
+            android:layout_marginRight="75dp"
+            android:layout_marginBottom="316dp"
+            android:ems="10"
+            android:hint="Şifre"
+            android:inputType="textPassword"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/giris_but"
+            android:layout_width="87dp"
+            android:layout_height="49dp"
+            android:layout_marginStart="162dp"
+            android:layout_marginLeft="162dp"
+            android:layout_marginEnd="162dp"
+            android:layout_marginRight="162dp"
+            android:layout_marginBottom="11dp"
+            android:backgroundTint="#FA6E4F"
+            android:text="Giriş"
+            app:cornerRadius="25dp"
+            app:layout_constraintBottom_toTopOf="@+id/detay_uye_ol"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/detay_uye_ol"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="64dp"
+            android:layout_marginLeft="64dp"
+            android:layout_marginBottom="208dp"
+            android:text="Hala üye olmadınız mı?"
+            android:textSize="18sp"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <!-- <TextView
+            android:id="@+id/kayit_detay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="68dp"
+            android:layout_marginLeft="68dp"
+            android:layout_marginBottom="192dp"
+            android:text="Üye olun ve ayarlarınızı kişiselleştirerek ayrıcalıklardan yararlanın..."
+            android:textSize="11dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" /> -->
+
+        <Button
+            android:id="@+id/kayit_ol_but"
+            android:layout_width="84dp"
+            android:layout_height="59dp"
+            android:layout_marginStart="162dp"
+            android:layout_marginLeft="162dp"
+            android:layout_marginEnd="162dp"
+            android:layout_marginRight="162dp"
+            android:layout_marginBottom="124dp"
+            android:backgroundTint="#FA6E4F"
+            android:text="Kayıt Ol"
+            app:cornerRadius="25dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.333"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/sifre_unuttum"
+            android:layout_width="143dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="19dp"
+            android:layout_marginRight="19dp"
+            android:layout_marginBottom="72dp"
+            android:background="#00000000"
+            android:text="Şifremi Unuttum"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toTopOf="@+id/kayit_detay"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.625"
+            app:layout_constraintStart_toEndOf="@+id/giris_but" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

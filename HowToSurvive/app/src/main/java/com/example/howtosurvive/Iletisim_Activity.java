@@ -15,11 +15,12 @@ public class Iletisim_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         getSupportActionBar().hide(); //default action barı kaldır
+        setContentView(R.layout.activity_iletisim);
+
         drawerLayout = findViewById(R.id.drawer_layout);
 
-        setContentView(R.layout.activity_iletisim);
+
     }
 
     public void ClickMenu(View view){

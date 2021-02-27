@@ -7,6 +7,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 public class Kullanici_Girisi_Activity extends AppCompatActivity {
 
@@ -15,11 +16,27 @@ public class Kullanici_Girisi_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         getSupportActionBar().hide(); //default action barı kaldır
+        setContentView(R.layout.activity_kullanici_girisi);
+
         drawerLayout = findViewById(R.id.drawer_layout);
 
-        setContentView(R.layout.activity_kullanici_girisi);
+        Button sifre_unutma_but = (Button) findViewById(R.id.sifre_unuttum);
+        sifre_unutma_but.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                acil_durum_sayfasina_gec();
+            }
+        });
+
+        Button kayit_ol_but = (Button) findViewById(R.id.kayit_ol_but);
+        kayit_ol_but.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Kullanici_Girisi_Activity.this,Kayit_Ol_Activity.class));
+            }
+        });
+
     }
 
     public void ClickMenu(View view){

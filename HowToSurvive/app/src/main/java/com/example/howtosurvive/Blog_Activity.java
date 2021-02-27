@@ -15,11 +15,10 @@ public class Blog_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         getSupportActionBar().hide(); //default action barı kaldır
-        drawerLayout = findViewById(R.id.drawer_layout);
-
         setContentView(R.layout.activity_blog);
+
+        drawerLayout = findViewById(R.id.drawer_layout); // bugfix but this line after setcontentView or crash
     }
 
     public void ClickMenu(View view){

@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HowToSurvive">
-        <activity android:name=".Kullanici_Girisi_Activity"></activity>
+        <activity android:name=".Kayit_Ol_Activity"
+            android:theme="@style/PopUp">
+
+        </activity>
+        <activity android:name=".Kullanici_Girisi_Activity" />
         <activity android:name=".Iletisim_Activity" />
         <activity android:name=".Blog_Activity" />
         <activity android:name=".Acil_Durum_Activity" />

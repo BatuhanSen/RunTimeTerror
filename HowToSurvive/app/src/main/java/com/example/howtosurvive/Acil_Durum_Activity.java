@@ -15,9 +15,9 @@ public class Acil_Durum_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide(); //default action barı kaldır
-        drawerLayout = findViewById(R.id.drawer_layout);
-
         setContentView(R.layout.activity_acil_drum);
+
+        drawerLayout = findViewById(R.id.drawer_layout);
     }
 
     public void ClickMenu(View view){
