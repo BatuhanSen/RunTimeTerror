@@ -3,6 +3,8 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 
+const authRoutes = require("./routes/auth");
+
 const app = express();
 dotenv.config();
 
@@ -18,8 +20,14 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use((req, res, next) => {
-  console.log("request received!!!");
+app.use("/api/auth", authRoutes);
+
+app.use((error, req, res, next) => {
+  console.log("error middleware :(", error);
+  const status = error.statusCode || 500;
+  const message = error.message;
+  const data = error.data;
+  res.status(status).json({ message: message, data: data });
 });
 
 mongoose
@@ -32,6 +40,5 @@ mongoose
     app.listen(process.env.PORT);
   })
   .catch((err) => {
-    console.log("MONGOOOO ERROR");
-    console.log(err);
+    console.log("DBConnection Error", err);
   });
