@@ -38,9 +38,6 @@ exports.signup = (req, res, next) => {
       });
     })
     .catch((err) => {
-      if (!err.statusCode) {
-        err.statusCode = 500;
-      }
       next(err);
     });
 };
@@ -72,7 +69,6 @@ exports.login = (req, res, next) => {
       });
     })
     .catch((err) => {
-      if (!err.statusCode) error.statusCode = 500;
       next(err);
     });
 };
