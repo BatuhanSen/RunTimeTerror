@@ -69,15 +69,17 @@
 
         <EditText
             android:id="@+id/kullanici_ad"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="262dp"
+            android:layout_height="41dp"
             android:layout_marginStart="75dp"
             android:layout_marginLeft="75dp"
             android:layout_marginEnd="75dp"
             android:layout_marginRight="75dp"
             android:layout_marginBottom="361dp"
+            android:background="@drawable/edit_text_border_kayit"
             android:hint="Kullanıcı Adı"
             android:inputType="text"
+            android:padding="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -86,18 +88,18 @@
             android:id="@+id/sifre"
             android:layout_width="262dp"
             android:layout_height="41dp"
-            android:layout_marginStart="75dp"
-            android:layout_marginLeft="75dp"
-            android:layout_marginEnd="75dp"
-            android:layout_marginRight="75dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="65dp"
+            android:layout_marginRight="65dp"
             android:layout_marginBottom="316dp"
-            android:ems="10"
+            android:background="@drawable/edit_text_border_kayit"
             android:hint="Şifre"
             android:inputType="textPassword"
+            android:padding="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/kullanici_ad"
+            app:layout_constraintVertical_bias="0.0" />
 
         <Button
             android:id="@+id/giris_but"
