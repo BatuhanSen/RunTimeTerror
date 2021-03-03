@@ -15,7 +15,10 @@ public class Start {
 
 	public static void main(String[] args) {
 		try {
+			System.out.println("Deprem Parser Start");
 			ArrayList<Deprem> depremList = getDepremData();
+			System.out.println("Deprem Parser End");
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -32,7 +35,6 @@ public class Start {
 				}else{
 					depremHttpSource = getURLSource("http://sc3.koeri.boun.edu.tr/eqevents/events"+ i + ".html");
 				}
-				System.out.println("---PAGE--->>> " + i);
 				parseDepremHttpSource(depremHttpSource,depremArray);
 				
 			} catch (IOException e) {
@@ -44,19 +46,22 @@ public class Start {
 	
     private static void parseDepremHttpSource(String depremHttpSource, ArrayList<Deprem> depremArray) {
 		String tableStr = depremHttpSource.substring(depremHttpSource.indexOf("<table class=\"index\">"),depremHttpSource.indexOf("<table class=\"links\">"));
-		System.out.println("---TABLE--->>> " + tableStr);
 		String[] rowArray = tableStr.split("<tr");
-		for (int i = 1; i < rowArray.length; i++) {
-			System.out.println("---ROW--->>> " + rowArray[i]);
+		for (int i = 2; i < rowArray.length; i++) {
 			String[] columnArray = rowArray[i].split("<td>");
-			for (int j = 1; j < columnArray.length; j++) {
-				if (j%10!=0){
-				System.out.println("---COLUMN--->>> " + columnArray[j].substring(0,columnArray[j].indexOf("</td>")));
-				}
-			}
 			
+			Deprem deprem = new Deprem();
+			deprem.setZaman(columnArray[1].substring(0,columnArray[1].indexOf("</td>")));
+			deprem.setMag(columnArray[2].substring(0,columnArray[2].indexOf("</td>")));
+			deprem.setMagTipi(columnArray[3].substring(0,columnArray[3].indexOf("</td>")));
+			deprem.setEnlem(columnArray[4].substring(0,columnArray[4].indexOf("</td>")));
+			deprem.setBoylam(columnArray[5].substring(0,columnArray[5].indexOf("</td>")));
+			deprem.setDerinlik(columnArray[6].substring(0,columnArray[6].indexOf("</td>")));
+			deprem.setYer(columnArray[7].substring(0,columnArray[7].indexOf("</td>")));
+			deprem.setTip(columnArray[8].substring(0,columnArray[8].indexOf("</td>")));
+			deprem.setSonGuncelleme(columnArray[9].substring(0,columnArray[9].indexOf("</td>")));
+			depremArray.add(deprem);
 		}
-		
 	}
 
 	public static String getURLSource(String url) throws IOException {
