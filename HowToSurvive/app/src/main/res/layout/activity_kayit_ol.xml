@@ -9,123 +9,144 @@
 
     <EditText
         android:id="@+id/kullanici_adi"
-        android:layout_width="166dp"
+        android:layout_width="135dp"
         android:layout_height="41dp"
-        android:layout_marginStart="69dp"
-        android:layout_marginLeft="69dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="176dp"
-        android:layout_marginRight="176dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginLeft="55dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="47dp"
+        android:layout_marginRight="47dp"
+        android:background="@drawable/edit_text_border_kayit"
         android:hint="Ad"
         android:inputType="text"
-        android:background="@drawable/edit_text_border_kayit"
         android:padding="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/kullanici_soyad"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/kayit" />
 
     <EditText
         android:id="@+id/kullanici_soyad"
-        android:layout_width="166dp"
+        android:layout_width="135dp"
         android:layout_height="41dp"
-        android:layout_marginStart="69dp"
-        android:layout_marginLeft="69dp"
-        android:layout_marginTop="9dp"
-        android:layout_marginEnd="176dp"
-        android:layout_marginRight="176dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:background="@drawable/edit_text_border_kayit"
         android:hint="Soyad"
         android:inputType="text"
-        android:background="@drawable/edit_text_border_kayit"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/kullanici_adi" />
+        app:layout_constraintTop_toBottomOf="@+id/kayit" />
 
     <EditText
         android:id="@+id/kullanici_dogumTarih"
-        android:layout_width="166dp"
+        android:layout_width="135dp"
         android:layout_height="41dp"
-        android:layout_marginStart="69dp"
-        android:layout_marginLeft="69dp"
-        android:layout_marginTop="9dp"
-        android:layout_marginEnd="176dp"
-        android:layout_marginRight="176dp"
-        android:hint="Doğum Tarihi"
+        android:layout_marginStart="55dp"
+        android:layout_marginLeft="55dp"
+        android:layout_marginTop="27dp"
+        android:layout_marginEnd="47dp"
+        android:layout_marginRight="47dp"
         android:background="@drawable/edit_text_border_kayit"
+        android:hint="Doğum Tarihi"
         android:padding="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/kullanici_cinsiyet"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/kullanici_soyad" />
+        app:layout_constraintTop_toBottomOf="@+id/kullanici_adi" />
+
 
     <EditText
         android:id="@+id/kullanici_mail"
-        android:layout_width="166dp"
+        android:layout_width="135dp"
         android:layout_height="41dp"
-        android:layout_marginStart="69dp"
-        android:layout_marginLeft="69dp"
-        android:layout_marginTop="9dp"
-        android:layout_marginEnd="176dp"
-        android:layout_marginRight="176dp"
-        android:hint="Mail"
+        android:layout_marginStart="55dp"
+        android:layout_marginLeft="55dp"
+        android:layout_marginTop="27dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginRight="48dp"
         android:background="@drawable/edit_text_border_kayit"
-        android:padding="10dp"
+        android:hint="Mail"
         android:inputType="textEmailAddress"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/kullanici_telefon"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/kullanici_dogumTarih" />
 
-
     <EditText
         android:id="@+id/kullanici_telefon"
-        android:layout_width="166dp"
+        android:layout_width="135dp"
         android:layout_height="41dp"
-        android:layout_marginStart="69dp"
-        android:layout_marginLeft="69dp"
-        android:layout_marginTop="9dp"
-        android:layout_marginEnd="176dp"
-        android:layout_marginRight="176dp"
-        android:hint="Telefon"
+        android:layout_marginTop="27dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
         android:background="@drawable/edit_text_border_kayit"
-        android:padding="10dp"
+        android:hint="Telefon"
         android:inputType="phone"
+        android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/kullanici_mail" />
-
+        app:layout_constraintTop_toBottomOf="@+id/kullanici_cinsiyet" />
 
     <EditText
         android:id="@+id/kullanici_sifre"
-        android:layout_width="166dp"
+        android:layout_width="135dp"
         android:layout_height="41dp"
-        android:layout_marginStart="69dp"
-        android:layout_marginLeft="69dp"
-        android:layout_marginTop="9dp"
-        android:layout_marginEnd="176dp"
-        android:layout_marginRight="176dp"
-        android:hint="Şifre"
+        android:layout_marginStart="55dp"
+        android:layout_marginLeft="55dp"
+        android:layout_marginTop="27dp"
+        android:layout_marginEnd="47dp"
+        android:layout_marginRight="47dp"
         android:background="@drawable/edit_text_border_kayit"
-        android:padding="10dp"
+        android:hint="Şifre"
         android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/sifre_tekrar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/kullanici_telefon" />
+        app:layout_constraintTop_toBottomOf="@+id/kullanici_mail" />
 
     <EditText
         android:id="@+id/sifre_tekrar"
-        android:layout_width="166dp"
+        android:layout_width="135dp"
         android:layout_height="41dp"
-        android:layout_marginStart="69dp"
-        android:layout_marginLeft="69dp"
-        android:layout_marginTop="9dp"
-        android:layout_marginEnd="176dp"
-        android:layout_marginRight="176dp"
-        android:hint="Şifre Tekrar"
+        android:layout_marginTop="27dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
         android:background="@drawable/edit_text_border_kayit"
-        android:padding="10dp"
+        android:hint="Şifre Tekrar"
         android:inputType="textPassword"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/kullanici_telefon" />
+
+    <EditText
+        android:id="@+id/kullanici_username"
+        android:layout_width="135dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginLeft="55dp"
+        android:layout_marginTop="27dp"
+        android:layout_marginEnd="221dp"
+        android:layout_marginRight="221dp"
+        android:background="@drawable/edit_text_border_kayit"
+        android:hint="Kullanıcı Adı"
+        android:inputType="text"
+        android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/kullanici_sifre" />
+
+    <EditText
+        android:id="@+id/kullanici_cinsiyet"
+        android:layout_width="135dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="27dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:background="@drawable/edit_text_border_kayit"
+        android:hint="Cinsiyet: E/K"
+        android:inputType="text"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/kullanici_soyad" />
 
     <ImageView
         android:id="@+id/logo"
@@ -160,25 +181,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <Button
-            android:id="@+id/kayit_olma"
-            android:layout_width="84dp"
-            android:layout_height="59dp"
-            android:layout_marginStart="120dp"
-            android:layout_marginLeft="120dp"
-            android:layout_marginTop="540dp"
-            android:layout_marginEnd="162dp"
-            android:layout_marginRight="162dp"
-            android:layout_marginBottom="40dp"
-            android:backgroundTint="#FA6E4F"
-            android:baselineAligned="false"
-            android:text="Kayıt Ol"
-            app:cornerRadius="25dp" />
-    </LinearLayout>
+    <Button
+        android:id="@+id/kayit_olma"
+        android:layout_width="84dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="163dp"
+        android:layout_marginLeft="163dp"
+        android:layout_marginTop="38dp"
+        android:layout_marginEnd="164dp"
+        android:layout_marginRight="164dp"
+        android:backgroundTint="#FA6E4F"
+        android:baselineAligned="false"
+        android:text="Kayıt Ol"
+        app:cornerRadius="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/kullanici_username" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
