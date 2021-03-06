@@ -10,7 +10,9 @@ exports.getEarthquakeRecords = (req, res, next) => {
       }
       res.status(200).json({
         message: "Earthquake records fetched successfully",
-        earthquakeRecords: earthquakeRecords,
+        data: {
+          earthquakeRecords: earthquakeRecords,
+        },
       });
     })
     .catch((err) => next(err));
@@ -28,7 +30,9 @@ exports.getEarthquakeRecord = (req, res, next) => {
       }
       res.status(200).json({
         message: "Earthquake record fetched successfully",
-        earthquakeRecord: earthquakeRecord,
+        data: {
+          earthquakeRecord: earthquakeRecord,
+        },
       });
     })
     .catch((err) => next(err));
@@ -52,7 +56,9 @@ exports.addEarthquakeRecord = (req, res, next) => {
     .then((result) => {
       res.status(201).json({
         message: "Earthquake record created successfully",
-        earthquakeId: result._id.toString(),
+        data: {
+          earthquakeRecord: result,
+        },
       });
     })
     .catch((err) => {
@@ -85,7 +91,9 @@ exports.updateEarthquakeRecord = (req, res, next) => {
     .then((result) => {
       res.status(200).json({
         message: "Earthquake record updated successfully",
-        earthquakeRecord: result,
+        data: {
+          earthquakeRecord: result,
+        },
       });
     })
     .catch((err) => {
@@ -108,6 +116,9 @@ exports.deleteEarthquakeRecord = (req, res, next) => {
     .then((result) => {
       res.status(200).json({
         message: "Earthquake record deleted successfully",
+        data: {
+          earthquakeRecord: result,
+        },
       });
     })
     .catch((err) => next(err));
@@ -118,7 +129,9 @@ exports.addEarthquakeRecords = (req, res, next) => {
     .then((result) => {
       res.status(200).json({
         message: "Earthquake records created successfully!",
-        data: result,
+        data: {
+          earthquakeRecords: result,
+        },
       });
     })
     .catch((err) => {

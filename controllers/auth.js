@@ -34,7 +34,9 @@ exports.signup = (req, res, next) => {
     .then((result) => {
       res.status(201).json({
         message: "User created successfully",
-        userId: result._id.toString(),
+        data: {
+          user: result,
+        },
       });
     })
     .catch((err) => {
@@ -65,7 +67,9 @@ exports.login = (req, res, next) => {
       }
       res.status(200).json({
         message: "Logged in successfully.",
-        userId: loadedUser._id.toString(),
+        data: {
+          user: loadedUser,
+        },
       });
     })
     .catch((err) => {
