@@ -127,7 +127,7 @@ exports.deleteEarthquakeRecord = (req, res, next) => {
 exports.addEarthquakeRecords = (req, res, next) => {
   Earthquake.insertMany(req.body)
     .then((result) => {
-      res.status(200).json({
+      res.status(201).json({
         message: "Earthquake records created successfully!",
         data: {
           earthquakeRecords: result,

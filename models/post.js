@@ -17,7 +17,7 @@ const postSchema = new Schema(
     author: {
       type: Schema.Types.ObjectId,
       ref: "User",
-      required: true,
+      //required: true,
     },
     comments: [
       {
@@ -28,9 +28,11 @@ const postSchema = new Schema(
     metadata: {
       likes: {
         type: Number,
+        default: 0,
       },
       dislikes: {
         type: Number,
+        default: 0,
       },
     },
   },
