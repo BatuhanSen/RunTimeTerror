@@ -8,6 +8,8 @@ router.get("/", earthquakeController.getEarthquakeRecords);
 
 router.post("/", earthquakeController.addEarthquakeRecord);
 
+router.put("/", earthquakeController.addEarthquakeRecords);
+
 router.get("/:earthquakeId", earthquakeController.getEarthquakeRecord);
 
 router.put("/:earthquakeId", earthquakeController.updateEarthquakeRecord);

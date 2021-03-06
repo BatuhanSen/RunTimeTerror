@@ -112,3 +112,16 @@ exports.deleteEarthquakeRecord = (req, res, next) => {
     })
     .catch((err) => next(err));
 };
+
+exports.addEarthquakeRecords = (req, res, next) => {
+  Earthquake.insertMany(req.body)
+    .then((result) => {
+      res.status(200).json({
+        message: "Earthquake records created successfully!",
+        data: result,
+      });
+    })
+    .catch((err) => {
+      next(err);
+    });
+};
