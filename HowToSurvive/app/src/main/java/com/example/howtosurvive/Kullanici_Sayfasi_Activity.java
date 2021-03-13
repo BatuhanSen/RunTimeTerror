@@ -8,72 +8,22 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 
-
-public class MainActivity extends AppCompatActivity {
-
+public class Kullanici_Sayfasi_Activity extends AppCompatActivity {
     DrawerLayout drawerLayout;
-    TextView ad;
-    String username_res, id_res;
+    String username_res,id_res;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide(); //default action barı kaldır
-
-        setContentView(R.layout.activity_main);
-        drawerLayout = findViewById(R.id.drawer_layout);  // bugfix but this line after setcontentView or crash
+        getSupportActionBar().hide();
+        setContentView(R.layout.activity_kullanici_sayfasi);
+        drawerLayout = findViewById(R.id.drawer_layout); // bugfix but this line after setcontentView or crash
 
         Intent intent = getIntent(); //kullanici girisi responsendan gelen veriler
 
         username_res = intent.getStringExtra("username");
-        String username="Hoşgeldin " + intent.getStringExtra("username");
         id_res = intent.getStringExtra("id");
-
-        ad = findViewById(R.id.username);
-        ad.setText(username);
-
-        Button dogal_afet_sayfasi = (Button) findViewById(R.id.dogal_afet_but);
-        dogal_afet_sayfasi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dogal_afet_sayfasina_gec(); // dogal afet butonuna tıklayınca bu metodu cagır
-            }
-        });
-
-        Button acil_durum_sayfasi = (Button) findViewById(R.id.acil_durum_but);
-        acil_durum_sayfasi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                acil_durum_sayfasina_gec(); // acil durum butonuna tıklayınca bu metodu cagır
-            }
-        });
-
-        Button blog_sayfasi = (Button) findViewById(R.id.blog_but);
-        blog_sayfasi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                blog_sayfasina_gec(); // blog butonuna tıklayınca bu metodu cagır
-            }
-        });
-
-        Button iletisim_sayfasi = (Button) findViewById(R.id.iletisim_but);
-        iletisim_sayfasi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                iletisim_sayfasina_gec(); // iletişim butonuna tıklayınca bu metodu cagır
-            }
-        });
-
-        Button kullanici_sayfasi = (Button) findViewById(R.id.kullanici_girisi_but);
-        kullanici_sayfasi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                kullanici_sayfasina_gec();
-            }
-        });
-
     }
 
     public void ClickMenu(View view){
@@ -85,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void ClickAnasayfa(View view){
-        recreate();
+        anasayfaya_gec();
     }
 
     public void ClickDogalAfet(View view){
@@ -105,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void ClickKullaniciSayfasi(View view){
-        kullanici_sayfasina_gec();
+        recreate();
     }
 
     public void ClickExit(View view){cikis(this);}
@@ -143,6 +93,13 @@ public class MainActivity extends AppCompatActivity {
         intent_kullanici.putExtra("username",username_res);
         intent_kullanici.putExtra("id",id_res);
         startActivity(intent_kullanici);
+    }
+
+    public void anasayfaya_gec(){
+        Intent intent_anasayfa = new Intent(this,MainActivity.class);
+        intent_anasayfa.putExtra("username",username_res);
+        intent_anasayfa.putExtra("id",id_res);
+        startActivity(intent_anasayfa);
     }
 
     public static void cikis(Activity activity){

@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -27,12 +29,14 @@ import java.util.Map;
 
 public class Kullanici_Girisi_Activity extends AppCompatActivity {
 
-    DrawerLayout drawerLayout;
+    //DrawerLayout drawerLayout;
     EditText kullanici_ad;
     EditText sifre;
     Button giris_but;
     private RequestQueue kayitQueue;
     String kullanici_adi,sifresi;
+    private ProgressBar pbar;
+    String username_response,id_response;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,18 +44,17 @@ public class Kullanici_Girisi_Activity extends AppCompatActivity {
         getSupportActionBar().hide(); //default action barı kaldır
         setContentView(R.layout.activity_kullanici_girisi);
 
-        drawerLayout = findViewById(R.id.drawer_layout);
-
-        Button sifre_unutma_but = (Button) findViewById(R.id.sifre_unuttum);
-
-        Button kayit_ol_but = (Button) findViewById(R.id.kayit_ol_but);
+        //drawerLayout = findViewById(R.id.drawer_layout);
+        //Button sifre_unutma_but = (Button) findViewById(R.id.sifre_unuttum);
+        /*Button kayit_ol_but = (Button) findViewById(R.id.kayit_ol_but);
         kayit_ol_but.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Kullanici_Girisi_Activity.this,Kayit_Ol_Activity.class));
             }
-        });
+        });*/
 
+        pbar=findViewById(R.id.pbar);
         kullanici_ad = findViewById(R.id.kullanici_ad);
         sifre = findViewById(R.id.sifre);
         giris_but = (Button) findViewById(R.id.giris_but);
@@ -62,15 +65,15 @@ public class Kullanici_Girisi_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 jsonPost_giris();
-                anasayfaya_gec();
             }
         });
-
-
     }
 
     private void jsonPost_giris(){
         String url = "https://how-to-survive.herokuapp.com/api/auth/login";
+
+        pbar.setVisibility(View.VISIBLE);
+        giris_but.setVisibility(View.GONE);
 
         kullanici_adi = kullanici_ad.getText().toString().trim();
         sifresi = sifre.getText().toString().trim();
@@ -88,12 +91,36 @@ public class Kullanici_Girisi_Activity extends AppCompatActivity {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
+
+                        try {
+                            JSONObject data_object= response.getJSONObject("data");
+                            JSONObject user_object = data_object.getJSONObject("user");
+                             username_response = user_object.getString("username");
+                             id_response = user_object.getString("_id");
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(Kullanici_Girisi_Activity.this,"Giriş yapılamadı.Bilgilerinizi kontrol ediniz.",Toast.LENGTH_LONG).show();
+                        }
+
                         Log.d("Response", response.toString());
+                        if (response.toString().contains("successfully") ){
+                            Toast.makeText(Kullanici_Girisi_Activity.this,"Giriş Başarılı",Toast.LENGTH_LONG).show();
+                            anasayfaya_gec();
+                        }
+                        else{
+                            Toast.makeText(Kullanici_Girisi_Activity.this,"Giriş yapılamadı.Bilgilerinizi kontrol ediniz.",Toast.LENGTH_LONG).show();
+                                pbar.setVisibility(View.GONE);
+                                giris_but.setVisibility(View.VISIBLE);
+                        }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d("Error.Response", error.toString());
+                Toast.makeText(Kullanici_Girisi_Activity.this,"Giriş yapılamadı.Bilgilerinizi kontrol ediniz.",Toast.LENGTH_LONG).show();
+                pbar.setVisibility(View.GONE);
+                giris_but.setVisibility(View.VISIBLE);
             }
         })
         {
@@ -112,67 +139,47 @@ public class Kullanici_Girisi_Activity extends AppCompatActivity {
         kayitQueue.add(request);
     }
 
-
-    public void ClickMenu(View view){
-        openDrawer(drawerLayout);
-    }
-
-    private static void openDrawer(DrawerLayout drawerLayout){ // nav_drawer kapamayı ekle
-        drawerLayout.openDrawer(GravityCompat.START);
-    }
-
-    public void ClickAnasayfa(View view){
-        anasayfaya_gec();
-    }
-
-    public void ClickDogalAfet(View view){
-        dogal_afet_sayfasina_gec();
-    }
-
-    public void ClickAcilDurum(View view){
-        acil_durum_sayfasina_gec();
-    }
-
-    public void ClickBlog(View view){
-        blog_sayfasina_gec();
-    }
-
-    public void ClickIletisim(View view){
-        iletisim_sayfasina_gec();
-    }
-
-    public void ClickKullaniciGiris(View view){
-        recreate();
-    }
-
     public void dogal_afet_sayfasina_gec(){
         Intent intent_dogal = new Intent(this,Dogal_Afetler_Activity.class); //intent ile pass value
+        intent_dogal.putExtra("username",username_response);
+        intent_dogal.putExtra("id",id_response);
         startActivity(intent_dogal);
     }
 
     public void acil_durum_sayfasina_gec(){
         Intent intent_acil = new Intent(this,Acil_Durum_Activity.class);
+        intent_acil.putExtra("username",username_response);
+        intent_acil.putExtra("id",id_response);
         startActivity(intent_acil);
     }
 
     public void blog_sayfasina_gec(){
         Intent intent_blog = new Intent(this,Blog_Activity.class);
+        intent_blog.putExtra("username",username_response);
+        intent_blog.putExtra("id",id_response);
         startActivity(intent_blog);
     }
 
     public void iletisim_sayfasina_gec(){
         Intent intent_iletisim = new Intent(this,Iletisim_Activity.class);
+        intent_iletisim.putExtra("username",username_response);
+        intent_iletisim.putExtra("id",id_response);
         startActivity(intent_iletisim);
     }
 
     public void kullanici_girisi_sayfasina_gec(){
         Intent intent_kullanici = new Intent(this,Kullanici_Girisi_Activity.class);
+        intent_kullanici.putExtra("username",username_response);
+        intent_kullanici.putExtra("id",id_response);
         startActivity(intent_kullanici);
     }
 
     public void anasayfaya_gec(){
         Intent intent_anasayfa = new Intent(this,MainActivity.class);
+        intent_anasayfa.putExtra("username",username_response);
+        intent_anasayfa.putExtra("id",id_response);
         startActivity(intent_anasayfa);
+
     }
 
 }

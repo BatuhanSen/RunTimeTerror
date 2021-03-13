@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.howtosurvive">
-    
+
     <uses-permission android:name="android.permission.INTERNET" />
-    
 
     <application
         android:allowBackup="true"
@@ -12,22 +11,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HowToSurvive">
-        <activity android:name=".Kayit_Ol_Activity"
-            android:theme="@style/PopUp">
-
-        </activity>
-        <activity android:name=".Kullanici_Girisi_Activity" />
-        <activity android:name=".Iletisim_Activity" />
-        <activity android:name=".Blog_Activity" />
-        <activity android:name=".Acil_Durum_Activity" />
-        <activity android:name=".Dogal_Afetler_Activity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".Kullanici_Sayfasi_Activity"></activity>
+        <activity android:name=".Giris_Activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Kullanici_Giris_Ana_Activity" />
+        <activity
+            android:name=".Kayit_Ol_Activity"
+            android:theme="@style/PopUp" />
+        <activity android:name=".Kullanici_Girisi_Activity" />
+        <activity android:name=".Iletisim_Activity" />
+        <activity android:name=".Blog_Activity" />
+        <activity android:name=".Acil_Durum_Activity" />
+        <activity android:name=".Dogal_Afetler_Activity" />
+        <activity android:name=".MainActivity"></activity>
     </application>
 
 </manifest>
