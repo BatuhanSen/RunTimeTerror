@@ -37,6 +37,7 @@ public class Kullanici_Girisi_Activity extends AppCompatActivity {
     String kullanici_adi,sifresi;
     private ProgressBar pbar;
     String username_response,id_response;
+    String name_response,mail_response,gender_response;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +98,9 @@ public class Kullanici_Girisi_Activity extends AppCompatActivity {
                             JSONObject user_object = data_object.getJSONObject("user");
                              username_response = user_object.getString("username");
                              id_response = user_object.getString("_id");
+                             name_response = user_object.getString("name");
+                             mail_response = user_object.getString("email");
+                             gender_response = user_object.getString("gender");
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -150,6 +154,9 @@ public class Kullanici_Girisi_Activity extends AppCompatActivity {
         Intent intent_acil = new Intent(this,Acil_Durum_Activity.class);
         intent_acil.putExtra("username",username_response);
         intent_acil.putExtra("id",id_response);
+        intent_acil.putExtra("name",name_response);
+        intent_acil.putExtra("gender",gender_response);
+        intent_acil.putExtra("mail",mail_response);
         startActivity(intent_acil);
     }
 
@@ -157,6 +164,9 @@ public class Kullanici_Girisi_Activity extends AppCompatActivity {
         Intent intent_blog = new Intent(this,Blog_Activity.class);
         intent_blog.putExtra("username",username_response);
         intent_blog.putExtra("id",id_response);
+        intent_blog.putExtra("name",name_response);
+        intent_blog.putExtra("gender",gender_response);
+        intent_blog.putExtra("mail",mail_response);
         startActivity(intent_blog);
     }
 
@@ -164,6 +174,9 @@ public class Kullanici_Girisi_Activity extends AppCompatActivity {
         Intent intent_iletisim = new Intent(this,Iletisim_Activity.class);
         intent_iletisim.putExtra("username",username_response);
         intent_iletisim.putExtra("id",id_response);
+        intent_iletisim.putExtra("name",name_response);
+        intent_iletisim.putExtra("gender",gender_response);
+        intent_iletisim.putExtra("mail",mail_response);
         startActivity(intent_iletisim);
     }
 
@@ -171,6 +184,9 @@ public class Kullanici_Girisi_Activity extends AppCompatActivity {
         Intent intent_kullanici = new Intent(this,Kullanici_Girisi_Activity.class);
         intent_kullanici.putExtra("username",username_response);
         intent_kullanici.putExtra("id",id_response);
+        intent_kullanici.putExtra("name",name_response);
+        intent_kullanici.putExtra("gender",gender_response);
+        intent_kullanici.putExtra("mail",mail_response);
         startActivity(intent_kullanici);
     }
 
@@ -178,6 +194,9 @@ public class Kullanici_Girisi_Activity extends AppCompatActivity {
         Intent intent_anasayfa = new Intent(this,MainActivity.class);
         intent_anasayfa.putExtra("username",username_response);
         intent_anasayfa.putExtra("id",id_response);
+        intent_anasayfa.putExtra("name",name_response);
+        intent_anasayfa.putExtra("gender",gender_response);
+        intent_anasayfa.putExtra("mail",mail_response);
         startActivity(intent_anasayfa);
 
     }

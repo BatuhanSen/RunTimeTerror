@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HowToSurvive">
-        <activity android:name=".Kullanici_Sayfasi_Activity"></activity>
+        <activity android:name=".Lokasyon_Ekle_Activity"></activity>
+        <activity android:name=".Kullanici_Sayfasi_Activity" />
         <activity android:name=".Giris_Activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,7 +29,7 @@
         <activity android:name=".Blog_Activity" />
         <activity android:name=".Acil_Durum_Activity" />
         <activity android:name=".Dogal_Afetler_Activity" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

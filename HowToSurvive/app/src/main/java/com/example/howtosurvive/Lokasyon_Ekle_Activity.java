@@ -9,16 +9,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-public class Acil_Durum_Activity extends AppCompatActivity {
+public class Lokasyon_Ekle_Activity extends AppCompatActivity {
+
     DrawerLayout drawerLayout;
     String username_res,id_res;
-    String name_res,mail_res,gender_res;
+    String mail_res,name_res,gender_res;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide(); //default action barı kaldır
-        setContentView(R.layout.activity_acil_drum);
-
+        setContentView(R.layout.activity_lokasyon_ekle);
         drawerLayout = findViewById(R.id.drawer_layout); // bugfix but this line after setcontentView or crash
 
         Intent intent = getIntent(); //kullanici girisi responsendan gelen veriler
@@ -47,11 +48,11 @@ public class Acil_Durum_Activity extends AppCompatActivity {
     }
 
     public void ClickAcilDurum(View view){
-        recreate();
+        acil_durum_sayfasina_gec();
     }
 
     public void ClickBlog(View view){
-        blog_sayfasina_gec();
+        recreate();
     }
 
     public void ClickIletisim(View view){

@@ -17,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     TextView ad;
     String username_res, id_res;
+    String name_res,gender_res,mail_res;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +28,10 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawer_layout);  // bugfix but this line after setcontentView or crash
 
         Intent intent = getIntent(); //kullanici girisi responsendan gelen veriler
+
+        name_res=intent.getStringExtra("name");
+        mail_res=intent.getStringExtra("mail");
+        gender_res=intent.getStringExtra("gender");
 
         username_res = intent.getStringExtra("username");
         String username="Hoşgeldin " + intent.getStringExtra("username");
@@ -114,6 +120,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent_dogal = new Intent(this,Dogal_Afetler_Activity.class); //intent ile pass value
         intent_dogal.putExtra("username",username_res);
         intent_dogal.putExtra("id",id_res);
+        intent_dogal.putExtra("name",name_res);
+        intent_dogal.putExtra("gender",gender_res);
+        intent_dogal.putExtra("mail",mail_res);
         startActivity(intent_dogal);
     }
 
@@ -121,6 +130,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent_acil = new Intent(this,Acil_Durum_Activity.class);
         intent_acil.putExtra("username",username_res);
         intent_acil.putExtra("id",id_res);
+        intent_acil.putExtra("name",name_res);
+        intent_acil.putExtra("gender",gender_res);
+        intent_acil.putExtra("mail",mail_res);
         startActivity(intent_acil);
     }
 
@@ -128,6 +140,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent_blog = new Intent(this,Blog_Activity.class);
         intent_blog.putExtra("username",username_res);
         intent_blog.putExtra("id",id_res);
+        intent_blog.putExtra("name",name_res);
+        intent_blog.putExtra("gender",gender_res);
+        intent_blog.putExtra("mail",mail_res);
         startActivity(intent_blog);
     }
 
@@ -135,6 +150,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent_iletisim = new Intent(this,Iletisim_Activity.class);
         intent_iletisim.putExtra("username",username_res);
         intent_iletisim.putExtra("id",id_res);
+        intent_iletisim.putExtra("name",name_res);
+        intent_iletisim.putExtra("gender",gender_res);
+        intent_iletisim.putExtra("mail",mail_res);
         startActivity(intent_iletisim);
     }
 
@@ -142,6 +160,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent_kullanici = new Intent(this,Kullanici_Sayfasi_Activity.class);
         intent_kullanici.putExtra("username",username_res);
         intent_kullanici.putExtra("id",id_res);
+        intent_kullanici.putExtra("name",name_res);
+        intent_kullanici.putExtra("gender",gender_res);
+        intent_kullanici.putExtra("mail",mail_res);
         startActivity(intent_kullanici);
     }
 

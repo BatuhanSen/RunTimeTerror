@@ -13,6 +13,7 @@ public class Dogal_Afetler_Activity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     String username_res,id_res;
+    String mail_res,name_res,gender_res;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +26,9 @@ public class Dogal_Afetler_Activity extends AppCompatActivity {
 
         username_res = intent.getStringExtra("username");
         id_res = intent.getStringExtra("id");
+        mail_res = intent.getStringExtra("mail");
+        name_res = intent.getStringExtra("name");
+        gender_res = intent.getStringExtra("gender");
     }
 
     public void ClickMenu(View view){
@@ -72,6 +76,9 @@ public class Dogal_Afetler_Activity extends AppCompatActivity {
         Intent intent_acil = new Intent(this,Acil_Durum_Activity.class);
         intent_acil.putExtra("username",username_res);
         intent_acil.putExtra("id",id_res);
+        intent_acil.putExtra("name",name_res);
+        intent_acil.putExtra("gender",gender_res);
+        intent_acil.putExtra("mail",mail_res);
         startActivity(intent_acil);
     }
 
@@ -79,6 +86,9 @@ public class Dogal_Afetler_Activity extends AppCompatActivity {
         Intent intent_blog = new Intent(this,Blog_Activity.class);
         intent_blog.putExtra("username",username_res);
         intent_blog.putExtra("id",id_res);
+        intent_blog.putExtra("name",name_res);
+        intent_blog.putExtra("gender",gender_res);
+        intent_blog.putExtra("mail",mail_res);
         startActivity(intent_blog);
     }
 
@@ -86,6 +96,9 @@ public class Dogal_Afetler_Activity extends AppCompatActivity {
         Intent intent_iletisim = new Intent(this,Iletisim_Activity.class);
         intent_iletisim.putExtra("username",username_res);
         intent_iletisim.putExtra("id",id_res);
+        intent_iletisim.putExtra("name",name_res);
+        intent_iletisim.putExtra("gender",gender_res);
+        intent_iletisim.putExtra("mail",mail_res);
         startActivity(intent_iletisim);
     }
 
@@ -93,6 +106,9 @@ public class Dogal_Afetler_Activity extends AppCompatActivity {
         Intent intent_kullanici = new Intent(this,Kullanici_Sayfasi_Activity.class);
         intent_kullanici.putExtra("username",username_res);
         intent_kullanici.putExtra("id",id_res);
+        intent_kullanici.putExtra("name",name_res);
+        intent_kullanici.putExtra("gender",gender_res);
+        intent_kullanici.putExtra("mail",mail_res);
         startActivity(intent_kullanici);
     }
 
@@ -100,6 +116,9 @@ public class Dogal_Afetler_Activity extends AppCompatActivity {
         Intent intent_anasayfa = new Intent(this,MainActivity.class);
         intent_anasayfa.putExtra("username",username_res);
         intent_anasayfa.putExtra("id",id_res);
+        intent_anasayfa.putExtra("name",name_res);
+        intent_anasayfa.putExtra("gender",gender_res);
+        intent_anasayfa.putExtra("mail",mail_res);
         startActivity(intent_anasayfa);
     }
 
