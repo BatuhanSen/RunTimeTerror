@@ -8,64 +8,27 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.TextView;
 
-public class Kullanici_Sayfasi_Activity extends AppCompatActivity {
+public class Bilgi_Guncelle_Activity extends AppCompatActivity {
+
     DrawerLayout drawerLayout;
     String username_res,id_res;
-    String name_res,gender_res,mail_res;
-    TextView kul_ad_gelen, kul_username_gelen, kul_mail_gelen, kul_gender_gelen;
-    ImageButton lokasyon_ekle, bilgi_guncelle;
+    String mail_res,name_res,gender_res;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
-
-        setContentView(R.layout.activity_kullanici_sayfasi);
+        getSupportActionBar().hide(); //default action barı kaldır
+        setContentView(R.layout.activity_bilgi_guncelle);
         drawerLayout = findViewById(R.id.drawer_layout); // bugfix but this line after setcontentView or crash
 
         Intent intent = getIntent(); //kullanici girisi responsendan gelen veriler
 
         username_res = intent.getStringExtra("username");
         id_res = intent.getStringExtra("id");
-        name_res=intent.getStringExtra("name");
-        mail_res=intent.getStringExtra("mail");
-        gender_res=intent.getStringExtra("gender");
-
-        kul_ad_gelen=findViewById(R.id.kul_ad_gelen);
-        kul_username_gelen= findViewById(R.id.kul_username_gelen);
-        kul_gender_gelen = findViewById(R.id.kul_gender_gelen);
-        kul_mail_gelen = findViewById(R.id.kul_mail_gelen);
-
-        if (gender_res.equals("K"))
-            gender_res="Kadın";
-        if (gender_res.equals("E"))
-            gender_res="Erkek";
-
-        kul_ad_gelen.setText(name_res);
-        kul_username_gelen.setText(username_res);
-        kul_mail_gelen.setText(mail_res);
-        kul_gender_gelen.setText(gender_res);
-
-        lokasyon_ekle=findViewById(R.id.lokasyon_ekle);
-        bilgi_guncelle=findViewById(R.id.bilgiDüzenle);
-
-        lokasyon_ekle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                lokasyon_ekle_sayfasina_gec();
-            }
-        });
-
-        bilgi_guncelle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                bilgi_guncelle_sayfasina_gec();
-            }
-        });
+        mail_res = intent.getStringExtra("mail");
+        name_res = intent.getStringExtra("name");
+        gender_res = intent.getStringExtra("gender");
     }
 
     public void ClickMenu(View view){
@@ -97,7 +60,7 @@ public class Kullanici_Sayfasi_Activity extends AppCompatActivity {
     }
 
     public void ClickKullaniciSayfasi(View view){
-        recreate();
+        kullanici_sayfasina_gec();
     }
 
     public void ClickExit(View view){cikis(this);}
@@ -162,30 +125,9 @@ public class Kullanici_Sayfasi_Activity extends AppCompatActivity {
         startActivity(intent_anasayfa);
     }
 
-    public void lokasyon_ekle_sayfasina_gec(){
-        Intent intent_lokasyon = new Intent(this,Lokasyon_Ekle_Activity.class);
-        intent_lokasyon.putExtra("username",username_res);
-        intent_lokasyon.putExtra("id",id_res);
-        intent_lokasyon.putExtra("name",name_res);
-        intent_lokasyon.putExtra("gender",gender_res);
-        intent_lokasyon.putExtra("mail",mail_res);
-        startActivity(intent_lokasyon);
-    }
-
-    public void bilgi_guncelle_sayfasina_gec(){
-        Intent intent_bilgi_guncelle = new Intent(this,Bilgi_Guncelle_Activity.class);
-        intent_bilgi_guncelle.putExtra("username",username_res);
-        intent_bilgi_guncelle.putExtra("id",id_res);
-        intent_bilgi_guncelle.putExtra("name",name_res);
-        intent_bilgi_guncelle.putExtra("gender",gender_res);
-        intent_bilgi_guncelle.putExtra("mail",mail_res);
-        startActivity(intent_bilgi_guncelle);
-    }
-
     public static void cikis(Activity activity){
         activity.finishAffinity();
         System.exit(0);
 
     }
-
 }

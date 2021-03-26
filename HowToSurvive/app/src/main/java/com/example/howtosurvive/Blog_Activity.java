@@ -8,12 +8,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 
 public class Blog_Activity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     String username_res,id_res;
     String mail_res,name_res,gender_res;
+    ImageButton paylasim_ekle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,15 @@ public class Blog_Activity extends AppCompatActivity {
         mail_res = intent.getStringExtra("mail");
         name_res = intent.getStringExtra("name");
         gender_res = intent.getStringExtra("gender");
+
+        paylasim_ekle=findViewById(R.id.paylasimEkle_but);
+
+        paylasim_ekle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                paylasim_ekle_sayfasina_gec();
+            }
+        });
     }
 
     public void ClickMenu(View view){
@@ -123,6 +134,16 @@ public class Blog_Activity extends AppCompatActivity {
         intent_anasayfa.putExtra("gender",gender_res);
         intent_anasayfa.putExtra("mail",mail_res);
         startActivity(intent_anasayfa);
+    }
+
+    public void paylasim_ekle_sayfasina_gec(){
+        Intent intent_paylasim_ekle = new Intent(this,Paylasim_Ekle_Activity.class);
+        intent_paylasim_ekle.putExtra("username",username_res);
+        intent_paylasim_ekle.putExtra("id",id_res);
+        intent_paylasim_ekle.putExtra("name",name_res);
+        intent_paylasim_ekle.putExtra("gender",gender_res);
+        intent_paylasim_ekle.putExtra("mail",mail_res);
+        startActivity(intent_paylasim_ekle);
     }
 
     public static void cikis(Activity activity){

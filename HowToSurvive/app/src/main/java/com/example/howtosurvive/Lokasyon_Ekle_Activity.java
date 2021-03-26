@@ -52,7 +52,7 @@ public class Lokasyon_Ekle_Activity extends AppCompatActivity {
     }
 
     public void ClickBlog(View view){
-        recreate();
+        blog_sayfasina_gec();
     }
 
     public void ClickIletisim(View view){

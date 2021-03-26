@@ -88,34 +88,39 @@
 
         <EditText
             android:id="@+id/genis_adres"
-            android:layout_width="371dp"
-            android:layout_height="52dp"
+            android:layout_width="370dp"
+            android:layout_height="89dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="13dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginRight="25dp"
             android:background="@drawable/edit_text_border_lokasyon"
             android:hint="Açık Adres: Söğütözü Caddesi No:43"
             android:inputType="text"
             android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ilce_ad" />
 
         <Button
             android:id="@+id/kayit_olma"
             android:layout_width="84dp"
-            android:layout_height="59dp"
+            android:layout_height="70dp"
             android:layout_marginStart="163dp"
             android:layout_marginLeft="163dp"
-            android:layout_marginTop="32dp"
             android:layout_marginEnd="164dp"
             android:layout_marginRight="164dp"
+            android:layout_marginBottom="120dp"
             android:backgroundTint="#FA6E4F"
             android:baselineAligned="false"
             android:text="Ekle"
             app:cornerRadius="25dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/genis_adres" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

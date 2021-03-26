@@ -11,7 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HowToSurvive">
-        <activity android:name=".Lokasyon_Ekle_Activity"></activity>
+        <activity android:name=".Paylasim_Ekle_Activity"
+            android:theme="@style/PopUp"></activity>
+        <activity android:name=".Bilgi_Guncelle_Activity" />
+        <activity android:name=".Lokasyon_Ekle_Activity" />
         <activity android:name=".Kullanici_Sayfasi_Activity" />
         <activity android:name=".Giris_Activity">
             <intent-filter>
