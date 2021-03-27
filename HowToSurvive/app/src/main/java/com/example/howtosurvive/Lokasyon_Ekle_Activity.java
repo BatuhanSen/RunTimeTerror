@@ -7,13 +7,37 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.Toast;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Lokasyon_Ekle_Activity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     String username_res,id_res;
     String mail_res,name_res,gender_res;
+    EditText konum_ad,sehir_ad,ilce_ad,genis_adres;
+    String konum_adi,sehir_adi,ilce_adi,genis_adresi,latitude,longitude,village;
+    Button lok_ekle;
+    private RequestQueue lokasyonQueue;
+    private ProgressBar pbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +53,88 @@ public class Lokasyon_Ekle_Activity extends AppCompatActivity {
         mail_res = intent.getStringExtra("mail");
         name_res = intent.getStringExtra("name");
         gender_res = intent.getStringExtra("gender");
+
+        konum_ad=findViewById(R.id.konum_ad);
+        sehir_ad=findViewById(R.id.sehir_ad);
+        ilce_ad=findViewById(R.id.ilce_ad);
+        genis_adres=findViewById(R.id.genis_adres);
+        lok_ekle=findViewById(R.id.lok_ekle);
+        pbar=findViewById(R.id.pbar_lokasyon);
+
+        lokasyonQueue = Volley.newRequestQueue(Lokasyon_Ekle_Activity.this);
+
+        lok_ekle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                jsonPostGonder();
+            }
+        });
+    }
+
+    private void jsonPostGonder(){
+        String url = "https://how-to-survive.herokuapp.com/api/location";
+
+        pbar.setVisibility(View.VISIBLE);
+        lok_ekle.setVisibility(View.GONE);
+
+        sehir_adi = sehir_ad.getText().toString().trim();
+        ilce_adi = ilce_ad.getText().toString().trim();
+        longitude="2545";
+        latitude="7894";
+        village="park";
+
+
+        JSONObject lokasyon = new JSONObject();
+        try {
+            lokasyon.put("city",sehir_adi);
+            lokasyon.put("town",ilce_adi);
+            //lokasyon.put("village",village);
+            lokasyon.put("latitude",latitude); //latitude ve longitude olmadan post edilemiyo hata alırsın unutma
+            lokasyon.put("longitude",longitude);
+
+        }catch (JSONException e){
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url,lokasyon,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        Log.d("Response", response.toString());
+                        if (response.toString().contains("successfully") ){
+                            Toast.makeText(Lokasyon_Ekle_Activity.this,"Lokasyon eklendi.",Toast.LENGTH_LONG).show();
+                            anasayfaya_gec();
+                        }
+                        else{
+                            Toast.makeText(Lokasyon_Ekle_Activity.this,"Lokasyon eklenemedi.",Toast.LENGTH_LONG).show();
+                            pbar.setVisibility(View.GONE);
+                            lok_ekle.setVisibility(View.VISIBLE);
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("Error.Response", error.toString());
+                Toast.makeText(Lokasyon_Ekle_Activity.this,"Lokasyon eklenemedi.",Toast.LENGTH_LONG).show();
+                pbar.setVisibility(View.GONE);
+                lok_ekle.setVisibility(View.VISIBLE);
+            }
+        })
+        {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<>();
+                headers.put("Content-Type","application/json");
+                return headers;
+            }
+
+            @Override
+            public String getBodyContentType() {
+                return "application/json";
+            }
+        };
+        lokasyonQueue.add(request);
     }
 
     public void ClickMenu(View view){

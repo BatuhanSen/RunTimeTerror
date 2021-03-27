@@ -7,13 +7,38 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.Toast;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Iletisim_Activity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     String username_res,id_res;
     String mail_res,name_res,gender_res;
+    private RequestQueue iletisimQueue;
+    EditText geribildirim_ad,geribildirim_soyad,geribildirim_mail,geribildirim_telefon,geribildirim_mesaj;
+    String geribildirim_adi,geribildirim_soyadi,geribildirim_maili,geribildirim_telefonu,geribildirim_mesaji;
+    Button gonder_but;
+    private ProgressBar pbar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +55,87 @@ public class Iletisim_Activity extends AppCompatActivity {
         name_res = intent.getStringExtra("name");
         gender_res = intent.getStringExtra("gender");
 
+        geribildirim_ad=findViewById(R.id.geribildirim_ad);
+        geribildirim_soyad=findViewById(R.id.geribildirim_soyad);
+        geribildirim_mail=findViewById(R.id.geribildirim_mail);
+        geribildirim_telefon=findViewById(R.id.geribildirim_telefon);
+        geribildirim_mesaj=findViewById(R.id.geribildirim_mesaj);
+        gonder_but=findViewById(R.id.gonder_but);
+        pbar=findViewById(R.id.pbarr);
+
+        iletisimQueue = Volley.newRequestQueue(Iletisim_Activity.this);
+
+        gonder_but.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                jsonPutGonderme();
+            }
+        });
     }
+
+    private void jsonPutGonderme(){
+
+        String url = "https://how-to-survive.herokuapp.com/api/contact";
+
+        geribildirim_adi = geribildirim_ad.getText().toString().trim();
+        geribildirim_soyadi = geribildirim_soyad.getText().toString().trim();
+        geribildirim_telefonu = geribildirim_telefon.getText().toString().trim();
+        geribildirim_maili = geribildirim_mail.getText().toString().trim();
+        geribildirim_mesaji = geribildirim_mesaj.getText().toString().trim();
+
+        JSONObject geriDonus = new JSONObject();
+        try {
+            geriDonus.put("name",geribildirim_adi);
+            geriDonus.put("surname",geribildirim_soyadi);
+            geriDonus.put("phoneNumber",geribildirim_telefonu);
+            geriDonus.put("email", geribildirim_maili);
+            geriDonus.put("message",geribildirim_mesaji);
+
+        }catch (JSONException e){
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.PUT, url,geriDonus,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        Log.d("Response", response.toString());
+                        if (response.toString().contains("successfully") ){
+                            Toast.makeText(Iletisim_Activity.this,"Mesajınız gönderildi.",Toast.LENGTH_LONG).show();
+                            anasayfaya_gec();
+                        }
+                        else{
+                            Toast.makeText(Iletisim_Activity.this,"Mesajınız gönderilemedi.",Toast.LENGTH_LONG).show();
+                            pbar.setVisibility(View.GONE);
+                            gonder_but.setVisibility(View.VISIBLE);
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("Error.Response", error.toString());
+                Toast.makeText(Iletisim_Activity.this,"Mesajınız gönderilemedi.",Toast.LENGTH_LONG).show();
+                pbar.setVisibility(View.GONE);
+                gonder_but.setVisibility(View.VISIBLE);
+            }
+        })
+        {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<>();
+                headers.put("Content-Type","application/json");
+                return headers;
+            }
+
+            @Override
+            public String getBodyContentType() {
+                return "application/json";
+            }
+        };
+        iletisimQueue.add(request);
+    }
+
 
     public void ClickMenu(View view){
         openDrawer(drawerLayout);

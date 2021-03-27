@@ -105,7 +105,7 @@
             app:layout_constraintTop_toBottomOf="@+id/ilce_ad" />
 
         <Button
-            android:id="@+id/kayit_olma"
+            android:id="@+id/lok_ekle"
             android:layout_width="84dp"
             android:layout_height="70dp"
             android:layout_marginStart="163dp"
@@ -122,6 +122,19 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent" />
 
+        <ProgressBar
+            android:id="@+id/pbar_lokasyon"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="130dp"
+            android:layout_marginLeft="130dp"
+            android:layout_marginEnd="131dp"
+            android:layout_marginRight="131dp"
+            android:layout_marginBottom="69dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
