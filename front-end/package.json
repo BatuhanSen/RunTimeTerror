@@ -1,11 +1,6 @@
 {
-  "name": "react-redux-registration-login-example",
-  "version": "1.0.0",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/cornflourblue/react-redux-registration-login-example.git"
-  },
-  "license": "MIT",
+
+
   "scripts": {
     "build": "webpack --mode production",
     "start": "webpack-dev-server --open"
