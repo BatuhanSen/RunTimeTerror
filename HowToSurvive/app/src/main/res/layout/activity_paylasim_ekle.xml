@@ -81,7 +81,7 @@
     <EditText
         android:id="@+id/paylasim_icerik"
         android:layout_width="214dp"
-        android:layout_height="325dp"
+        android:layout_height="100dp"
         android:layout_marginStart="12dp"
         android:layout_marginLeft="12dp"
         android:layout_marginTop="4dp"
@@ -91,6 +91,30 @@
         android:padding="10dp"
         app:layout_constraintStart_toEndOf="@+id/textView5"
         app:layout_constraintTop_toBottomOf="@+id/paylasim_baslik" />
+
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="65dp"
+        android:text="Görsel:"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <ImageView
+        android:id="@+id/foto"
+        android:layout_width="214dp"
+        android:layout_height="175dp"
+        android:layout_marginStart="85dp"
+        android:layout_marginLeft="85dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/foto_cek" />
 
     <Button
         android:id="@+id/paylas_but"
@@ -105,6 +129,30 @@
         app:cornerRadius="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/foto_cek"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="23dp"
+        android:layout_marginLeft="23dp"
+        android:layout_marginTop="13dp"
+        app:layout_constraintStart_toEndOf="@+id/foto_ekle"
+        app:layout_constraintTop_toBottomOf="@+id/paylasim_icerik"
+        app:srcCompat="@drawable/ic_baseline_camera_alt_24"
+        tools:ignore="VectorDrawableCompat" />
+
+    <ImageButton
+        android:id="@+id/foto_ekle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="13dp"
+        app:layout_constraintStart_toEndOf="@+id/textView6"
+        app:layout_constraintTop_toBottomOf="@+id/paylasim_icerik"
+        app:srcCompat="@drawable/ic_baseline_camera_roll_24"
+        tools:ignore="VectorDrawableCompat" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
