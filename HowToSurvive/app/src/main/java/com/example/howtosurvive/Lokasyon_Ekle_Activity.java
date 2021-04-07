@@ -1,17 +1,22 @@
 package com.example.howtosurvive;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -21,6 +26,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlacePicker;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,6 +47,12 @@ public class Lokasyon_Ekle_Activity extends AppCompatActivity {
     Button lok_ekle;
     private RequestQueue lokasyonQueue;
     private ProgressBar pbar;
+
+    ImageButton haritadan_sec;
+    TextView konumEnlem,konumBoylam;
+    WifiManager wifiManager;
+    private static int PLACE_PICKER_REQUEST =1;
+    String sonEnlem,sonBoylam;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,9 +72,14 @@ public class Lokasyon_Ekle_Activity extends AppCompatActivity {
         konum_ad=findViewById(R.id.konum_ad);
         sehir_ad=findViewById(R.id.sehir_ad);
         ilce_ad=findViewById(R.id.ilce_ad);
-        genis_adres=findViewById(R.id.genis_adres);
+        //genis_adres=findViewById(R.id.genis_adres);
         lok_ekle=findViewById(R.id.lok_ekle);
         pbar=findViewById(R.id.pbar_lokasyon);
+
+        haritadan_sec=findViewById(R.id.haritadan_sec);
+        konumEnlem=findViewById(R.id.konumEnlem);
+        konumBoylam=findViewById(R.id.konumBoylam);
+        wifiManager= (WifiManager) this.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
 
         lokasyonQueue = Volley.newRequestQueue(Lokasyon_Ekle_Activity.this);
 
@@ -69,6 +89,56 @@ public class Lokasyon_Ekle_Activity extends AppCompatActivity {
                 jsonPostGonder();
             }
         });
+
+        haritadan_sec.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              PlacePicker.IntentBuilder intentBuilder = new PlacePicker.IntentBuilder();
+
+                try {
+                    startActivityForResult(intentBuilder.build(Lokasyon_Ekle_Activity.this), PLACE_PICKER_REQUEST);
+
+                }catch (GooglePlayServicesNotAvailableException e){
+                    Log.d("Hata",e.getMessage());
+                    e.printStackTrace();
+                }catch (GooglePlayServicesRepairableException e){
+                    Log.d("Hata",e.getMessage());
+                    e.printStackTrace();
+                }
+
+            }
+        });
+    }
+
+    private void haritaAc(){
+        PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+
+        try {
+            startActivityForResult(builder.build(this), PLACE_PICKER_REQUEST);
+
+        }catch (GooglePlayServicesNotAvailableException e){
+            Log.d("Hata",e.getMessage());
+            e.printStackTrace();
+        }catch (GooglePlayServicesRepairableException e){
+            Log.d("Hata",e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == PLACE_PICKER_REQUEST){
+            if (resultCode == RESULT_OK){
+                Place place = PlacePicker.getPlace(data,this);
+                System.out.println(place);
+                latitude=String.valueOf(place.getLatLng().latitude);
+                longitude=String.valueOf(place.getLatLng().longitude);
+                konumEnlem.setText(latitude);
+                konumBoylam.setText(longitude);
+            }
+        }
     }
 
     private void jsonPostGonder(){
@@ -79,8 +149,8 @@ public class Lokasyon_Ekle_Activity extends AppCompatActivity {
 
         sehir_adi = sehir_ad.getText().toString().trim();
         ilce_adi = ilce_ad.getText().toString().trim();
-        longitude="2545";
-        latitude="7894";
+        longitude=sonBoylam.trim();
+        latitude=sonEnlem.trim();
         village="park";
 
 

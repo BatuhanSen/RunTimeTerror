@@ -3,6 +3,8 @@ package com.example.howtosurvive;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,12 +12,32 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Blog_Activity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     String username_res,id_res;
     String mail_res,name_res,gender_res;
     ImageButton paylasim_ekle;
+
+    private static final String url = "https://how-to-survive.herokuapp.com/api/post";
+    List<PaylasimList> paylasimList;
+    RecyclerView recyclerViewPaylasim;
+    AdapterPaylasim adapterPaylasim;
+    RequestQueue requestQueue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +62,103 @@ public class Blog_Activity extends AppCompatActivity {
                 paylasim_ekle_sayfasina_gec();
             }
         });
+
+        requestQueue = Volley.newRequestQueue(this);
+        paylasimList = new ArrayList<>();
+        recyclerViewPaylasim = findViewById(R.id.recyclerViewBlog);
+        getPaylasimlar();
+
     }
+
+    private void getPaylasimlar(){
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            JSONObject data_object= response.getJSONObject("data");
+                            JSONArray posts = data_object.getJSONArray("posts");
+
+                            for (int i=0; i<posts.length();i++){
+                                JSONObject paylasim = posts.getJSONObject(i);
+
+                                PaylasimList paylasimlar = new PaylasimList();
+
+                                paylasimlar.setBaslik(paylasim.getString("title"));
+                                paylasimlar.setIcerik(paylasim.getString("content"));
+
+                                String Fulltarih =paylasim.getString("createdAt");
+                                String tarih = Fulltarih.substring(0,Fulltarih.indexOf('T'));
+                                String yıl = tarih.substring(0,tarih.indexOf('-'));
+                                String ay = tarih.substring(tarih.indexOf('-')+1,tarih.lastIndexOf('-'));
+                                String gun = tarih.substring(tarih.lastIndexOf('-')+1);
+                                String ayHarfle="";
+
+                                switch (ay){
+                                    case "01":
+                                        ayHarfle="Ocak";
+                                        break;
+                                    case "02":
+                                        ayHarfle="Şubat";
+                                        break;
+                                    case "03":
+                                        ayHarfle="Mart";
+                                        break;
+                                    case "04":
+                                        ayHarfle="Nisan";
+                                        break;
+                                    case "05":
+                                        ayHarfle="Mayıs";
+                                        break;
+                                    case "06":
+                                        ayHarfle="Haziran";
+                                        break;
+                                    case "07":
+                                        ayHarfle="Temmuz";
+                                        break;
+                                    case "08":
+                                        ayHarfle="Ağustos";
+                                        break;
+                                    case "09":
+                                        ayHarfle="Eylül";
+                                        break;
+                                    case "10":
+                                        ayHarfle="Ekim";
+                                        break;
+                                    case "11":
+                                        ayHarfle="Kasim";
+                                        break;
+                                    case "12":
+                                        ayHarfle="Aralık";
+                                        break;
+                                }
+
+                                String sonTarih="| "+gun+" "+ayHarfle+ " "+ yıl;
+
+                                paylasimlar.setTarih(sonTarih);
+
+                                paylasimList.add(paylasimlar);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                        adapterPaylasim = new AdapterPaylasim(getApplicationContext(),paylasimList);
+                        recyclerViewPaylasim.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                        recyclerViewPaylasim.setAdapter(adapterPaylasim);
+                    }
+
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+        requestQueue.add(request);
+    }
+
 
     public void ClickMenu(View view){
         openDrawer(drawerLayout);

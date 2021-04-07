@@ -18,14 +18,31 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Paylasim_Ekle_Activity extends AppCompatActivity {
 
@@ -39,6 +56,10 @@ public class Paylasim_Ekle_Activity extends AppCompatActivity {
     ImageView foto;
     ImageButton foto_cek,foto_ekle;
     Uri foto_uri, foto_galeri_uri;
+    EditText paylasim_baslik,paylasim_icerik;
+    String paylasim_basliki,paylasim_iceriki;
+    private RequestQueue paylasimQueue;
+    Button paylas_but;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +87,10 @@ public class Paylasim_Ekle_Activity extends AppCompatActivity {
         name_res = intent.getStringExtra("name");
         gender_res = intent.getStringExtra("gender");
 
+
+        paylasim_baslik=findViewById(R.id.paylasim_baslik);
+        paylasim_icerik=findViewById(R.id.paylasim_icerik);
+        paylas_but=findViewById(R.id.paylas_but);
         foto = findViewById(R.id.foto);
         foto_cek = findViewById(R.id.foto_cek);
         foto_ekle = findViewById(R.id.foto_ekle);
@@ -109,6 +134,72 @@ public class Paylasim_Ekle_Activity extends AppCompatActivity {
                 }
             }
         });
+
+        paylasimQueue = Volley.newRequestQueue(Paylasim_Ekle_Activity.this);
+
+        paylas_but.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                jsonPost_paylasim();
+            }
+        });
+
+    }
+
+    private void jsonPost_paylasim(){
+
+        String url = "https://how-to-survive.herokuapp.com/api/post";
+
+        paylasim_basliki = paylasim_baslik.getText().toString().trim();
+        paylasim_iceriki = paylasim_icerik.getText().toString().trim();
+        System.out.println(paylasim_basliki);
+        System.out.println(paylasim_iceriki);
+
+        JSONObject paylasim = new JSONObject();
+        try {
+            paylasim.put("title",paylasim_basliki);
+            paylasim.put("content",paylasim_iceriki);
+
+        }catch (JSONException e){
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url,paylasim,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        Log.d("Response", response.toString());
+                        if (response.toString().contains("successfully") ){
+                            Toast.makeText(Paylasim_Ekle_Activity.this,"Paylaşımınız eklendi.",Toast.LENGTH_LONG).show();
+                            anasayfaya_gec();
+                        }
+                        else{
+                            Toast.makeText(Paylasim_Ekle_Activity.this,"Paylaşımınız eklenemedi.",Toast.LENGTH_LONG).show();
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("Error.Response", error.toString());
+                Toast.makeText(Paylasim_Ekle_Activity.this,"Paylaşım eklenemedi..",Toast.LENGTH_LONG).show();
+            }
+        })
+        {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<>();
+                headers.put("Content-Type","application/json");
+                return headers;
+            }
+
+            @Override
+            public String getBodyContentType() {
+                return "application/json";
+            }
+        };
+        paylasimQueue.add(request);
 
     }
 
@@ -160,4 +251,15 @@ public class Paylasim_Ekle_Activity extends AppCompatActivity {
             }
         }
     }
+
+    public void anasayfaya_gec(){
+        Intent intent_anasayfa = new Intent(this,MainActivity.class);
+        intent_anasayfa.putExtra("username",username_res);
+        intent_anasayfa.putExtra("id",id_res);
+        intent_anasayfa.putExtra("name",name_res);
+        intent_anasayfa.putExtra("gender",gender_res);
+        intent_anasayfa.putExtra("mail",mail_res);
+        startActivity(intent_anasayfa);
+    }
+
 }

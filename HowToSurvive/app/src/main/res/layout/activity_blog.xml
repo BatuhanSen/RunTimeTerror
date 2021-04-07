@@ -52,6 +52,19 @@
             app:layout_constraintEnd_toStartOf="@+id/paylasimEkle_but"
             app:layout_constraintTop_toBottomOf="@+id/paylasimlar" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewBlog"
+            android:layout_width="379dp"
+            android:layout_height="568dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/paylasimEkle_but" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout

@@ -86,7 +86,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/sehir_ad" />
 
-        <EditText
+        <!--<EditText
             android:id="@+id/genis_adres"
             android:layout_width="370dp"
             android:layout_height="89dp"
@@ -102,7 +102,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ilce_ad" />
+            app:layout_constraintTop_toBottomOf="@+id/ilce_ad" /> -->
+
 
         <Button
             android:id="@+id/lok_ekle"
@@ -112,7 +113,7 @@
             android:layout_marginLeft="163dp"
             android:layout_marginEnd="164dp"
             android:layout_marginRight="164dp"
-            android:layout_marginBottom="120dp"
+            android:layout_marginBottom="92dp"
             android:backgroundTint="#FA6E4F"
             android:baselineAligned="false"
             android:text="Ekle"
@@ -135,6 +136,56 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageButton
+            android:id="@+id/haritadan_sec"
+            android:layout_width="57dp"
+            android:layout_height="54dp"
+            android:layout_marginTop="392dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
+            android:backgroundTint="#00000000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_add_location_alt_24"
+            tools:ignore="VectorDrawableCompat" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="154dp"
+            android:layout_marginLeft="154dp"
+            android:layout_marginTop="19dp"
+            android:text="Haritadan Konumu Seçin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ilce_ad" />
+
+        <TextView
+            android:id="@+id/konumEnlem"
+            android:layout_width="250dp"
+            android:layout_height="39dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/edit_text_border_lokasyon"
+            android:padding="10dp"
+            android:text="Konum Enlem:"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+        <TextView
+            android:id="@+id/konumBoylam"
+            android:layout_width="250dp"
+            android:layout_height="39dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="13dp"
+            android:background="@drawable/edit_text_border_lokasyon"
+            android:padding="10dp"
+            android:text="Konum Boylam"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/konumEnlem" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
