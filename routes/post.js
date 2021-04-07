@@ -3,17 +3,18 @@ const { body } = require("express-validator");
 
 const Post = require("../models/post");
 const postController = require("../controllers/post");
+const isAuth = require("../middleware/is-auth");
 
 const router = express.Router();
 
-router.get("/", postController.getPosts);
+router.get("/", isAuth, postController.getPosts);
 
-router.post("/", postController.addPost);
+router.post("/", isAuth, postController.addPost);
 
-router.get("/:postId", postController.getPost);
+router.get("/:postId", isAuth, postController.getPost);
 
-router.put("/:postId", postController.updatePost);
+router.put("/:postId", isAuth, postController.updatePost);
 
-router.delete("/:postId", postController.deletePost);
+router.delete("/:postId", isAuth, postController.deletePost);
 
 module.exports = router;

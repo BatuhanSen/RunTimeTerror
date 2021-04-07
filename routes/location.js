@@ -3,17 +3,18 @@ const { body } = require("express-validator");
 
 const Location = require("../models/location");
 const locationController = require("../controllers/location");
+const isAuth = require("../middleware/is-auth");
 
 const router = express.Router();
 
-router.get("/", locationController.getLocationRecords);
+router.get("/", isAuth, locationController.getLocationRecords);
 
-router.post("/", locationController.addLocationRecord);
+router.post("/", isAuth, locationController.addLocationRecord);
 
-router.get("/:locationId", locationController.getLocationRecord);
+router.get("/:locationId", isAuth, locationController.getLocationRecord);
 
-router.put("/:locationId", locationController.updateLocationRecord);
+router.put("/:locationId", isAuth, locationController.updateLocationRecord);
 
-router.delete("/:locationId", locationController.deleteLocationRecord);
+router.delete("/:locationId", isAuth, locationController.deleteLocationRecord);
 
 module.exports = router;

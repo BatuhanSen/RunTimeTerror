@@ -1,18 +1,20 @@
 const express = require("express");
 const floodController = require("../controllers/flood");
+const isAuth = require("../middleware/is-auth");
+
 
 const router = express.Router();
 
-router.get("/", floodController.getFloodRecords);
+router.get("/", isAuth, floodController.getFloodRecords);
 
-router.post("/", floodController.addFloodRecord);
+router.post("/", isAuth, floodController.addFloodRecord);
 
-router.put("/", floodController.addFloodRecords);
+router.put("/", isAuth, floodController.addFloodRecords);
 
-router.get("/:floodId", floodController.getFloodRecord);
+router.get("/:floodId", isAuth, floodController.getFloodRecord);
 
-router.put("/:floodId", floodController.updateFloodRecord);
+router.put("/:floodId", isAuth, floodController.updateFloodRecord);
 
-router.delete("/:floodId", floodController.deleteFloodRecord);
+router.delete("/:floodId", isAuth, floodController.deleteFloodRecord);
 
 module.exports = router;

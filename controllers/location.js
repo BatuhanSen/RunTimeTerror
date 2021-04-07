@@ -43,6 +43,7 @@ exports.addLocationRecord = (req, res, next) => {
   const village = req.body.village;
   const latitude = req.body.latitude;
   const longitude = req.body.longitude;
+  const userId = req.body.userId;
 
   const location = new Location({
     city: city,
@@ -50,6 +51,7 @@ exports.addLocationRecord = (req, res, next) => {
     village: village,
     latitude: latitude,
     longitude: longitude,
+    user: userId,
   });
 
   location

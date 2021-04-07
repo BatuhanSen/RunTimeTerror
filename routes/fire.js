@@ -1,18 +1,19 @@
 const express = require("express");
 const fireController = require("../controllers/fire");
+const isAuth = require("../middleware/is-auth");
 
 const router = express.Router();
 
-router.get("/", fireController.getFireRecords);
+router.get("/", isAuth, fireController.getFireRecords);
 
-router.post("/", fireController.addFireRecord);
+router.post("/", isAuth, fireController.addFireRecord);
 
-router.put("/", fireController.addFireRecords);
+router.put("/", isAuth, fireController.addFireRecords);
 
-router.get("/:fireId", fireController.getFireRecord);
+router.get("/:fireId", isAuth, fireController.getFireRecord);
 
-router.put("/:fireId", fireController.updateFireRecord);
+router.put("/:fireId", isAuth, fireController.updateFireRecord);
 
-router.delete("/:fireId", fireController.deleteFireRecord);
+router.delete("/:fireId", isAuth, fireController.deleteFireRecord);
 
 module.exports = router;
