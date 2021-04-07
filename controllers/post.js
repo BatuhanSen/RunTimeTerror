@@ -1,4 +1,5 @@
 const Post = require("../models/post");
+const User = require("../models/user");
 
 exports.getPosts = (req, res, next) => {
   Post.find()
@@ -42,20 +43,34 @@ exports.addPost = (req, res, next) => {
   const title = req.body.title;
   const content = req.body.content;
   const imageUrl = req.body.imageUrl;
+  let author;
 
   const post = new Post({
     title: title,
     content: content,
     imageUrl: imageUrl,
+    author: req.body.userId,
   });
 
   post
     .save()
     .then((result) => {
+      return User.findById(req.body.userId);
+    })
+    .then((user) => {
+      author = user;
+      user.posts.push(post);
+      return user.save();
+    })
+    .then((result) => {
       res.status(201).json({
         message: "Post created successfully",
         data: {
-          post: result,
+          post: post,
+          author: {
+            _id: author._id,
+            username: author.username,
+          },
         },
       });
     })
@@ -95,6 +110,7 @@ exports.updatePost = (req, res, next) => {
 
 exports.deletePost = (req, res, next) => {
   const postId = req.body.postId;
+  const userId = req.body.userId;
 
   Post.findById(postId)
     .then((post) => {
@@ -106,12 +122,17 @@ exports.deletePost = (req, res, next) => {
       return Post.findByIdAndRemove(postId);
     })
     .then((result) => {
+      return User.findById(userId);
+    })
+    .then((user) => {
+      user.posts.pull(postId);
+      return user.save();
+    })
+    .then((result) => {
       res.status(200).json({
         message: "The post deleted successfully",
-        data: {
-          post: result,
-        },
       });
     })
+
     .catch((err) => next(err));
 };

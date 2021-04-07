@@ -1,4 +1,5 @@
 const Location = require("../models/location");
+const User = require("../models/user");
 
 exports.getLocationRecords = (req, res, next) => {
   Location.find()
@@ -43,7 +44,7 @@ exports.addLocationRecord = (req, res, next) => {
   const village = req.body.village;
   const latitude = req.body.latitude;
   const longitude = req.body.longitude;
-  const userId = req.body.userId;
+  let owner;
 
   const location = new Location({
     city: city,
@@ -51,16 +52,28 @@ exports.addLocationRecord = (req, res, next) => {
     village: village,
     latitude: latitude,
     longitude: longitude,
-    user: userId,
+    user: req.body.userId,
   });
 
   location
     .save()
     .then((result) => {
+      return User.findById(req.body.userId);
+    })
+    .then((user) => {
+      owner = user;
+      user.locations.push(location);
+      return user.save();
+    })
+    .then((result) => {
       res.status(201).json({
         message: "Location record created successfully",
         data: {
-          locationRecord: result,
+          locationRecord: location,
+          user: {
+            _id: owner._id,
+            username: owner.username,
+          },
         },
       });
     })
@@ -105,6 +118,7 @@ exports.updateLocationRecord = (req, res, next) => {
 
 exports.deleteLocationRecord = (req, res, next) => {
   const locationId = req.params.locationId;
+  const userId = req.body.userId;
 
   Location.findById(locationId)
     .then((locationRecord) => {
@@ -117,11 +131,15 @@ exports.deleteLocationRecord = (req, res, next) => {
       return Location.findByIdAndRemove(locationId);
     })
     .then((result) => {
+      return User.findById(userId);
+    })
+    .then((user) => {
+      user.locations.pull(locationId);
+      return user.save();
+    })
+    .then((result) => {
       res.status(200).json({
         message: "Location record removed successfully",
-        data: {
-          locationRecord: result,
-        },
       });
     })
     .catch((err) => next(err));
