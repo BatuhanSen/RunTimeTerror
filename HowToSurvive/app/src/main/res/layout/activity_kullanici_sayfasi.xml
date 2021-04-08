@@ -204,7 +204,7 @@ tools:context=".Kullanici_Sayfasi_Activity">
         <androidx.cardview.widget.CardView
             android:id="@+id/lokasyon_card"
             android:layout_width="365dp"
-            android:layout_height="300dp"
+            android:layout_height="350dp"
             android:layout_row="0"
             android:layout_column="0"
             android:layout_gravity="fill"
@@ -252,6 +252,21 @@ tools:context=".Kullanici_Sayfasi_Activity">
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/ic_baseline_add_location_alt_24"
                     tools:ignore="VectorDrawableCompat" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewLokasyon"
+                    android:layout_width="333dp"
+                    android:layout_height="292dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/lokasyon_ekle" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

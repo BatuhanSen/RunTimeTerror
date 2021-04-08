@@ -41,7 +41,7 @@ public class Lokasyon_Ekle_Activity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     String username_res,id_res;
-    String mail_res,name_res,gender_res;
+    String mail_res,name_res,gender_res,token_res;
     EditText konum_ad,sehir_ad,ilce_ad,genis_adres;
     String konum_adi,sehir_adi,ilce_adi,genis_adresi,latitude,longitude,village;
     Button lok_ekle;
@@ -53,6 +53,7 @@ public class Lokasyon_Ekle_Activity extends AppCompatActivity {
     WifiManager wifiManager;
     private static int PLACE_PICKER_REQUEST =1;
     String sonEnlem,sonBoylam;
+    String headerSecondPart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +69,7 @@ public class Lokasyon_Ekle_Activity extends AppCompatActivity {
         mail_res = intent.getStringExtra("mail");
         name_res = intent.getStringExtra("name");
         gender_res = intent.getStringExtra("gender");
+        token_res = intent.getStringExtra("token");
 
         konum_ad=findViewById(R.id.konum_ad);
         sehir_ad=findViewById(R.id.sehir_ad);
@@ -75,6 +77,8 @@ public class Lokasyon_Ekle_Activity extends AppCompatActivity {
         //genis_adres=findViewById(R.id.genis_adres);
         lok_ekle=findViewById(R.id.lok_ekle);
         pbar=findViewById(R.id.pbar_lokasyon);
+
+        headerSecondPart="Bearer "+ token_res;
 
         haritadan_sec=findViewById(R.id.haritadan_sec);
         konumEnlem=findViewById(R.id.konumEnlem);
@@ -149,18 +153,19 @@ public class Lokasyon_Ekle_Activity extends AppCompatActivity {
 
         sehir_adi = sehir_ad.getText().toString().trim();
         ilce_adi = ilce_ad.getText().toString().trim();
-        longitude=sonBoylam.trim();
-        latitude=sonEnlem.trim();
-        village="park";
+        //longitude=sonBoylam.trim();
+        //latitude=sonEnlem.trim();
+        village=konum_ad.getText().toString().trim();
 
 
         JSONObject lokasyon = new JSONObject();
         try {
             lokasyon.put("city",sehir_adi);
             lokasyon.put("town",ilce_adi);
-            //lokasyon.put("village",village);
+            lokasyon.put("village",village); //konum adi
             lokasyon.put("latitude",latitude); //latitude ve longitude olmadan post edilemiyo hata alırsın unutma
             lokasyon.put("longitude",longitude);
+            lokasyon.put("userId",id_res);
 
         }catch (JSONException e){
             e.printStackTrace();
@@ -196,6 +201,7 @@ public class Lokasyon_Ekle_Activity extends AppCompatActivity {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> headers = new HashMap<>();
                 headers.put("Content-Type","application/json");
+                headers.put("Authorization",headerSecondPart);
                 return headers;
             }
 
@@ -248,6 +254,7 @@ public class Lokasyon_Ekle_Activity extends AppCompatActivity {
         intent_dogal.putExtra("name",name_res);
         intent_dogal.putExtra("gender",gender_res);
         intent_dogal.putExtra("mail",mail_res);
+        intent_dogal.putExtra("token",token_res);
         startActivity(intent_dogal);
     }
 
@@ -258,6 +265,7 @@ public class Lokasyon_Ekle_Activity extends AppCompatActivity {
         intent_acil.putExtra("name",name_res);
         intent_acil.putExtra("gender",gender_res);
         intent_acil.putExtra("mail",mail_res);
+        intent_acil.putExtra("token",token_res);
         startActivity(intent_acil);
     }
 
@@ -268,6 +276,7 @@ public class Lokasyon_Ekle_Activity extends AppCompatActivity {
         intent_blog.putExtra("name",name_res);
         intent_blog.putExtra("gender",gender_res);
         intent_blog.putExtra("mail",mail_res);
+        intent_blog.putExtra("token",token_res);
         startActivity(intent_blog);
     }
 
@@ -278,6 +287,7 @@ public class Lokasyon_Ekle_Activity extends AppCompatActivity {
         intent_iletisim.putExtra("name",name_res);
         intent_iletisim.putExtra("gender",gender_res);
         intent_iletisim.putExtra("mail",mail_res);
+        intent_iletisim.putExtra("token",token_res);
         startActivity(intent_iletisim);
     }
 
@@ -288,6 +298,7 @@ public class Lokasyon_Ekle_Activity extends AppCompatActivity {
         intent_kullanici.putExtra("name",name_res);
         intent_kullanici.putExtra("gender",gender_res);
         intent_kullanici.putExtra("mail",mail_res);
+        intent_kullanici.putExtra("token",token_res);
         startActivity(intent_kullanici);
     }
 
@@ -298,6 +309,7 @@ public class Lokasyon_Ekle_Activity extends AppCompatActivity {
         intent_anasayfa.putExtra("name",name_res);
         intent_anasayfa.putExtra("gender",gender_res);
         intent_anasayfa.putExtra("mail",mail_res);
+        intent_anasayfa.putExtra("token",token_res);
         startActivity(intent_anasayfa);
     }
 
@@ -307,3 +319,18 @@ public class Lokasyon_Ekle_Activity extends AppCompatActivity {
 
     }
 }
+
+/*
+D/Response: {"message":"Location record created successfully",
+               "data":{
+                    "locationRecord":{
+                        "_id":"606e0d4f6b1eb00004d8b458",
+                        "city":"ankara",
+                        "town":"cayyolu",
+                        "latitude":37.41819958670926,
+                        "longitude":-122.08358628675343,
+                        "user":"606036bf031d2f0004b251ad","__v":0
+                    },
+                "user":{"_id":"606036bf031d2f0004b251ad","username":"ipek97"}
+                }
+            }*/

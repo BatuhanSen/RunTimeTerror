@@ -21,8 +21,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONStringer;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -37,7 +39,7 @@ public class Kullanici_Girisi_Activity extends AppCompatActivity {
     String kullanici_adi,sifresi;
     private ProgressBar pbar;
     String username_response,id_response;
-    String name_response,mail_response,gender_response;
+    String name_response,mail_response,gender_response,token_response;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +103,7 @@ public class Kullanici_Girisi_Activity extends AppCompatActivity {
                              name_response = user_object.getString("name");
                              mail_response = user_object.getString("email");
                              gender_response = user_object.getString("gender");
+                             token_response = data_object.getString("token");
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -157,6 +160,7 @@ public class Kullanici_Girisi_Activity extends AppCompatActivity {
         intent_acil.putExtra("name",name_response);
         intent_acil.putExtra("gender",gender_response);
         intent_acil.putExtra("mail",mail_response);
+        intent_acil.putExtra("token",token_response);
         startActivity(intent_acil);
     }
 
@@ -167,6 +171,7 @@ public class Kullanici_Girisi_Activity extends AppCompatActivity {
         intent_blog.putExtra("name",name_response);
         intent_blog.putExtra("gender",gender_response);
         intent_blog.putExtra("mail",mail_response);
+        intent_blog.putExtra("token",token_response);
         startActivity(intent_blog);
     }
 
@@ -177,6 +182,7 @@ public class Kullanici_Girisi_Activity extends AppCompatActivity {
         intent_iletisim.putExtra("name",name_response);
         intent_iletisim.putExtra("gender",gender_response);
         intent_iletisim.putExtra("mail",mail_response);
+        intent_iletisim.putExtra("token",token_response);
         startActivity(intent_iletisim);
     }
 
@@ -187,6 +193,7 @@ public class Kullanici_Girisi_Activity extends AppCompatActivity {
         intent_kullanici.putExtra("name",name_response);
         intent_kullanici.putExtra("gender",gender_response);
         intent_kullanici.putExtra("mail",mail_response);
+        intent_kullanici.putExtra("token",token_response);
         startActivity(intent_kullanici);
     }
 
@@ -197,6 +204,7 @@ public class Kullanici_Girisi_Activity extends AppCompatActivity {
         intent_anasayfa.putExtra("name",name_response);
         intent_anasayfa.putExtra("gender",gender_response);
         intent_anasayfa.putExtra("mail",mail_response);
+        intent_anasayfa.putExtra("token",token_response);
         startActivity(intent_anasayfa);
 
     }

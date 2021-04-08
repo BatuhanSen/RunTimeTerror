@@ -4,11 +4,13 @@ public class PaylasimList {
     String baslik;
     String icerik;
     String tarih;
+    String username;
 
-    public PaylasimList(String baslik,String icerik,String tarih){
+    public PaylasimList(String baslik,String icerik,String tarih,String username){
         this.baslik=baslik;
         this.icerik=icerik;
         this.tarih=tarih;
+        this.username=username;
     }
 
     public PaylasimList() {
@@ -27,6 +29,10 @@ public class PaylasimList {
         return tarih;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
     public void setBaslik(String baslik) {
         this.baslik = baslik;
     }
@@ -37,5 +43,9 @@ public class PaylasimList {
 
     public void setTarih(String tarih) {
         this.tarih = tarih;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

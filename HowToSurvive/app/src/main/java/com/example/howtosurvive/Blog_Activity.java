@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -24,16 +25,18 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Blog_Activity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     String username_res,id_res;
-    String mail_res,name_res,gender_res;
+    String mail_res,name_res,gender_res,token_res;
     ImageButton paylasim_ekle;
-
     private static final String url = "https://how-to-survive.herokuapp.com/api/post";
+    String headerSecondPart;
     List<PaylasimList> paylasimList;
     RecyclerView recyclerViewPaylasim;
     AdapterPaylasim adapterPaylasim;
@@ -53,12 +56,18 @@ public class Blog_Activity extends AppCompatActivity {
         mail_res = intent.getStringExtra("mail");
         name_res = intent.getStringExtra("name");
         gender_res = intent.getStringExtra("gender");
+        token_res = intent.getStringExtra("token");
+
+        //url = "https://how-to-survive.herokuapp.com/api/post"+"/"+id_res;
+        headerSecondPart="Bearer "+ token_res;
 
         paylasim_ekle=findViewById(R.id.paylasimEkle_but);
 
         paylasim_ekle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                System.out.println(url);
+                System.out.println(headerSecondPart);
                 paylasim_ekle_sayfasina_gec();
             }
         });
@@ -79,14 +88,15 @@ public class Blog_Activity extends AppCompatActivity {
                         try {
                             JSONObject data_object= response.getJSONObject("data");
                             JSONArray posts = data_object.getJSONArray("posts");
+                            //System.out.println(response.toString());
 
                             for (int i=0; i<posts.length();i++){
                                 JSONObject paylasim = posts.getJSONObject(i);
-
                                 PaylasimList paylasimlar = new PaylasimList();
 
                                 paylasimlar.setBaslik(paylasim.getString("title"));
                                 paylasimlar.setIcerik(paylasim.getString("content"));
+                                paylasimlar.setUsername(paylasim.getString("author"));
 
                                 String Fulltarih =paylasim.getString("createdAt");
                                 String tarih = Fulltarih.substring(0,Fulltarih.indexOf('T'));
@@ -155,7 +165,22 @@ public class Blog_Activity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
             }
-        });
+
+        })
+        {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<>();
+                //headers.put("Content-Type","application/json");
+                headers.put("Authorization",headerSecondPart);
+                return headers;
+            }
+
+            @Override
+            public String getBodyContentType() {
+                return "application/json";
+            }
+        };
         requestQueue.add(request);
     }
 
@@ -201,6 +226,7 @@ public class Blog_Activity extends AppCompatActivity {
         intent_dogal.putExtra("name",name_res);
         intent_dogal.putExtra("gender",gender_res);
         intent_dogal.putExtra("mail",mail_res);
+        intent_dogal.putExtra("token",token_res);
         startActivity(intent_dogal);
     }
 
@@ -211,6 +237,7 @@ public class Blog_Activity extends AppCompatActivity {
         intent_acil.putExtra("name",name_res);
         intent_acil.putExtra("gender",gender_res);
         intent_acil.putExtra("mail",mail_res);
+        intent_acil.putExtra("token",token_res);
         startActivity(intent_acil);
     }
 
@@ -221,6 +248,7 @@ public class Blog_Activity extends AppCompatActivity {
         intent_blog.putExtra("name",name_res);
         intent_blog.putExtra("gender",gender_res);
         intent_blog.putExtra("mail",mail_res);
+        intent_blog.putExtra("token",token_res);
         startActivity(intent_blog);
     }
 
@@ -231,6 +259,7 @@ public class Blog_Activity extends AppCompatActivity {
         intent_iletisim.putExtra("name",name_res);
         intent_iletisim.putExtra("gender",gender_res);
         intent_iletisim.putExtra("mail",mail_res);
+        intent_iletisim.putExtra("token",token_res);
         startActivity(intent_iletisim);
     }
 
@@ -241,6 +270,7 @@ public class Blog_Activity extends AppCompatActivity {
         intent_kullanici.putExtra("name",name_res);
         intent_kullanici.putExtra("gender",gender_res);
         intent_kullanici.putExtra("mail",mail_res);
+        intent_kullanici.putExtra("token",token_res);
         startActivity(intent_kullanici);
     }
 
@@ -251,6 +281,7 @@ public class Blog_Activity extends AppCompatActivity {
         intent_anasayfa.putExtra("name",name_res);
         intent_anasayfa.putExtra("gender",gender_res);
         intent_anasayfa.putExtra("mail",mail_res);
+        intent_anasayfa.putExtra("token",token_res);
         startActivity(intent_anasayfa);
     }
 
@@ -261,6 +292,7 @@ public class Blog_Activity extends AppCompatActivity {
         intent_paylasim_ekle.putExtra("name",name_res);
         intent_paylasim_ekle.putExtra("gender",gender_res);
         intent_paylasim_ekle.putExtra("mail",mail_res);
+        intent_paylasim_ekle.putExtra("token",token_res);
         startActivity(intent_paylasim_ekle);
     }
 
@@ -270,3 +302,21 @@ public class Blog_Activity extends AppCompatActivity {
 
     }
 }
+/*
+ {"message":"Post created successfully",
+         "data":
+         {
+           "post":
+           {
+               "metadata":{"likes":0,"dislikes":0},
+               "comments":[],
+               "_id":"606e06ab6b1eb00004d8b454",
+               "title":"Baslik",
+               "content":"Icerik",
+               "author":"606036bf031d2f0004b251ad",
+               "createdAt":"2021-04-07T19:23:23.035Z",
+               "updatedAt":"2021-04-07T19:23:23.035Z","__v":0
+            },
+           "author":{"_id":"606036bf031d2f0004b251ad","username":"ipek97"}
+         }
+}*/

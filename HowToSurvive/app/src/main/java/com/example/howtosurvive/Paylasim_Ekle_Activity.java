@@ -52,7 +52,7 @@ public class Paylasim_Ekle_Activity extends AppCompatActivity {
     private static final int IMAGE_PICK_CODE=1000;
 
     String username_res,id_res;
-    String mail_res,name_res,gender_res;
+    String mail_res,name_res,gender_res,token_res;
     ImageView foto;
     ImageButton foto_cek,foto_ekle;
     Uri foto_uri, foto_galeri_uri;
@@ -60,6 +60,7 @@ public class Paylasim_Ekle_Activity extends AppCompatActivity {
     String paylasim_basliki,paylasim_iceriki;
     private RequestQueue paylasimQueue;
     Button paylas_but;
+    String headerSecondPart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +87,10 @@ public class Paylasim_Ekle_Activity extends AppCompatActivity {
         mail_res = intent.getStringExtra("mail");
         name_res = intent.getStringExtra("name");
         gender_res = intent.getStringExtra("gender");
+        token_res = intent.getStringExtra("token");
 
+        //url = "https://how-to-survive.herokuapp.com/api/post"+"/"+id_res;
+        headerSecondPart="Bearer "+ token_res;
 
         paylasim_baslik=findViewById(R.id.paylasim_baslik);
         paylasim_icerik=findViewById(R.id.paylasim_icerik);
@@ -152,13 +156,14 @@ public class Paylasim_Ekle_Activity extends AppCompatActivity {
 
         paylasim_basliki = paylasim_baslik.getText().toString().trim();
         paylasim_iceriki = paylasim_icerik.getText().toString().trim();
-        System.out.println(paylasim_basliki);
-        System.out.println(paylasim_iceriki);
+        //System.out.println(paylasim_basliki);
+        //System.out.println(paylasim_iceriki);
 
         JSONObject paylasim = new JSONObject();
         try {
             paylasim.put("title",paylasim_basliki);
             paylasim.put("content",paylasim_iceriki);
+            paylasim.put("userId",id_res);
 
         }catch (JSONException e){
             e.printStackTrace();
@@ -191,6 +196,7 @@ public class Paylasim_Ekle_Activity extends AppCompatActivity {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> headers = new HashMap<>();
                 headers.put("Content-Type","application/json");
+                headers.put("Authorization",headerSecondPart);
                 return headers;
             }
 
@@ -259,6 +265,7 @@ public class Paylasim_Ekle_Activity extends AppCompatActivity {
         intent_anasayfa.putExtra("name",name_res);
         intent_anasayfa.putExtra("gender",gender_res);
         intent_anasayfa.putExtra("mail",mail_res);
+        intent_anasayfa.putExtra("token",token_res);
         startActivity(intent_anasayfa);
     }
 

@@ -37,6 +37,7 @@ public class AdapterPaylasim extends RecyclerView.Adapter<AdapterPaylasim.Custom
         holder.baslik.setText(paylasim.get(position).getBaslik());
         holder.icerik.setText(paylasim.get(position).getIcerik());
         holder.tarih.setText(paylasim.get(position).getTarih());
+        holder.username.setText(paylasim.get(position).getUsername());
 
     }
 
@@ -50,6 +51,7 @@ public class AdapterPaylasim extends RecyclerView.Adapter<AdapterPaylasim.Custom
         TextView baslik;
         TextView icerik;
         TextView tarih;
+        TextView username;
 
             public CustomViewHolder(@NonNull View itemView) {
 
@@ -57,6 +59,7 @@ public class AdapterPaylasim extends RecyclerView.Adapter<AdapterPaylasim.Custom
             baslik=itemView.findViewById(R.id.get_baslik);
             icerik=itemView.findViewById(R.id.get_icerik);
             tarih=itemView.findViewById(R.id.get_tarih);
+            username=itemView.findViewById(R.id.get_kullaniciAd);
 
         }
     }

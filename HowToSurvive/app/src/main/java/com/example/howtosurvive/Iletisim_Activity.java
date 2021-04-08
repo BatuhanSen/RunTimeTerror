@@ -32,7 +32,7 @@ public class Iletisim_Activity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     String username_res,id_res;
-    String mail_res,name_res,gender_res;
+    String mail_res,name_res,gender_res,token_res;
     private RequestQueue iletisimQueue;
     EditText geribildirim_ad,geribildirim_soyad,geribildirim_mail,geribildirim_telefon,geribildirim_mesaj;
     String geribildirim_adi,geribildirim_soyadi,geribildirim_maili,geribildirim_telefonu,geribildirim_mesaji;
@@ -54,6 +54,7 @@ public class Iletisim_Activity extends AppCompatActivity {
         mail_res = intent.getStringExtra("mail");
         name_res = intent.getStringExtra("name");
         gender_res = intent.getStringExtra("gender");
+        token_res = intent.getStringExtra("token");
 
         geribildirim_ad=findViewById(R.id.geribildirim_ad);
         geribildirim_soyad=findViewById(R.id.geribildirim_soyad);
@@ -173,6 +174,12 @@ public class Iletisim_Activity extends AppCompatActivity {
 
     public void dogal_afet_sayfasina_gec(){
         Intent intent_dogal = new Intent(this,Dogal_Afetler_Activity.class); //intent ile pass value
+        intent_dogal.putExtra("username",username_res);
+        intent_dogal.putExtra("id",id_res);
+        intent_dogal.putExtra("name",name_res);
+        intent_dogal.putExtra("gender",gender_res);
+        intent_dogal.putExtra("mail",mail_res);
+        intent_dogal.putExtra("token",token_res);
         startActivity(intent_dogal);
     }
 
@@ -183,6 +190,7 @@ public class Iletisim_Activity extends AppCompatActivity {
         intent_acil.putExtra("name",name_res);
         intent_acil.putExtra("gender",gender_res);
         intent_acil.putExtra("mail",mail_res);
+        intent_acil.putExtra("token",token_res);
         startActivity(intent_acil);
     }
 
@@ -193,6 +201,7 @@ public class Iletisim_Activity extends AppCompatActivity {
         intent_blog.putExtra("name",name_res);
         intent_blog.putExtra("gender",gender_res);
         intent_blog.putExtra("mail",mail_res);
+        intent_blog.putExtra("token",token_res);
         startActivity(intent_blog);
     }
 
@@ -203,6 +212,7 @@ public class Iletisim_Activity extends AppCompatActivity {
         intent_iletisim.putExtra("name",name_res);
         intent_iletisim.putExtra("gender",gender_res);
         intent_iletisim.putExtra("mail",mail_res);
+        intent_iletisim.putExtra("token",token_res);
         startActivity(intent_iletisim);
     }
 
@@ -213,6 +223,7 @@ public class Iletisim_Activity extends AppCompatActivity {
         intent_kullanici.putExtra("name",name_res);
         intent_kullanici.putExtra("gender",gender_res);
         intent_kullanici.putExtra("mail",mail_res);
+        intent_kullanici.putExtra("token",token_res);
         startActivity(intent_kullanici);
     }
 
@@ -223,6 +234,7 @@ public class Iletisim_Activity extends AppCompatActivity {
         intent_anasayfa.putExtra("name",name_res);
         intent_anasayfa.putExtra("gender",gender_res);
         intent_anasayfa.putExtra("mail",mail_res);
+        intent_anasayfa.putExtra("token",token_res);
         startActivity(intent_anasayfa);
     }
 

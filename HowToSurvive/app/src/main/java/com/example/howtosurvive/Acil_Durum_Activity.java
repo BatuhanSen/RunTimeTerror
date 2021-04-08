@@ -29,7 +29,7 @@ import java.util.Locale;
 public class Acil_Durum_Activity extends AppCompatActivity implements LocationListener {
     DrawerLayout drawerLayout;
     String username_res, id_res;
-    String name_res, mail_res, gender_res;
+    String name_res, mail_res, gender_res,token_res;
     EditText ekstra_ihtiyac, kac_kisi;
     Button acil_but;
 
@@ -50,6 +50,7 @@ public class Acil_Durum_Activity extends AppCompatActivity implements LocationLi
         mail_res = intent.getStringExtra("mail");
         name_res = intent.getStringExtra("name");
         gender_res = intent.getStringExtra("gender");
+        token_res = intent.getStringExtra("token");
 
         ekstra_ihtiyac = findViewById(R.id.ekstra_ihtiyac);
         kac_kisi = findViewById(R.id.kac_kisi);
@@ -151,6 +152,7 @@ public class Acil_Durum_Activity extends AppCompatActivity implements LocationLi
         intent_dogal.putExtra("name",name_res);
         intent_dogal.putExtra("gender",gender_res);
         intent_dogal.putExtra("mail",mail_res);
+        intent_dogal.putExtra("token",token_res);
         startActivity(intent_dogal);
     }
 
@@ -161,6 +163,7 @@ public class Acil_Durum_Activity extends AppCompatActivity implements LocationLi
         intent_acil.putExtra("name",name_res);
         intent_acil.putExtra("gender",gender_res);
         intent_acil.putExtra("mail",mail_res);
+        intent_acil.putExtra("token",token_res);
         startActivity(intent_acil);
     }
 
@@ -171,6 +174,7 @@ public class Acil_Durum_Activity extends AppCompatActivity implements LocationLi
         intent_blog.putExtra("name",name_res);
         intent_blog.putExtra("gender",gender_res);
         intent_blog.putExtra("mail",mail_res);
+        intent_blog.putExtra("token",token_res);
         startActivity(intent_blog);
     }
 
@@ -181,6 +185,7 @@ public class Acil_Durum_Activity extends AppCompatActivity implements LocationLi
         intent_iletisim.putExtra("name",name_res);
         intent_iletisim.putExtra("gender",gender_res);
         intent_iletisim.putExtra("mail",mail_res);
+        intent_iletisim.putExtra("token",token_res);
         startActivity(intent_iletisim);
     }
 
@@ -191,6 +196,7 @@ public class Acil_Durum_Activity extends AppCompatActivity implements LocationLi
         intent_kullanici.putExtra("name",name_res);
         intent_kullanici.putExtra("gender",gender_res);
         intent_kullanici.putExtra("mail",mail_res);
+        intent_kullanici.putExtra("token",token_res);
         startActivity(intent_kullanici);
     }
 
@@ -201,6 +207,7 @@ public class Acil_Durum_Activity extends AppCompatActivity implements LocationLi
         intent_anasayfa.putExtra("name",name_res);
         intent_anasayfa.putExtra("gender",gender_res);
         intent_anasayfa.putExtra("mail",mail_res);
+        intent_anasayfa.putExtra("token",token_res);
         startActivity(intent_anasayfa);
     }
 
