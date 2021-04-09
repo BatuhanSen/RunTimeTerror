@@ -4,16 +4,6 @@ var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 var fs = require('fs');
 const express = require("express");
 const app = express();
-const importdata = require("./earthquake.json");
-
-
-
-//http.createServer(function (req, res) {
- 
-  //res.writeHead(200, {'Content-Type': 'text/html'});
- // var q = url.parse(req.url, true).query;
- // var txt = q.prm1 + " " + q.prm2;
- // res.end(txt);
 
 var searchUrl ="";
 var jsonStr="[";
@@ -47,19 +37,67 @@ for (pageIndex = 0; pageIndex < 100; pageIndex++) {
         pageIndex = 101;
     }
 }
-jsonStr = jsonStr.substring(0,jsonStr.length-2) + "]";
-var jsonData = JSON.parse(jsonStr);
-fs.writeFile('earthquake.json', jsonStr, function (err) {
+jsonStrFromSite1 = jsonStr.substring(0,jsonStr.length-2) + "]";
+var jsonDataFromSite1 = JSON.parse(jsonStrFromSite1);
+fs.readFile('./earthquake.json',  function(err, jsonStrFromDb1) {
     if (err) throw err;
-    console.log('Saved!');
+
+    var jsonDataFromDb1 = JSON.parse(jsonStrFromDb1);
+    var tempJsonStrFromDb1 = "["+JSON.stringify(jsonStrFromDb1).substring(35)+"]";
+    for (j = 0; j < jsonDataFromSite1.length; j++) {
+        findIt = false;
+        ind = 1
+        do {
+            if (JSON.stringify(jsonDataFromSite1[j]) == JSON.stringify(jsonDataFromDb1[ind++])){
+                findIt = true;
+            }
+        } while (findIt);
+        if (!findIt){
+            newData = JSON.stringify(jsonDataFromSite1[j]);
+            tempJsonStrFromDb1 = tempJsonStrFromDb1.substring(0,tempJsonStrFromDb1.length-1);
+            if (tempJsonStrFromDb1.length < 10){
+                tempJsonStrFromDb1 = tempJsonStrFromDb1 + newData + "]";
+            }else{
+                tempJsonStrFromDb1 = tempJsonStrFromDb1 + ",\n" + newData + "]";
+            }
+        }
+    }
+    fs.writeFile('./earthquake.json', tempJsonStrFromDb1, function (err) {
+        if (err) throw err;
+    });
 });
 
-//var j;
-//for (j = 0; j < jsonArr.length; j++) {
-//    res.write(jsonArr[j].Enlem);
-  //console.log(jsonArr[j]);
-//};
-// res.end();
-//}).listen(8080);
+var xmlHttp = new XMLHttpRequest();
+xmlHttp.open( "GET", "https://www.ogm.gov.tr/tr/orman-yanginlari", false ); // false for synchronous request
+xmlHttp.send( null );
+var pageSource = xmlHttp.responseText;
+var jsonStrFromSite2 = pageSource.slice((pageSource.indexOf("{items:[{\"data\":")+16),(pageSource.indexOf("}]}]}}),")+2));
+var jsonDataFromSite2 = JSON.parse(jsonStrFromSite2);
+fs.readFile('./fire.json',  function(err, jsonStrFromDb2) {
+    if (err) throw err;
 
-
+    var jsonDataFromDb2 = JSON.parse(jsonStrFromDb2);
+    var tempJsonStrFromDb2 = "["+JSON.stringify(jsonStrFromDb2).substring(35)+"]";
+    for (j = 0; j < jsonDataFromSite2.length; j++) {
+        findIt = false;
+        ind = 1
+        do {
+            if (JSON.stringify(jsonDataFromSite2[j]) == JSON.stringify(jsonDataFromDb2[ind++])){
+                findIt = true;
+            }
+        } while (findIt);
+        if (!findIt){
+            newData = JSON.stringify(jsonDataFromSite2[j]);
+            tempJsonStrFromDb2 = tempJsonStrFromDb2.substring(0,tempJsonStrFromDb2.length-1);
+            if (tempJsonStrFromDb2.length < 10){
+                tempJsonStrFromDb2 = tempJsonStrFromDb2 + newData + "]";
+            }else{
+                tempJsonStrFromDb2 = tempJsonStrFromDb2 + ",\n" + newData + "]";
+            }
+            
+        }
+    }
+    fs.writeFile('./fire.json', tempJsonStrFromDb2, function (err) {
+        if (err) throw err;
+    });
+});
