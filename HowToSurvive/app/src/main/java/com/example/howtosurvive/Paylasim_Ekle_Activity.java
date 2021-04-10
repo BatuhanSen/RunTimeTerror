@@ -5,8 +5,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 
 import android.Manifest;
+import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -16,12 +19,14 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -35,21 +40,38 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Paylasim_Ekle_Activity extends AppCompatActivity {
 
-    private static final int PERMISSION_CODE=1000;
+    /*private static final int PERMISSION_CODE=1000;
     private static final int IMAGE_CAPTURE_CODE=1001;
     private static final int PERMISSION_CODE_GALERI=1001;
-    private static final int IMAGE_PICK_CODE=1000;
+    private static final int IMAGE_PICK_CODE=1000;*/
+
+    private static final int CAMERA_PERM_CODE=101;
+    private static final int CAMERA_REQUEST_CODE=102;
+    private static final int GALLERY_REQUEST_CODE=105;
+    String fotoPath;
+    StorageReference storageReference;
+
 
     String username_res,id_res;
     String mail_res,name_res,gender_res,token_res;
@@ -61,6 +83,7 @@ public class Paylasim_Ekle_Activity extends AppCompatActivity {
     private RequestQueue paylasimQueue;
     Button paylas_but;
     String headerSecondPart;
+    String paylasim_foto_urli;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,7 +122,9 @@ public class Paylasim_Ekle_Activity extends AppCompatActivity {
         foto_cek = findViewById(R.id.foto_cek);
         foto_ekle = findViewById(R.id.foto_ekle);
 
-        foto_cek.setOnClickListener(new View.OnClickListener() {
+        storageReference = FirebaseStorage.getInstance().getReference();
+
+        /*foto_cek.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){ //gerekli izinler kontrol
@@ -137,6 +162,21 @@ public class Paylasim_Ekle_Activity extends AppCompatActivity {
                     galeriAc();
                 }
             }
+        });*/
+
+        foto_cek.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                kameraAcma();
+            }
+        });
+
+        foto_ekle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent galeri = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(galeri,GALLERY_REQUEST_CODE);
+            }
         });
 
         paylasimQueue = Volley.newRequestQueue(Paylasim_Ekle_Activity.this);
@@ -150,20 +190,137 @@ public class Paylasim_Ekle_Activity extends AppCompatActivity {
 
     }
 
+    private void kameraAcma(){
+
+        if (ContextCompat.checkSelfPermission(this,Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.CAMERA}, CAMERA_PERM_CODE);
+        }else{
+            dispatchFotoCekIntent();
+        }
+
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == CAMERA_PERM_CODE){
+            if (grantResults.length>0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                dispatchFotoCekIntent();
+            }else {
+                Toast.makeText(this,"Kamera izni gerekiyor.", Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == CAMERA_REQUEST_CODE){
+            if (resultCode == Activity.RESULT_OK){
+                File file = new File(fotoPath);
+                foto.setImageURI(Uri.fromFile(file));
+
+                Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+                Uri uri = Uri.fromFile(file);
+                intent.setData(uri);
+                this.sendBroadcast(intent);
+                //System.out.println(file.getName()+uri);
+                uploadImage(file.getName(),uri);
+
+
+            }
+        }
+
+        if (requestCode == GALLERY_REQUEST_CODE){
+            if (resultCode == Activity.RESULT_OK){
+                Uri uri = data.getData();
+                String olusturma_zamani = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+                String foto_ad = "JPEG_"+ olusturma_zamani  +"."+getFileExt(uri);
+                foto.setImageURI(uri);
+                //System.out.println(foto_ad);
+                uploadImage(foto_ad,uri);
+            }
+        }
+    }
+
+    private void uploadImage(String name, Uri uri){
+        StorageReference foto = storageReference.child("images/"+name);
+        foto.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                foto.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        paylasim_foto_urli = uri.toString(); //firebaseden almak icin gereken url token icinde
+                        System.out.println(paylasim_foto_urli);
+                    }
+                });
+                Toast.makeText(Paylasim_Ekle_Activity.this,"Foto upload edildi.",Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(Paylasim_Ekle_Activity.this,"Foto upload hatası.",Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    private String getFileExt(Uri uri){
+        ContentResolver contentResolver = getContentResolver();
+        MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
+        return  mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
+    }
+
+    private File ImageFileOlusturma() throws IOException{
+        String olusturma_zaman =  new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String foto_ad = "JPEG_" + olusturma_zaman + "_";
+
+        File saklamaDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+        //File saklamaDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File foto = File.createTempFile(
+                foto_ad,
+                ".jpg",
+                saklamaDir
+        );
+
+        fotoPath = foto.getAbsolutePath();
+        return foto;
+    }
+
+    private void dispatchFotoCekIntent() {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+
+            File fotoFile = null; //file olusturma
+            try {
+                fotoFile = ImageFileOlusturma();
+            } catch (IOException e) {
+
+            }
+
+            if (fotoFile != null) {
+                Uri fotoUri = FileProvider.getUriForFile(this,"com.example.howtosurvive.android.fileprovider",fotoFile);
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, fotoUri);
+                startActivityForResult(intent, CAMERA_REQUEST_CODE);
+            }
+        }
+    }
+
     private void jsonPost_paylasim(){
 
         String url = "https://how-to-survive.herokuapp.com/api/post";
 
         paylasim_basliki = paylasim_baslik.getText().toString().trim();
         paylasim_iceriki = paylasim_icerik.getText().toString().trim();
-        //System.out.println(paylasim_basliki);
-        //System.out.println(paylasim_iceriki);
 
         JSONObject paylasim = new JSONObject();
         try {
             paylasim.put("title",paylasim_basliki);
             paylasim.put("content",paylasim_iceriki);
             paylasim.put("userId",id_res);
+            paylasim.put("imageUrl",paylasim_foto_urli);
 
         }catch (JSONException e){
             e.printStackTrace();
@@ -209,7 +366,7 @@ public class Paylasim_Ekle_Activity extends AppCompatActivity {
 
     }
 
-    private void galeriAc(){
+    /*private void galeriAc(){
         Intent intent_galeri =  new Intent(Intent.ACTION_PICK);
         intent_galeri.setType("image/*");
         startActivityForResult(intent_galeri,IMAGE_PICK_CODE);
@@ -220,6 +377,7 @@ public class Paylasim_Ekle_Activity extends AppCompatActivity {
         values.put(MediaStore.Images.Media.TITLE,"Yeni foto");
         values.put(MediaStore.Images.Media.DESCRIPTION,"Kameradan cekildi");
         foto_uri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,values);
+        System.out.println(foto_uri);
 
         Intent intent_foto = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         intent_foto.putExtra(MediaStore.EXTRA_OUTPUT,foto_uri);
@@ -237,6 +395,7 @@ public class Paylasim_Ekle_Activity extends AppCompatActivity {
 
         if (resultCode == RESULT_OK && requestCode == IMAGE_PICK_CODE){
             foto_galeri_uri=data.getData();
+            System.out.println(foto_galeri_uri);
             foto.setImageURI(foto_galeri_uri);
         }
     }
@@ -256,7 +415,7 @@ public class Paylasim_Ekle_Activity extends AppCompatActivity {
                 galeriAc();
             }
         }
-    }
+    }*/
 
     public void anasayfaya_gec(){
         Intent intent_anasayfa = new Intent(this,MainActivity.class);

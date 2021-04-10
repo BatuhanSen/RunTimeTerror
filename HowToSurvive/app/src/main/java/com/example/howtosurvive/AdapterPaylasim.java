@@ -4,10 +4,13 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -39,6 +42,8 @@ public class AdapterPaylasim extends RecyclerView.Adapter<AdapterPaylasim.Custom
         holder.tarih.setText(paylasim.get(position).getTarih());
         holder.username.setText(paylasim.get(position).getUsername());
 
+        Glide.with(context).load(paylasim.get(position).getImage()).into(holder.image);
+
     }
 
     @Override
@@ -52,6 +57,7 @@ public class AdapterPaylasim extends RecyclerView.Adapter<AdapterPaylasim.Custom
         TextView icerik;
         TextView tarih;
         TextView username;
+        ImageView image;
 
             public CustomViewHolder(@NonNull View itemView) {
 
@@ -60,6 +66,7 @@ public class AdapterPaylasim extends RecyclerView.Adapter<AdapterPaylasim.Custom
             icerik=itemView.findViewById(R.id.get_icerik);
             tarih=itemView.findViewById(R.id.get_tarih);
             username=itemView.findViewById(R.id.get_kullaniciAd);
+            image=itemView.findViewById(R.id.get_image);
 
         }
     }

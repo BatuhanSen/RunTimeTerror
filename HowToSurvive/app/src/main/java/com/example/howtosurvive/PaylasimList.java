@@ -5,12 +5,14 @@ public class PaylasimList {
     String icerik;
     String tarih;
     String username;
+    String image;
 
-    public PaylasimList(String baslik,String icerik,String tarih,String username){
+    public PaylasimList(String baslik,String icerik,String tarih,String username,String image){
         this.baslik=baslik;
         this.icerik=icerik;
         this.tarih=tarih;
         this.username=username;
+        this.image=image;
     }
 
     public PaylasimList() {
@@ -33,6 +35,10 @@ public class PaylasimList {
         return username;
     }
 
+    public String getImage() {
+        return image;
+    }
+
     public void setBaslik(String baslik) {
         this.baslik = baslik;
     }
@@ -47,5 +53,9 @@ public class PaylasimList {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

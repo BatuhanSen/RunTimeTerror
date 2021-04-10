@@ -85,6 +85,7 @@ public class Blog_Activity extends AppCompatActivity {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
+                        System.out.println(response);
                         try {
                             JSONObject data_object= response.getJSONObject("data");
                             JSONArray posts = data_object.getJSONArray("posts");
@@ -97,6 +98,11 @@ public class Blog_Activity extends AppCompatActivity {
                                 paylasimlar.setBaslik(paylasim.getString("title"));
                                 paylasimlar.setIcerik(paylasim.getString("content"));
                                 paylasimlar.setUsername(paylasim.getString("author"));
+
+                                if (!(paylasim.isNull("imageUrl"))){ //image olabilir olmayabilir
+                                    paylasimlar.setImage(paylasim.getString("imageUrl"));
+                                }
+
 
                                 String Fulltarih =paylasim.getString("createdAt");
                                 String tarih = Fulltarih.substring(0,Fulltarih.indexOf('T'));

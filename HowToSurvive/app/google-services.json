@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "254626875692",
+    "project_id": "how-to-survive-a410f",
+    "storage_bucket": "how-to-survive-a410f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:254626875692:android:ef8299bba1fe628faf4489",
+        "android_client_info": {
+          "package_name": "com.example.howtosurvive"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "254626875692-4hhhhe7rsn9u5iq9vo4auf63maf4fdmg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmrjEqxQVJf_PC8k98V1pmyFOavvOa37E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "254626875692-4hhhhe7rsn9u5iq9vo4auf63maf4fdmg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
