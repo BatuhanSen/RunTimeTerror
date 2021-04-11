@@ -5,6 +5,9 @@ var fs = require('fs');
 const express = require("express");
 const app = express();
 
+
+
+//E A R T H Q U A K E//////////////////////////////////////////////////////////////////////////////
 var searchUrl ="";
 var jsonStr="[";
 var xmlHttp = new XMLHttpRequest();
@@ -39,65 +42,74 @@ for (pageIndex = 0; pageIndex < 100; pageIndex++) {
 }
 jsonStrFromSite1 = jsonStr.substring(0,jsonStr.length-2) + "]";
 var jsonDataFromSite1 = JSON.parse(jsonStrFromSite1);
-fs.readFile('./earthquake.json',  function(err, jsonStrFromDb1) {
-    if (err) throw err;
-
-    var jsonDataFromDb1 = JSON.parse(jsonStrFromDb1);
-    var tempJsonStrFromDb1 = "["+JSON.stringify(jsonStrFromDb1).substring(35)+"]";
-    for (j = 0; j < jsonDataFromSite1.length; j++) {
-        findIt = false;
-        ind = 1
-        do {
-            if (JSON.stringify(jsonDataFromSite1[j]) == JSON.stringify(jsonDataFromDb1[ind++])){
-                findIt = true;
-            }
-        } while (findIt);
-        if (!findIt){
-            newData = JSON.stringify(jsonDataFromSite1[j]);
-            tempJsonStrFromDb1 = tempJsonStrFromDb1.substring(0,tempJsonStrFromDb1.length-1);
-            if (tempJsonStrFromDb1.length < 10){
-                tempJsonStrFromDb1 = tempJsonStrFromDb1 + newData + "]";
-            }else{
-                tempJsonStrFromDb1 = tempJsonStrFromDb1 + ",\n" + newData + "]";
-            }
-        }
-    }
-    fs.writeFile('./earthquake.json', tempJsonStrFromDb1, function (err) {
-        if (err) throw err;
+let eqloc = {
+    table: []
+};
+let eqdata = {
+    table: []
+};
+for (i = 0; i < jsonDataFromSite1.length; i++) {
+    eqloc.table.push({
+        id: i,
+        Enlem: jsonDataFromSite1[i].Enlem.substring(0,jsonDataFromSite1[i].Enlem.indexOf("&")),
+        Boylam: jsonDataFromSite1[i].Boylam.substring(0,jsonDataFromSite1[i].Boylam.indexOf("&")),
+        Yer: jsonDataFromSite1[i].Yer
     });
+    eqdata.table.push({
+        id: i,
+        Zaman: jsonDataFromSite1[i].Zaman,
+        Mag: jsonDataFromSite1[i].Mag,
+        MagTipi: jsonDataFromSite1[i].MagTipi,
+        Derinlik: jsonDataFromSite1[i].Derinlik,
+        SonGuncelleme: jsonDataFromSite1[i].SonGuncelleme
+    });
+}
+fs.writeFile('./earthquakeloc.json', JSON.stringify(eqloc), function (err) {
+    if (err) throw err;
+});
+fs.writeFile('./earthquake.json', JSON.stringify(eqdata), function (err) {
+    if (err) throw err;
 });
 
+//F I R E//////////////////////////////////////////////////////////////////////////////
 var xmlHttp = new XMLHttpRequest();
 xmlHttp.open( "GET", "https://www.ogm.gov.tr/tr/orman-yanginlari", false ); // false for synchronous request
 xmlHttp.send( null );
 var pageSource = xmlHttp.responseText;
 var jsonStrFromSite2 = pageSource.slice((pageSource.indexOf("{items:[{\"data\":")+16),(pageSource.indexOf("}]}]}}),")+2));
 var jsonDataFromSite2 = JSON.parse(jsonStrFromSite2);
-fs.readFile('./fire.json',  function(err, jsonStrFromDb2) {
-    if (err) throw err;
 
-    var jsonDataFromDb2 = JSON.parse(jsonStrFromDb2);
-    var tempJsonStrFromDb2 = "["+JSON.stringify(jsonStrFromDb2).substring(35)+"]";
-    for (j = 0; j < jsonDataFromSite2.length; j++) {
-        findIt = false;
-        ind = 1
-        do {
-            if (JSON.stringify(jsonDataFromSite2[j]) == JSON.stringify(jsonDataFromDb2[ind++])){
-                findIt = true;
-            }
-        } while (findIt);
-        if (!findIt){
-            newData = JSON.stringify(jsonDataFromSite2[j]);
-            tempJsonStrFromDb2 = tempJsonStrFromDb2.substring(0,tempJsonStrFromDb2.length-1);
-            if (tempJsonStrFromDb2.length < 10){
-                tempJsonStrFromDb2 = tempJsonStrFromDb2 + newData + "]";
-            }else{
-                tempJsonStrFromDb2 = tempJsonStrFromDb2 + ",\n" + newData + "]";
-            }
-            
-        }
-    }
-    fs.writeFile('./fire.json', tempJsonStrFromDb2, function (err) {
-        if (err) throw err;
+let floc = {
+    table: []
+};
+let fdata = {
+    table: []
+};
+for (i = 0; i < jsonDataFromSite2.length; i++) {
+    floc.table.push({
+        id: i,
+        IlAdi: jsonDataFromSite2[i].IlAdi,
+        IlceAdi: jsonDataFromSite2[i].IlceAdi,
+        Enlem: jsonDataFromSite2[i].XKoordinati,
+        Boylam: jsonDataFromSite2[i].YKoordinati
+
     });
+    var str = jsonDataFromSite2[i].YanginBaslamaZamani;
+    var x = str.substring(6,str.indexOf(")"));
+    ybz = new Date(parseInt(x)).toISOString().split('T')[0] + " " + jsonDataFromSite2[i].YanginBaslamaSaati + ":00";
+
+    fdata.table.push({
+        id: i,
+        YanginBaslamaZamani: ybz,
+        YanginDurumu: jsonDataFromSite2[i].YanginDurumu,
+        RiskDurumu: jsonDataFromSite2[i].RiskDurumu
+    });
+}
+fs.writeFile('./fireloc.json', JSON.stringify(floc), function (err) {
+    if (err) throw err;
 });
+fs.writeFile('./fire.json', JSON.stringify(fdata), function (err) {
+    if (err) throw err;
+});
+
+
