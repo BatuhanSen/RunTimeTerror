@@ -11,20 +11,76 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
+        <fragment
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="368dp"
+            android:layout_height="554dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginLeft="22dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/checkBox_deprem"
+            tools:context=".MapsActivity" />
+
+        <CheckBox
+            android:id="@+id/checkBox_deprem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="96dp"
-            android:layout_marginRight="96dp"
-            android:layout_marginBottom="576dp"
-            android:gravity="center_horizontal"
-            android:text="Doğal Afetler"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="36dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            android:layout_marginStart="22dp"
+            android:layout_marginLeft="22dp"
+            android:layout_marginTop="72dp"
+            android:text="Deprem"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <CheckBox
+            android:id="@+id/checkBox_yangin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="72dp"
+            android:text="Yangın"
+            app:layout_constraintStart_toEndOf="@+id/checkBox_deprem"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <CheckBox
+            android:id="@+id/checkBox_birAy"
+            android:layout_width="110dp"
+            android:layout_height="23dp"
+            android:layout_marginTop="64dp"
+            android:layout_marginEnd="36dp"
+            android:layout_marginRight="36dp"
+            android:text="Son 1 ay"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <CheckBox
+            android:id="@+id/checkBox_ucAy"
+            android:layout_width="110dp"
+            android:layout_height="23dp"
+            android:layout_marginEnd="36dp"
+            android:layout_marginRight="36dp"
+            android:text="Son 3 ay"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/checkBox_birAy" />
+
+        <CheckBox
+            android:id="@+id/checkBox_birYil"
+            android:layout_width="110dp"
+            android:layout_height="23dp"
+            android:layout_marginEnd="36dp"
+            android:layout_marginRight="36dp"
+            android:text="Son 1 yıl"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/checkBox_ucAy" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

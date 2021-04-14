@@ -51,7 +51,7 @@ public class Lokasyon_Ekle_Activity extends AppCompatActivity {
     ImageButton haritadan_sec;
     TextView konumEnlem,konumBoylam;
     WifiManager wifiManager;
-    private static int PLACE_PICKER_REQUEST =1;
+    private static final int PLACE_PICKER_REQUEST =1;
     String sonEnlem,sonBoylam;
     String headerSecondPart;
 
@@ -97,7 +97,10 @@ public class Lokasyon_Ekle_Activity extends AppCompatActivity {
         haritadan_sec.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              PlacePicker.IntentBuilder intentBuilder = new PlacePicker.IntentBuilder();
+
+                wifiManager.setWifiEnabled(false);
+                haritaAc();
+                /*PlacePicker.IntentBuilder intentBuilder = new PlacePicker.IntentBuilder();
 
                 try {
                     startActivityForResult(intentBuilder.build(Lokasyon_Ekle_Activity.this), PLACE_PICKER_REQUEST);
@@ -108,7 +111,7 @@ public class Lokasyon_Ekle_Activity extends AppCompatActivity {
                 }catch (GooglePlayServicesRepairableException e){
                     Log.d("Hata",e.getMessage());
                     e.printStackTrace();
-                }
+                }*/
 
             }
         });
@@ -119,6 +122,7 @@ public class Lokasyon_Ekle_Activity extends AppCompatActivity {
 
         try {
             startActivityForResult(builder.build(this), PLACE_PICKER_REQUEST);
+            wifiManager.setWifiEnabled(true);
 
         }catch (GooglePlayServicesNotAvailableException e){
             Log.d("Hata",e.getMessage());
@@ -133,7 +137,21 @@ public class Lokasyon_Ekle_Activity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == PLACE_PICKER_REQUEST){
+        if (resultCode == RESULT_OK){
+            switch (requestCode){
+                case PLACE_PICKER_REQUEST:
+                    Place place = PlacePicker.getPlace(Lokasyon_Ekle_Activity.this,data);
+                    latitude=String.valueOf(place.getLatLng().latitude);
+                    longitude=String.valueOf(place.getLatLng().longitude);
+                    System.out.println(latitude);
+                    System.out.println(longitude);
+                    konumEnlem.setText(latitude);
+                    konumBoylam.setText(longitude);
+            }
+        }
+
+
+        /*if (requestCode == PLACE_PICKER_REQUEST){
             if (resultCode == RESULT_OK){
                 Place place = PlacePicker.getPlace(data,this);
                 System.out.println(place);
@@ -142,7 +160,7 @@ public class Lokasyon_Ekle_Activity extends AppCompatActivity {
                 konumEnlem.setText(latitude);
                 konumBoylam.setText(longitude);
             }
-        }
+        }*/
     }
 
     private void jsonPostGonder(){

@@ -23,7 +23,7 @@
         android:theme="@style/Theme.HowToSurvive">
 
         <meta-data android:name="com.google.android.geo.API_KEY"
-            android:value=""/>
+            android:value="AIzaSyBAnLp82m9tQXQ0chAzpLGwWHGbOs8pcc8"/>
 
         <activity android:name=".Paylasim_Ekle_Activity"
             android:theme="@style/PopUp"></activity>
