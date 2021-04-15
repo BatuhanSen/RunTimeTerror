@@ -225,7 +225,6 @@ public class Dogal_Afetler_Activity extends AppCompatActivity implements OnMapRe
 
                             }
 
-
                             //ArrayList<MarkerOptions> markers = new ArrayList<>();
                             //ArrayList<Marker> markers = new ArrayList<>();
                             if (depremCheck == 1) {

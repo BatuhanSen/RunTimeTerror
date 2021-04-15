@@ -86,59 +86,65 @@ public class Kullanici_Giris_Ana_Activity extends AppCompatActivity {
         adi = ad.getText().toString().trim();
         cinsiyeti = cinsiyet.getText().toString().trim();
         telefonu = telefon.getText().toString().trim();
+        sifreTekrari= sifreTekrar.getText().toString().trim();
 
-        JSONObject kullanici = new JSONObject();
-        try {
-            kullanici.put("username",kullanici_ad);
-            kullanici.put("password",sifresi);
-            kullanici.put("email",emaili);
-            kullanici.put("name", adi);
-            kullanici.put("gender",cinsiyeti);
-            kullanici.put("phone",telefonu);
+            if (sifreTekrari.equals(sifresi)) {
 
-        }catch (JSONException e){
-            e.printStackTrace();
-        }
+            JSONObject kullanici = new JSONObject();
+            try {
+                kullanici.put("username", kullanici_ad);
+                kullanici.put("password", sifresi);
+                kullanici.put("email", emaili);
+                kullanici.put("name", adi);
+                kullanici.put("gender", cinsiyeti);
+                kullanici.put("phone", telefonu);
 
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.PUT, url,kullanici,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
-                        Log.d("Response", response.toString());
-                        if (response.toString().contains("successfully") ){
-                            Toast.makeText(Kullanici_Giris_Ana_Activity.this,"Kayıt işlemi başarılı.",Toast.LENGTH_LONG).show();
-                            kullanici_giris_gec();
+            JsonObjectRequest request = new JsonObjectRequest(Request.Method.PUT, url, kullanici,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+
+                            Log.d("Response", response.toString());
+                            if (response.toString().contains("successfully")) {
+                                Toast.makeText(Kullanici_Giris_Ana_Activity.this, "Kayıt işlemi başarılı.", Toast.LENGTH_LONG).show();
+                                kullanici_giris_gec();
+                            } else {
+                                Toast.makeText(Kullanici_Giris_Ana_Activity.this, "Kayıt işlemi başarısız.", Toast.LENGTH_LONG).show();
+                                pbar.setVisibility(View.GONE);
+                                kayitOl.setVisibility(View.VISIBLE);
+                            }
                         }
-                        else{
-                            Toast.makeText(Kullanici_Giris_Ana_Activity.this,"Kayıt işlemi başarısız.",Toast.LENGTH_LONG).show();
-                            pbar.setVisibility(View.GONE);
-                            kayitOl.setVisibility(View.VISIBLE);
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d("Error.Response", error.toString());
-                Toast.makeText(Kullanici_Giris_Ana_Activity.this,"Kayıt işlemi başarısız.Bu mail sistemde kayıtlı.",Toast.LENGTH_LONG).show();
-                pbar.setVisibility(View.GONE);
-                kayitOl.setVisibility(View.VISIBLE);
-            }
-        })
-        {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                HashMap<String, String> headers = new HashMap<>();
-                headers.put("Content-Type","application/json");
-                return headers;
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.d("Error.Response", error.toString());
+                    Toast.makeText(Kullanici_Giris_Ana_Activity.this, "Kayıt işlemi başarısız.Bu mail sistemde kayıtlı.", Toast.LENGTH_LONG).show();
+                    pbar.setVisibility(View.GONE);
+                    kayitOl.setVisibility(View.VISIBLE);
+                }
+            }) {
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    HashMap<String, String> headers = new HashMap<>();
+                    headers.put("Content-Type", "application/json");
+                    return headers;
+                }
+
+                @Override
+                public String getBodyContentType() {
+                    return "application/json";
+                }
+            };
+            kayitQueue.add(request);
+
+        }else{
+                Toast.makeText(Kullanici_Giris_Ana_Activity.this, "Şifreleriniz eşleşmiyor.Tekrar deneyiniz.", Toast.LENGTH_LONG).show();
             }
 
-            @Override
-            public String getBodyContentType() {
-                return "application/json";
-            }
-        };
-        kayitQueue.add(request);
     }
 
     public void kullanici_giris_gec(){

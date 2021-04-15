@@ -1,11 +1,15 @@
 package com.example.howtosurvive;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -39,6 +43,12 @@ public class MainActivity extends AppCompatActivity {
 
         ad = findViewById(R.id.username);
         ad.setText(username);
+
+        Intent service_intent = new Intent(this, ArkaplanServis.class);
+        service_intent.putExtra("token",token_res);
+
+        startService(service_intent);
+
 
         Button dogal_afet_sayfasi = (Button) findViewById(R.id.dogal_afet_but);
         dogal_afet_sayfasi.setOnClickListener(new View.OnClickListener() {
