@@ -88,7 +88,7 @@ const DisplayAllPosts = () => {
   useEffect(() => {
     axios.get('https://how-to-survive.herokuapp.com/api/post', {
       headers: {
-        Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Inl1bnVzeXlrMzNAZ21haWwuY29tIiwidXNlcklkIjoiNjAzZDA0MzM0Mzg0ZmUwMDA0ZDZjZDMwIiwiaWF0IjoxNjE4NDQ1NzY4LCJleHAiOjE2MTg0NjczNjh9.CxelGuWxVVzV6ACXr8JVZY7F2zBkZ8QLBSZWEhBN8jI",
+        Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Inl1bnVzeXlrMzNAZ21haWwuY29tIiwidXNlcklkIjoiNjAzZDA0MzM0Mzg0ZmUwMDA0ZDZjZDMwIiwiaWF0IjoxNjE4NTIzMjgyLCJleHAiOjE2MTg1NDQ4ODJ9.Rba9WGO4C71HnRKi0N6HZwvUb3sDyZxLWmzpT3VypaU",
         'Content-type': 'application/json'
       },
     })
@@ -115,7 +115,7 @@ const DisplayAllPosts = () => {
           mode: 'cors',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Inl1bnVzeXlrMzNAZ21haWwuY29tIiwidXNlcklkIjoiNjAzZDA0MzM0Mzg0ZmUwMDA0ZDZjZDMwIiwiaWF0IjoxNjE4NDQ1NzY4LCJleHAiOjE2MTg0NjczNjh9.CxelGuWxVVzV6ACXr8JVZY7F2zBkZ8QLBSZWEhBN8jI"
+            Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Inl1bnVzeXlrMzNAZ21haWwuY29tIiwidXNlcklkIjoiNjAzZDA0MzM0Mzg0ZmUwMDA0ZDZjZDMwIiwiaWF0IjoxNjE4NTIzMjgyLCJleHAiOjE2MTg1NDQ4ODJ9.Rba9WGO4C71HnRKi0N6HZwvUb3sDyZxLWmzpT3VypaU"
           },
           body: JSON.stringify({
             postId: eachPost._id,
@@ -145,38 +145,6 @@ const DisplayAllPosts = () => {
     event.preventDefault();
     const updatedPost = allPosts.map(eachPost => {
       if (eachPost._id === editPostId) {
-
-        /////// PUT REQUEST (UPDATE (EDIT) POST)
-        fetch('https://how-to-survive.herokuapp.com/api/post/' + editPostId, {
-          method: 'PUT',
-          mode: 'cors',
-
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Inl1bnVzeXlrMzNAZ21haWwuY29tIiwidXNlcklkIjoiNjAzZDA0MzM0Mzg0ZmUwMDA0ZDZjZDMwIiwiaWF0IjoxNjE4NDQ0MTMyLCJleHAiOjE2MTg0NjU3MzJ9.ZP55jYlIRVpJEalNSc-zmJzIvRns8hXISos6DSjKJ9Y"
-          },
-          body: JSON.stringify({
-            postId: editPostId,
-            //userId: "603d04334384fe0004d6cd30",
-            title: eachPost.title,
-            content: eachPost.content,
-            imageUrl: eachPost.url
-          })
-        })
-          .then(async response => {
-            try {
-              const data = await response.text()
-              console.log('response data?', data)
-            } catch (error) {
-              console.log('Error happened here!')
-              console.error(error)
-            }
-          }
-
-          )
-        /////////////////////////
-
         return {
           ...eachPost,
           title: title || eachPost.title,
@@ -185,8 +153,46 @@ const DisplayAllPosts = () => {
       }
       return eachPost;
     });
-    setAllPosts(updatedPost);
 
+    const edit1 = updatedPost.map(p1 => {
+      if(p1._id === editPostId){
+        console.log("p1 t: " + p1.title);
+        console.log("p1 + cc " + p1.content);
+
+        /////// PUT REQUEST (UPDATE (EDIT) POST)
+        fetch('https://how-to-survive.herokuapp.com/api/post/' + editPostId, {
+          method: 'PUT',
+
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Inl1bnVzeXlrMzNAZ21haWwuY29tIiwidXNlcklkIjoiNjAzZDA0MzM0Mzg0ZmUwMDA0ZDZjZDMwIiwiaWF0IjoxNjE4NTIzMjgyLCJleHAiOjE2MTg1NDQ4ODJ9.Rba9WGO4C71HnRKi0N6HZwvUb3sDyZxLWmzpT3VypaU"
+          },
+          body: JSON.stringify({
+            postId: editPostId,
+            title: p1.title,
+            content: p1.content,
+            imageUrl: p1.url
+          })
+        })
+          .then(async response => {
+            try {
+              const data = await response.text()
+              console.log('response data?', data)
+              console.log(p1.title);
+              console.log(p1.content);
+            } catch (error) {
+              console.log('Error happened here!')
+              console.error(error)
+            }
+          }
+
+          ) 
+        /////////////////////////
+      }
+    });
+
+    setAllPosts(updatedPost);
     toggleModifyPostComponent();
   };
 
@@ -200,7 +206,7 @@ const DisplayAllPosts = () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Inl1bnVzeXlrMzNAZ21haWwuY29tIiwidXNlcklkIjoiNjAzZDA0MzM0Mzg0ZmUwMDA0ZDZjZDMwIiwiaWF0IjoxNjE4NDQ1NzY4LCJleHAiOjE2MTg0NjczNjh9.CxelGuWxVVzV6ACXr8JVZY7F2zBkZ8QLBSZWEhBN8jI"
+        Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Inl1bnVzeXlrMzNAZ21haWwuY29tIiwidXNlcklkIjoiNjAzZDA0MzM0Mzg0ZmUwMDA0ZDZjZDMwIiwiaWF0IjoxNjE4NTIzMjgyLCJleHAiOjE2MTg1NDQ4ODJ9.Rba9WGO4C71HnRKi0N6HZwvUb3sDyZxLWmzpT3VypaU"
       },
       body: JSON.stringify({
         userId: "603d04334384fe0004d6cd30",
