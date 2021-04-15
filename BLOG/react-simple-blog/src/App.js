@@ -1,11 +1,14 @@
-import React from "react";
 import DisplayAllPosts from './Components/DisplayAllPosts';
 
-const App = ( ) => {
-  return (
-    <>
-      <DisplayAllPosts />
-    </>
-  );
+const App = () => {
+
+
+  //render() {
+    return (
+      //<div>
+        <DisplayAllPosts/>
+      //</div>
+    );
+  //}
 };
 export default App;
