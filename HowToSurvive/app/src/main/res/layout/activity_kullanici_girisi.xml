@@ -20,7 +20,7 @@
             android:layout_marginEnd="131dp"
             android:layout_marginRight="131dp"
             android:layout_marginBottom="524dp"
-            android:src="@drawable/ic_baseline_android_24"
+            android:src="@drawable/how_to_surive"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"

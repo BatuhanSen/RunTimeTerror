@@ -7,6 +7,7 @@ import android.os.Build;
 
 public class Bildirim extends Application {
     public static final String CHANNEL_ID = "Deprem Bildirim";
+    public static final String CHANNEL_ID1 = "Servis";
 
     @Override
     public void onCreate() {
@@ -22,6 +23,14 @@ public class Bildirim extends Application {
             );
             NotificationManager manager = getSystemService(NotificationManager.class);
             manager.createNotificationChannel(notificationChannel);
+
+            NotificationChannel notificationChannel1 = new NotificationChannel(
+                    CHANNEL_ID1,"Servis",
+                    NotificationManager.IMPORTANCE_LOW
+            );
+            NotificationManager manager1 = getSystemService(NotificationManager.class);
+            manager1.createNotificationChannel(notificationChannel1);
+
         }
     }
 }

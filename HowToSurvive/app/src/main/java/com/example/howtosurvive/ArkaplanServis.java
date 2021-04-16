@@ -32,6 +32,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import static com.example.howtosurvive.Bildirim.CHANNEL_ID;
+import static com.example.howtosurvive.Bildirim.CHANNEL_ID1;
 
 public class ArkaplanServis extends Service {
 
@@ -61,11 +62,11 @@ public class ArkaplanServis extends Service {
         pendingIntent = PendingIntent.getActivity(this,0,notificationIntent,0);
 
 
-        Notification notification = new NotificationCompat.Builder(this,CHANNEL_ID)
+        Notification notification = new NotificationCompat.Builder(this,CHANNEL_ID1)
                 .setContentTitle("How To Survive").setContentText("Uygulama arka planda çalışmaktadır.")
                 .setContentIntent(pendingIntent).build();
 
-        startForeground(1,notification);
+        startForeground(2,notification);
 
         requestQueue = Volley.newRequestQueue(this);
 
@@ -108,7 +109,7 @@ public class ArkaplanServis extends Service {
                                 JSONObject deprem = depremler_response.getJSONObject(i);
 
 
-                                if ((!(deprem.isNull("longitude")) && !(deprem.isNull("latitude")) )  ){
+                                if ((!(deprem.isNull("longitude")) && !(deprem.isNull("latitude")) )){
                                     //System.out.println(deprem.getString("longitude")+" "+deprem.getString("latitude"));
                                     double longitude = Double.parseDouble(deprem.getString("longitude"));
                                     double latitude = Double.parseDouble(deprem.getString("latitude"));
@@ -120,12 +121,14 @@ public class ArkaplanServis extends Service {
                                     String buyukluk=deprem.getString("magnitude");
 
 
-                                    LocalDateTime deprem_tarihi = LocalDateTime.parse(deprem_tarih);
+                                    LocalDateTime deprem_tarihi = LocalDateTime.parse(deprem_tarih).plusHours(3);
+
                                     LocalDateTime simdi = LocalDateTime.now();
 
                                     long kacDakika =  ChronoUnit.MINUTES.between(deprem_tarihi,simdi);
 
-                                    if (kacDakika <=1){
+
+                                    if (kacDakika == 0){
                                         String mesaj = konum+" konumunda "+buyukluk+" büyüklüğünde deprem gerçekleşmiştir. Artçıl depremler yaşanabilir";
                                         Notification notification = new NotificationCompat.Builder(getApplicationContext(),CHANNEL_ID)
                                                 .setStyle(new NotificationCompat.BigTextStyle().bigText(mesaj))
@@ -179,7 +182,7 @@ public class ArkaplanServis extends Service {
 
                     @RequiresApi(api = Build.VERSION_CODES.O)
                     public void onResponse(JSONObject response) {
-
+                        System.out.println(response);
                         try {
                             JSONObject data_object= response.getJSONObject("data");
                             JSONArray yanginlar_response = data_object.getJSONArray("fireRecords");
@@ -187,7 +190,7 @@ public class ArkaplanServis extends Service {
                             for (int i=0; i<yanginlar_response.length();i++) {
                                 JSONObject yangin = yanginlar_response.getJSONObject(i);
 
-                                if ((!(yangin.isNull("longitude")) && !(yangin.isNull("latitude"))) && yangin.getString("riskStatus").equalsIgnoreCase("Tehlikeli")) {
+                                if ((!(yangin.isNull("longitude")) && !(yangin.isNull("latitude"))) ) {
                                     double longitude = Double.parseDouble(yangin.getString("longitude"));
                                     double latitude = Double.parseDouble(yangin.getString("latitude"));
                                     LatLng templocation = new LatLng(latitude, longitude);
@@ -197,11 +200,17 @@ public class ArkaplanServis extends Service {
                                     String gerceklesme = yangin.getString("occured_at");
                                     String gerceklesme_tarih = gerceklesme.substring(0, gerceklesme.indexOf('Z'));
 
+
                                     LocalDateTime yangin_tarihi = LocalDateTime.parse(gerceklesme_tarih);
+
+                                    LocalDateTime yangin_tarih_son = yangin_tarihi.plusHours(3);
+
                                     LocalDateTime simdi = LocalDateTime.now();
 
 
-                                    long kacDakika =  ChronoUnit.MINUTES.between(yangin_tarihi,simdi);
+                                    long kacDakika =  ChronoUnit.MINUTES.between(yangin_tarih_son,simdi);
+
+                                    System.out.println(kacDakika);
 
                                     if (kacDakika <=1){
                                         String mesaj = sehir+ " "+ ilce +" konumunda tehlikeli statüsünde "+ kacDakika+ " dakika önce yangın başlamıştır.";

@@ -18,13 +18,27 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 public class Acil_Durum_Activity extends AppCompatActivity implements LocationListener {
     DrawerLayout drawerLayout;
@@ -32,6 +46,10 @@ public class Acil_Durum_Activity extends AppCompatActivity implements LocationLi
     String name_res, mail_res, gender_res,token_res;
     EditText ekstra_ihtiyac, kac_kisi;
     Button acil_but;
+    double latitude,longitude;
+    String adres,ekstra_ihtiyaci;
+    int kisi_sayi;
+    RequestQueue requestQueue;
 
     LocationManager locationManager;
 
@@ -63,6 +81,8 @@ public class Acil_Durum_Activity extends AppCompatActivity implements LocationLi
                     Manifest.permission.ACCESS_FINE_LOCATION
             }, 100);
         }
+
+        requestQueue = Volley.newRequestQueue(this);
 
         acil_but.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,18 +117,89 @@ public class Acil_Durum_Activity extends AppCompatActivity implements LocationLi
 
     @Override
     public void onLocationChanged(@NonNull Location location) {
-        //latitude ve longitude ekranda gosterme
-        Toast.makeText(this,""+location.getLatitude()+","+location.getLongitude(),Toast.LENGTH_SHORT).show();
+
+        //Toast.makeText(this,""+location.getLatitude()+","+location.getLongitude(),Toast.LENGTH_SHORT).show(); post mesajı gozuksun
+        latitude=location.getLatitude();
+        longitude=location.getLongitude();
+
 
         try {
             Geocoder geocoder = new Geocoder(Acil_Durum_Activity.this, Locale.getDefault());
             List<Address> addresses = geocoder.getFromLocation(location.getLatitude(),location.getLongitude(),1);
-            String adres = addresses.get(0).getAddressLine(0);
+            adres = addresses.get(0).getAddressLine(0);
+
             //adresi ekranda gosterme
-            Toast.makeText(Acil_Durum_Activity.this,"Konumunuz alındı.\n"+adres,Toast.LENGTH_LONG).show();
+            //Toast.makeText(Acil_Durum_Activity.this,"Konumunuz alındı.\n"+adres,Toast.LENGTH_LONG).show(); post mesajı gozuksun
+            jsonPost_acil();
+
+
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    public void jsonPost_acil(){
+
+        String url = "https://how-to-survive.herokuapp.com/api/emergency";
+
+        String kisi=kac_kisi.getText().toString().trim();
+        if (kisi.length()!=0){
+            kisi_sayi=Integer.parseInt(kisi); // personCount
+        }
+        ekstra_ihtiyaci=ekstra_ihtiyac.getText().toString().trim(); //message
+        String headerSecondPart="Bearer "+ token_res;
+
+        JSONObject acil = new JSONObject();
+        try {
+            acil.put("personCount",kisi_sayi);
+            acil.put("message",ekstra_ihtiyaci);
+            acil.put("user",id_res);
+            acil.put("latitude",latitude);
+            acil.put("longitude",longitude);
+            acil.put("address",adres);
+
+        }catch (JSONException e){
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url,acil,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        Log.d("Response", response.toString());
+                        if (response.toString().contains("successfully") ){
+                            Toast.makeText(Acil_Durum_Activity.this,"Konumunuz alındı,sisteme eklendi. Konum: "+adres,Toast.LENGTH_LONG).show();
+                            anasayfaya_gec();
+                        }
+                        else{
+                            Toast.makeText(Acil_Durum_Activity.this,"Konumunuz sisteme eklenemedi.",Toast.LENGTH_LONG).show();
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("Error.Response", error.toString());
+                Toast.makeText(Acil_Durum_Activity.this,"Konumunuz sisteme eklenemedi.",Toast.LENGTH_LONG).show();
+            }
+        })
+        {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<>();
+                headers.put("Content-Type","application/json");
+                headers.put("Authorization",headerSecondPart);
+                return headers;
+            }
+
+            @Override
+            public String getBodyContentType() {
+                return "application/json";
+            }
+        };
+        requestQueue.add(request);
+
     }
 
     public void ClickMenu(View view){

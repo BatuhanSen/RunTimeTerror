@@ -183,6 +183,9 @@ public class Dogal_Afetler_Activity extends AppCompatActivity implements OnMapRe
                     final ArrayList<LatLng> sonBirAyArrList = new ArrayList<>();
                     final ArrayList<LatLng> sonUcAyArrList = new ArrayList<>();
                     final ArrayList<LatLng> sonBirYilArrList = new ArrayList<>();
+                    final ArrayList<String> sonBirAyTitle = new ArrayList<>();
+                    final ArrayList<String> sonUcAyTitle = new ArrayList<>();
+                    final ArrayList<String> sonBirYilTitle = new ArrayList<>();
 
                     @RequiresApi(api = Build.VERSION_CODES.O)
                     @Override
@@ -203,6 +206,7 @@ public class Dogal_Afetler_Activity extends AppCompatActivity implements OnMapRe
 
                                     String gerceklesme= deprem.getString("occured_at");
                                     String gerceklesme_tarih = gerceklesme.substring(0,gerceklesme.indexOf('T'));
+                                    String konum =deprem.getString("location");
 
 
                                     LocalDate deprem_tarih = LocalDate.parse(gerceklesme_tarih);
@@ -213,12 +217,15 @@ public class Dogal_Afetler_Activity extends AppCompatActivity implements OnMapRe
 
                                     if (kacGun<=30){
                                         sonBirAyArrList.add(templocation);
+                                        sonBirAyTitle.add(konum);
                                     }
                                     if (kacAy<=3){
                                         sonUcAyArrList.add(templocation);
+                                        sonUcAyTitle.add(konum);
                                     }
                                     if (kacYıl<=1){
                                         sonBirYilArrList.add(templocation);
+                                        sonBirYilTitle.add(konum);
                                     }
 
                                 }
@@ -236,7 +243,7 @@ public class Dogal_Afetler_Activity extends AppCompatActivity implements OnMapRe
 
                                     for (int i = 0; i < sonBirAyArrList.size(); i++) {
 
-                                        MarkerOptions markerOptions = new MarkerOptions().position(sonBirAyArrList.get(i)).title("Deprem");
+                                        MarkerOptions markerOptions = new MarkerOptions().position(sonBirAyArrList.get(i)).title(sonBirAyTitle.get(i));
                                         markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
                                         map.addMarker(markerOptions);
 
@@ -260,7 +267,7 @@ public class Dogal_Afetler_Activity extends AppCompatActivity implements OnMapRe
                                     sonUcAyCheck = -1;
                                     for (int i = 0; i < sonUcAyArrList.size(); i++) {
 
-                                        MarkerOptions markerOptions = new MarkerOptions().position(sonUcAyArrList.get(i)).title("Deprem");
+                                        MarkerOptions markerOptions = new MarkerOptions().position(sonUcAyArrList.get(i)).title(sonUcAyTitle.get(i));
                                         markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
                                         map.addMarker(markerOptions);
 
@@ -279,7 +286,7 @@ public class Dogal_Afetler_Activity extends AppCompatActivity implements OnMapRe
                                     sonUcAyCheck = -1;
                                     for (int i = 0; i < sonBirYilArrList.size(); i++) {
 
-                                        MarkerOptions markerOptions = new MarkerOptions().position(sonBirYilArrList.get(i)).title("Deprem");
+                                        MarkerOptions markerOptions = new MarkerOptions().position(sonBirYilArrList.get(i)).title(sonBirYilTitle.get(i));
                                         markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
                                         map.addMarker(markerOptions);
 
@@ -336,6 +343,9 @@ public class Dogal_Afetler_Activity extends AppCompatActivity implements OnMapRe
                     final ArrayList<LatLng> sonBirAyArrList = new ArrayList<>();
                     final ArrayList<LatLng> sonUcAyArrList = new ArrayList<>();
                     final ArrayList<LatLng> sonBirYilArrList = new ArrayList<>();
+                    final ArrayList<String> sonBirAyTitle = new ArrayList<>();
+                    final ArrayList<String> sonUcAyTitle = new ArrayList<>();
+                    final ArrayList<String> sonBirYilTitle = new ArrayList<>();
 
                     @RequiresApi(api = Build.VERSION_CODES.O)
                     public void onResponse(JSONObject response) {
@@ -351,11 +361,13 @@ public class Dogal_Afetler_Activity extends AppCompatActivity implements OnMapRe
                                 if (!(yangin.isNull("longitude")) && !(yangin.isNull("latitude")) ){
                                     double longitude = Double.parseDouble(yangin.getString("longitude"));
                                     double latitude = Double.parseDouble(yangin.getString("latitude"));
-                                    LatLng templocation = new LatLng(latitude,longitude);
+                                    LatLng templocation = new LatLng(longitude,latitude);
 
                                     String gerceklesme= yangin.getString("occured_at");
                                     String gerceklesme_tarih = gerceklesme.substring(0,gerceklesme.indexOf('T'));
 
+                                    String sehir = yangin.getString("city");
+                                    String ilce = yangin.getString("town");
 
 
                                     LocalDate yangin_tarih = LocalDate.parse(gerceklesme_tarih);
@@ -366,12 +378,16 @@ public class Dogal_Afetler_Activity extends AppCompatActivity implements OnMapRe
 
                                     if (kacGun<=30){
                                         sonBirAyArrList.add(templocation);
+                                        sonBirAyTitle.add(sehir+"-"+ilce);
                                     }
                                     if (kacAy<=3){
                                         sonUcAyArrList.add(templocation);
+                                        sonUcAyTitle.add(sehir+"-"+ilce);
                                     }
                                     if (kacYıl<=1){
                                         sonBirYilArrList.add(templocation);
+                                        sonBirYilTitle.add(sehir+"-"+ilce);
+
                                     }
 
                                 }
@@ -386,7 +402,7 @@ public class Dogal_Afetler_Activity extends AppCompatActivity implements OnMapRe
                                     sonUcAyCheck = -1;
                                     for (int i = 0; i < sonBirAyArrList.size(); i++) {
 
-                                        MarkerOptions markerOptions = new MarkerOptions().position(sonBirAyArrList.get(i)).title("Yangın");
+                                        MarkerOptions markerOptions = new MarkerOptions().position(sonBirAyArrList.get(i)).title(sonBirAyTitle.get(i));
                                         markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
                                         map.addMarker(markerOptions);
 
@@ -406,7 +422,7 @@ public class Dogal_Afetler_Activity extends AppCompatActivity implements OnMapRe
                                     sonUcAyCheck = -1;
                                     for (int i = 0; i < sonUcAyArrList.size(); i++) {
 
-                                        MarkerOptions markerOptions = new MarkerOptions().position(sonUcAyArrList.get(i)).title("Yangın");
+                                        MarkerOptions markerOptions = new MarkerOptions().position(sonUcAyArrList.get(i)).title(sonUcAyTitle.get(i));
                                         markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
                                         map.addMarker(markerOptions);
 
@@ -425,7 +441,7 @@ public class Dogal_Afetler_Activity extends AppCompatActivity implements OnMapRe
                                     sonUcAyCheck = -1;
                                     for (int i = 0; i < sonBirYilArrList.size(); i++) {
 
-                                        MarkerOptions markerOptions = new MarkerOptions().position(sonBirYilArrList.get(i)).title("Yangın");
+                                        MarkerOptions markerOptions = new MarkerOptions().position(sonBirYilArrList.get(i)).title(sonBirYilTitle.get(i));
                                         markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
                                         map.addMarker(markerOptions);
 
@@ -616,4 +632,4 @@ public class Dogal_Afetler_Activity extends AppCompatActivity implements OnMapRe
                 "latitude":36.3088875,
                 "longitude":37.0391655},
 
- */
+*/
