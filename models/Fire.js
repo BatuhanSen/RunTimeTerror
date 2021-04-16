@@ -7,13 +7,33 @@ const fireSchema = new Schema(
       type: Number,
       required: true,
     },
-    duration: {
+    occured_at: {
+      type: Date,
+      required: true,
+    },
+    riskStatus: {
+      type: String,
+      required: true,
+    },
+    latitude: {
       type: Number,
       required: true,
     },
-    location: {
-      type: Schema.Types.ObjectId,
-      ref: "Location",
+    longitude: {
+      type: Number,
+      required: true,
+    },
+    city: {
+      type: String,
+      default: "",
+    },
+    town: {
+      type: String,
+      default: "",
+    },
+    village: {
+      type: String,
+      default: "",
     },
   },
   { timestamps: true }

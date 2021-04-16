@@ -10,7 +10,7 @@ module.exports = (req, res, next) => {
   const token = req.get("Authorization").split(" ")[1];
   let decodedToken;
   try {
-    decodedToken = jwt.verify(token, "somesupersecretsecretkey");
+    decodedToken = jwt.verify(token, "somesecretkey");
   } catch (err) {
     err.statusCode = 500;
     throw err;

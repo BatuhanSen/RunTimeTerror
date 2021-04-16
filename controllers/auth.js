@@ -71,7 +71,7 @@ exports.login = (req, res, next) => {
           email: loadedUser.email,
           userId: loadedUser._id.toString(),
         },
-        "somesupersecretsecretkey",
+        "somesecretkey",
         { expiresIn: "6h" }
       );
 
@@ -79,6 +79,7 @@ exports.login = (req, res, next) => {
         message: "Logged in successfully.",
         data: {
           userId: loadedUser._id.toString(),
+          user: loadedUser,
           token: token,
         },
       });
@@ -86,4 +87,35 @@ exports.login = (req, res, next) => {
     .catch((err) => {
       next(err);
     });
+};
+
+exports.updateUser = (req, res, next) => {
+  const userId = req.params.userId;
+
+  const password = req.body.password;
+  const name = req.body.name;
+  const gender = req.body.gender;
+  const phone = req.body.phone;
+
+  User.findById(userId)
+    .then((user) => {
+      if (!user) {
+        const error = new Error("Could not find the user!");
+        error.statusCode = 404;
+        throw error;
+      }
+
+      user.password = password || user.password;
+      user.name = name || user.name;
+      user.gender = gender || user.gender;
+      user.phone = phone || user.phone;
+
+      return user.save();
+    })
+    .then((result) => {
+      res.status(200).json({
+        message: "User updated successfully",
+      });
+    })
+    .catch((err) => next(err));
 };

@@ -14,6 +14,7 @@ const floodSchema = new Schema(
     location: {
       type: Schema.Types.ObjectId,
       ref: "Location",
+      required: true,
     },
     duration: {
       type: Number,

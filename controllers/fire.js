@@ -2,6 +2,7 @@ const Fire = require("../models/fire");
 
 exports.getFireRecords = (req, res, next) => {
   Fire.find()
+    .sort({ occured_at: -1 })
     .then((fireRecords) => {
       if (fireRecords.length == 0) {
         const error = new Error("Could not find any fire records");
@@ -39,14 +40,24 @@ exports.getFireRecord = (req, res, next) => {
 };
 
 exports.addFireRecord = (req, res, next) => {
-  const locationId = req.body.locationId;
   const status = req.body.status;
-  const duration = req.body.duration;
+  const occured_at = req.body.occured_at;
+  const riskStatus = req.body.riskStatus;
+  const latitude = req.body.latitude;
+  const longitude = req.body.longitude;
+  const city = req.body.city;
+  const town = req.body.town;
+  const village = req.body.village;
 
   const fireRecord = new Fire({
-    locationId: locationId,
     status: status,
-    duration: duration,
+    riskStatus: riskStatus,
+    occured_at: occured_at,
+    latitude: latitude,
+    longitude: longitude,
+    city: city,
+    town: town,
+    village: village,
   });
 
   fireRecord

@@ -41,4 +41,6 @@ router.put(
 // POST api/auth/login
 router.post("/login", authController.login);
 
+router.put("/update/:userId", authController.updateUser);
+
 module.exports = router;

@@ -2,6 +2,7 @@ const Earthquake = require("../models/earthquake");
 
 exports.getEarthquakeRecords = (req, res, next) => {
   Earthquake.find()
+    .sort({ updated_at: -1 })
     .then((earthquakeRecords) => {
       if (earthquakeRecords.length == 0) {
         const error = new Error("Could not find any earthquake records");
@@ -41,14 +42,21 @@ exports.getEarthquakeRecord = (req, res, next) => {
 exports.addEarthquakeRecord = (req, res, next) => {
   const magnitude = req.body.magnitude;
   const depth = req.body.depth;
-  const occured_at = req.body.occuredAt;
-  const updated_at = req.body.updatedAt;
+  const occured_at = req.body.occured_at;
+  const updated_at = req.body.updated_at;
+  const location = req.body.location;
+  const latitude = req.body.latitude;
+  const longitude = req.body.longitude;
 
+  console.log("EARTHQUEAKE BODY", req.body);
   const earthquakeRecord = new Earthquake({
     magnitude: magnitude,
     depth: depth,
     occured_at: occured_at,
     updated_at: updated_at,
+    latitude: latitude,
+    longitude: longitude,
+    location: location,
   });
 
   earthquakeRecord

@@ -11,9 +11,17 @@ const earthquakeSchema = new Schema(
       type: Number,
       required: true,
     },
+    latitude: {
+      type: Number,
+      required: true,
+    },
+    longitude: {
+      type: Number,
+      required: true,
+    },
     location: {
-      type: Schema.Types.ObjectId,
-      ref: "Location",
+      type: String,
+      required: true,
     },
     occured_at: {
       type: Date,
