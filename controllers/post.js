@@ -78,12 +78,13 @@ exports.addPost = (req, res, next) => {
 };
 
 exports.updatePost = (req, res, next) => {
-  const postId = req.body.postId;
+  const postId = req.params.postId;
 
   const title = req.body.title;
   const content = req.body.content;
   const imageUrl = req.body.imageUrl;
 
+  console.log("POSTID: " + postId);
   Post.findById(postId)
     .then((post) => {
       if (!post) {
@@ -109,7 +110,7 @@ exports.updatePost = (req, res, next) => {
 };
 
 exports.deletePost = (req, res, next) => {
-  const postId = req.body.postId;
+  const postId = req.params.postId;
   const userId = req.body.userId;
 
   Post.findById(postId)

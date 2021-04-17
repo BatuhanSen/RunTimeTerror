@@ -12,6 +12,9 @@ const locationRoutes = require("./routes/location");
 const fireRoutes = require("./routes/fire");
 const floodRoutes = require("./routes/flood");
 const commentRoutes = require("./routes/comment");
+const emergencyRoutes = require("./routes/emergency");
+
+const disasters = require("./js/getDisasters.js");
 
 const app = express();
 dotenv.config();
@@ -38,6 +41,7 @@ app.use("/api/location", locationRoutes);
 app.use("/api/fire", fireRoutes);
 app.use("/api/flood", floodRoutes);
 app.use("/api/comment", commentRoutes);
+app.use("/api/emergency", emergencyRoutes);
 
 app.use((error, req, res, next) => {
   console.log("error middleware :(", error);
@@ -51,15 +55,18 @@ app.use((req, res, next) => {
   res.send("No data to show/send");
 });
 
+const halfDayInMilliseconds = 1000 * 60 * 60 * 12;
+
 mongoose
   .connect(
     `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@mycluster.i3aby.mongodb.net/${process.env.MONGO_DBNAME}?retryWrites=true&w=majority`,
     { useNewUrlParser: true, useUnifiedTopology: true }
   )
   .then((res) => {
-    console.log("CONNECTED TO DATABASE");
+    setInterval(() => {
+      disasters.getEarthquakeRecords();
+      disasters.getFireRecords();
+    }, halfDayInMilliseconds);
     app.listen(process.env.PORT || 3000);
   })
-  .catch((err) => {
-    console.log("DBConnection Error", err);
-  });
+  .catch((err) => {});

@@ -48,7 +48,6 @@ exports.addEarthquakeRecord = (req, res, next) => {
   const latitude = req.body.latitude;
   const longitude = req.body.longitude;
 
-  console.log("EARTHQUEAKE BODY", req.body);
   const earthquakeRecord = new Earthquake({
     magnitude: magnitude,
     depth: depth,

@@ -17,7 +17,7 @@ exports.signup = (req, res, next) => {
   const email = req.body.email;
   const name = req.body.name;
   const gender = req.body.gender;
-  const phone = req.body.phone;
+  const phone = req.body.phoneNumber;
 
   bcrypt
     .hash(password, 12)
@@ -28,7 +28,7 @@ exports.signup = (req, res, next) => {
         email: email,
         name: name,
         gender: gender,
-        phone: phone,
+        phoneNumber: phone,
       });
       return user.save();
     })
@@ -50,6 +50,7 @@ exports.login = (req, res, next) => {
   const password = req.body.password;
   let loadedUser;
 
+  console.log("try to login", req.body);
   User.findOne({ username: username })
     .then((user) => {
       if (!user) {

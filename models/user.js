@@ -5,23 +5,22 @@ const userSchema = new Schema(
   {
     username: {
       type: String,
-      require: true,
+      required: true,
     },
     password: {
       type: String,
-      require: true,
+      required: true,
     },
     email: {
       type: String,
-      require: true,
+      required: true,
     },
     name: {
       type: String,
-      require: true,
     },
     gender: {
       type: String,
-      require: true,
+      default: "M",
     },
     locations: [
       {
@@ -31,7 +30,6 @@ const userSchema = new Schema(
     ],
     phoneNumber: {
       type: Number,
-      require: true,
     },
     posts: [
       {

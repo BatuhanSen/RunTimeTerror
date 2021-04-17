@@ -3,7 +3,7 @@ const comment = require("../models/comment");
 const User = require("../models/user");
 
 exports.getComments = (req, res, next) => {
-  const postId = req.body.postId;
+  const postId = req.params.postId;
 
   Comment.find({ postId: postId })
     .then((comments) => {
@@ -90,7 +90,7 @@ exports.addComment = (req, res, next) => {
 };
 
 exports.updateComment = (req, res, next) => {
-  const commentId = req.body.commentId;
+  const commentId = req.params.commentId;
 
   const content = req.body.content;
   const imageUrl = req.body.imageUrl;
@@ -119,7 +119,7 @@ exports.updateComment = (req, res, next) => {
 };
 
 exports.deleteComment = (req, res, next) => {
-  const commentId = req.body.commentId;
+  const commentId = req.params.commentId;
   const postId = req.body.postId;
   const userId = req.body.userId;
 
