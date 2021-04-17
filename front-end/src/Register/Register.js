@@ -87,7 +87,7 @@ class Register extends Component {
           <div className="field">
             <label>Password</label>
             <input
-              type="text"
+              type="password"
               placeholder="e.g testuser"
               onChange={this.handlePassword}
               required
@@ -96,7 +96,7 @@ class Register extends Component {
           <div className="field">
             <label>Email</label>
             <input
-              type="text"
+              type="email"
               placeholder="e.g test@test.com"
               onChange={this.handleEmail}
               required

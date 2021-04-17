@@ -100,6 +100,11 @@ class Home extends React.Component {
             ContactPage
             </button>
         </div>
+        <div className="field buttons">
+          <button onClick={() => (window.location = "/login")}>
+            Logout
+            </button>
+        </div>
         
 
       </div>

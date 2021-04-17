@@ -55,7 +55,7 @@ class Login extends Component {
           <div className="field">
             <label>Password</label>
             <input
-              type="text"
+              type="password"
               placeholder="e.g testuser"
               onChange={this.handlePassword}
               required
