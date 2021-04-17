@@ -1,6 +1,132 @@
 {
   "table": [
     {
+      "magnitude": "3.0",
+      "depth": "6",
+      "latitude": "39.3035",
+      "longitude": "26.0844",
+      "location": "Turkey",
+      "occured_at": "2021/04/16 14:16:21",
+      "updated_at": "2021/04/16 14:19:59"
+    },
+    {
+      "magnitude": "3.6",
+      "depth": "5",
+      "latitude": "38.5919",
+      "longitude": "39.7964",
+      "location": "Palu-Elazig",
+      "occured_at": "2021/04/16 13:45:36",
+      "updated_at": "2021/04/16 13:49:58"
+    },
+    {
+      "magnitude": "2.5",
+      "depth": "2",
+      "latitude": "40.1892",
+      "longitude": "28.8277",
+      "location": "Nilufer-Bursa",
+      "occured_at": "2021/04/16 12:00:31",
+      "updated_at": "2021/04/16 13:34:56"
+    },
+    {
+      "magnitude": "2.4",
+      "depth": "13",
+      "latitude": "39.2955",
+      "longitude": "26.0609",
+      "location": "Turkey",
+      "occured_at": "2021/04/16 03:50:06",
+      "updated_at": "2021/04/16 13:34:53"
+    },
+    {
+      "magnitude": "2.3",
+      "depth": "10",
+      "latitude": "39.1583",
+      "longitude": "28.1056",
+      "location": "Sindirgi-Balikesir",
+      "occured_at": "2021/04/16 02:11:34",
+      "updated_at": "2021/04/16 13:34:50"
+    },
+    {
+      "magnitude": "2.8",
+      "depth": "10",
+      "latitude": "36.3833",
+      "longitude": "27.2209",
+      "location": "Dodecanese Islands, Greece",
+      "occured_at": "2021/04/16 00:22:38",
+      "updated_at": "2021/04/16 13:34:37"
+    },
+    {
+      "magnitude": "3.1",
+      "depth": "6",
+      "latitude": "39.2909",
+      "longitude": "26.0754",
+      "location": "Midilli Adasi-Ege Denizi",
+      "occured_at": "2021/04/15 17:45:05",
+      "updated_at": "2021/04/16 13:34:34"
+    },
+    {
+      "magnitude": "2.9",
+      "depth": "9",
+      "latitude": "39.3023",
+      "longitude": "26.0757",
+      "location": "Turkey",
+      "occured_at": "2021/04/15 17:27:52",
+      "updated_at": "2021/04/16 13:34:30"
+    },
+    {
+      "magnitude": "3.4",
+      "depth": "8",
+      "latitude": "39.2994",
+      "longitude": "26.0854",
+      "location": "Turkey",
+      "occured_at": "2021/04/15 17:17:04",
+      "updated_at": "2021/04/16 13:34:26"
+    },
+    {
+      "magnitude": "3.5",
+      "depth": "10",
+      "latitude": "36.4650",
+      "longitude": "27.0755",
+      "location": "Dodecanese Islands, Greece",
+      "occured_at": "2021/04/15 16:15:28",
+      "updated_at": "2021/04/16 13:34:22"
+    },
+    {
+      "magnitude": "3.3",
+      "depth": "32",
+      "latitude": "38.3369",
+      "longitude": "39.2944",
+      "location": "Cungus-Diyarbakir",
+      "occured_at": "2021/04/15 15:06:49",
+      "updated_at": "2021/04/16 13:34:20"
+    },
+    {
+      "magnitude": "3.0",
+      "depth": "5",
+      "latitude": "35.9689",
+      "longitude": "31.1219",
+      "location": "Antalya Korfezi-AKDENIZ",
+      "occured_at": "2021/04/15 12:12:39",
+      "updated_at": "2021/04/16 13:34:01"
+    },
+    {
+      "magnitude": "5.8",
+      "depth": "10",
+      "latitude": "10.4900",
+      "longitude": "117.0097",
+      "location": "South of Sumbawa, Indonesia",
+      "occured_at": "2021/04/15 10:36:21",
+      "updated_at": "2021/04/16 13:34:07"
+    },
+    {
+      "magnitude": "5.1",
+      "depth": "10",
+      "latitude": "53.5836",
+      "longitude": "171.4986",
+      "location": "Near Islands, Aleutian Islands",
+      "occured_at": "2021/04/15 08:33:41",
+      "updated_at": "2021/04/16 13:33:46"
+    },
+    {
       "magnitude": "3.2",
       "depth": "7",
       "latitude": "39.3012",
@@ -8873,132 +8999,6 @@
       "location": "Dodecanese Islands, Greece",
       "occured_at": "2020/12/26 22:50:54",
       "updated_at": "2020/12/26 22:53:41"
-    },
-    {
-      "magnitude": "2.3",
-      "depth": "5",
-      "latitude": "39.4390",
-      "longitude": "32.8908",
-      "location": "Golbasi-Ankara",
-      "occured_at": "2020/12/26 18:44:16",
-      "updated_at": "2020/12/26 18:48:28"
-    },
-    {
-      "magnitude": "2.3",
-      "depth": "12",
-      "latitude": "39.0712",
-      "longitude": "27.7929",
-      "location": "Kirkagac-Manisa",
-      "occured_at": "2020/12/26 14:02:20",
-      "updated_at": "2020/12/26 14:05:59"
-    },
-    {
-      "magnitude": "4.0",
-      "depth": "11",
-      "latitude": "38.5179",
-      "longitude": "39.2020",
-      "location": "Merkez-Elazig",
-      "occured_at": "2020/12/26 11:09:19",
-      "updated_at": "2020/12/26 14:04:35"
-    },
-    {
-      "magnitude": "3.8",
-      "depth": "5",
-      "latitude": "37.9692",
-      "longitude": "42.9445",
-      "location": "Catak-Van",
-      "occured_at": "2020/12/26 09:31:18",
-      "updated_at": "2020/12/26 09:35:52"
-    },
-    {
-      "magnitude": "3.1",
-      "depth": "128",
-      "latitude": "36.6602",
-      "longitude": "26.8703",
-      "location": "Dodecanese Islands, Greece",
-      "occured_at": "2020/12/26 04:02:31",
-      "updated_at": "2020/12/26 04:06:23"
-    },
-    {
-      "magnitude": "2.2",
-      "depth": "5",
-      "latitude": "39.0849",
-      "longitude": "35.9573",
-      "location": "Sarioglan-Kayseri",
-      "occured_at": "2020/12/26 02:21:55",
-      "updated_at": "2020/12/26 02:26:28"
-    },
-    {
-      "magnitude": "2.6",
-      "depth": "0",
-      "latitude": "37.9726",
-      "longitude": "42.9814",
-      "location": "Catak-Van",
-      "occured_at": "2020/12/26 02:17:26",
-      "updated_at": "2020/12/26 02:21:42"
-    },
-    {
-      "magnitude": "3.0",
-      "depth": "5",
-      "latitude": "38.4062",
-      "longitude": "39.1537",
-      "location": "Sivrice-Elazig",
-      "occured_at": "2020/12/25 23:47:51",
-      "updated_at": "2020/12/25 23:51:51"
-    },
-    {
-      "magnitude": "2.8",
-      "depth": "5",
-      "latitude": "37.9238",
-      "longitude": "26.6697",
-      "location": "Dodecanese Islands, Greece",
-      "occured_at": "2020/12/25 22:41:27",
-      "updated_at": "2020/12/25 22:45:01"
-    },
-    {
-      "magnitude": "3.1",
-      "depth": "5",
-      "latitude": "37.6112",
-      "longitude": "30.6224",
-      "location": "Aglasun-Burdur",
-      "occured_at": "2020/12/25 22:35:25",
-      "updated_at": "2020/12/25 23:48:18"
-    },
-    {
-      "magnitude": "2.9",
-      "depth": "11",
-      "latitude": "37.8574",
-      "longitude": "26.9822",
-      "location": "Dodecanese Islands, Greece",
-      "occured_at": "2020/12/25 22:06:36",
-      "updated_at": "2020/12/25 22:10:02"
-    },
-    {
-      "magnitude": "1.9",
-      "depth": "5",
-      "latitude": "39.3130",
-      "longitude": "33.1608",
-      "location": "Bala-Ankara",
-      "occured_at": "2020/12/25 16:46:49",
-      "updated_at": "2020/12/25 16:50:55"
-    },
-    {
-      "magnitude": "2.8",
-      "depth": "6",
-      "latitude": "39.1284",
-      "longitude": "41.3908",
-      "location": "Varto-Mus",
-      "occured_at": "2020/12/25 01:51:27",
-      "updated_at": "2020/12/25 01:55:38"
-    },
-    {
-      "magnitude": "6.2",
-      "depth": "140",
-      "latitude": "13.8093",
-      "longitude": "120.5889",
-      "location": "Mindoro, Philippines",
-      "occured_at": "2020/12/24 23:43:44",
-      "updated_at": "2020/12/25 02:27:55"
     },
     {
       "magnitude": "3.8",

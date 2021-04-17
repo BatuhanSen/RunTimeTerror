@@ -498,17 +498,6 @@
     {
       "key": 45,
       "status": "Söndürüldü",
-      "occured_at": "2021-04-03 14:20:00",
-      "riskStatus": "Az Tehlikeli",
-      "latitude": 36.1569443,
-      "longitude": 41.2775,
-      "city": "Samsun",
-      "town": "Atakum",
-      "village": ""
-    },
-    {
-      "key": 46,
-      "status": "Söndürüldü",
       "occured_at": "2021-04-02 22:20:00",
       "riskStatus": "Tehlikesiz",
       "latitude": 29.2847214,
@@ -518,7 +507,7 @@
       "village": ""
     },
     {
-      "key": 47,
+      "key": 46,
       "status": "Söndürüldü",
       "occured_at": "2021-04-02 19:54:00",
       "riskStatus": "Az Tehlikeli",
@@ -529,7 +518,7 @@
       "village": ""
     },
     {
-      "key": 48,
+      "key": 47,
       "status": "Söndürüldü",
       "occured_at": "2021-04-02 18:17:00",
       "riskStatus": "Tehlikesiz",
@@ -540,7 +529,7 @@
       "village": ""
     },
     {
-      "key": 49,
+      "key": 48,
       "status": "Söndürüldü",
       "occured_at": "2021-04-02 14:05:00",
       "riskStatus": "Tehlikesiz",
@@ -551,7 +540,7 @@
       "village": ""
     },
     {
-      "key": 50,
+      "key": 49,
       "status": "Söndürüldü",
       "occured_at": "2021-04-02 13:39:00",
       "riskStatus": "Tehlikeli",
@@ -562,7 +551,7 @@
       "village": ""
     },
     {
-      "key": 51,
+      "key": 50,
       "status": "Söndürüldü",
       "occured_at": "2021-04-02 13:20:00",
       "riskStatus": "Tehlikeli",
@@ -573,7 +562,7 @@
       "village": ""
     },
     {
-      "key": 52,
+      "key": 51,
       "status": "Söndürüldü",
       "occured_at": "2021-04-01 18:10:00",
       "riskStatus": "Az Tehlikeli",
@@ -584,7 +573,7 @@
       "village": ""
     },
     {
-      "key": 53,
+      "key": 52,
       "status": "Söndürüldü",
       "occured_at": "2021-04-01 18:00:00",
       "riskStatus": "Tehlikeli",
@@ -595,7 +584,7 @@
       "village": ""
     },
     {
-      "key": 54,
+      "key": 53,
       "status": "Söndürüldü",
       "occured_at": "2021-04-01 17:05:00",
       "riskStatus": "Tehlikesiz",
@@ -606,7 +595,7 @@
       "village": ""
     },
     {
-      "key": 55,
+      "key": 54,
       "status": "Söndürüldü",
       "occured_at": "2021-04-01 16:34:00",
       "riskStatus": "Az Tehlikeli",
@@ -617,7 +606,7 @@
       "village": ""
     },
     {
-      "key": 56,
+      "key": 55,
       "status": "Söndürüldü",
       "occured_at": "2021-04-01 14:35:00",
       "riskStatus": "Tehlikeli",
@@ -628,7 +617,7 @@
       "village": ""
     },
     {
-      "key": 57,
+      "key": 56,
       "status": "Söndürüldü",
       "occured_at": "2021-03-31 19:25:00",
       "riskStatus": "Tehlikesiz",
@@ -639,7 +628,7 @@
       "village": ""
     },
     {
-      "key": 58,
+      "key": 57,
       "status": "Söndürüldü",
       "occured_at": "2021-03-30 19:40:00",
       "riskStatus": "Tehlikeli",
@@ -650,7 +639,7 @@
       "village": ""
     },
     {
-      "key": 59,
+      "key": 58,
       "status": "Söndürüldü",
       "occured_at": "2021-03-30 15:48:00",
       "riskStatus": "Tehlikesiz",
@@ -661,7 +650,7 @@
       "village": ""
     },
     {
-      "key": 60,
+      "key": 59,
       "status": "Söndürüldü",
       "occured_at": "2021-03-30 13:44:00",
       "riskStatus": "Tehlikesiz",
@@ -672,7 +661,7 @@
       "village": ""
     },
     {
-      "key": 61,
+      "key": 60,
       "status": "Söndürüldü",
       "occured_at": "2021-03-29 16:25:00",
       "riskStatus": "Tehlikeli",
@@ -683,7 +672,7 @@
       "village": ""
     },
     {
-      "key": 62,
+      "key": 61,
       "status": "Söndürüldü",
       "occured_at": "2021-03-29 11:35:00",
       "riskStatus": "Az Tehlikeli",
@@ -694,7 +683,7 @@
       "village": ""
     },
     {
-      "key": 63,
+      "key": 62,
       "status": "Söndürüldü",
       "occured_at": "2021-03-28 17:15:00",
       "riskStatus": "Tehlikeli",
@@ -705,7 +694,7 @@
       "village": ""
     },
     {
-      "key": 64,
+      "key": 63,
       "status": "Söndürüldü",
       "occured_at": "2021-03-28 07:33:00",
       "riskStatus": "Tehlikesiz",
@@ -716,7 +705,7 @@
       "village": ""
     },
     {
-      "key": 65,
+      "key": 64,
       "status": "Söndürüldü",
       "occured_at": "2021-03-27 16:30:00",
       "riskStatus": "Tehlikesiz",
@@ -727,7 +716,7 @@
       "village": ""
     },
     {
-      "key": 66,
+      "key": 65,
       "status": "Söndürüldü",
       "occured_at": "2021-03-27 15:45:00",
       "riskStatus": "Tehlikesiz",
@@ -738,18 +727,7 @@
       "village": ""
     },
     {
-      "key": 67,
-      "status": "Söndürüldü",
-      "occured_at": "2021-03-27 15:30:00",
-      "riskStatus": "Az Tehlikeli",
-      "latitude": 35.748333,
-      "longitude": 41.3722229,
-      "city": "Samsun",
-      "town": "Bafra",
-      "village": ""
-    },
-    {
-      "key": 68,
+      "key": 66,
       "status": "Söndürüldü",
       "occured_at": "2021-03-26 13:35:00",
       "riskStatus": "Tehlikesiz",
@@ -760,7 +738,7 @@
       "village": ""
     },
     {
-      "key": 69,
+      "key": 67,
       "status": "Söndürüldü",
       "occured_at": "2021-03-26 11:20:00",
       "riskStatus": "Tehlikesiz",
@@ -771,7 +749,7 @@
       "village": ""
     },
     {
-      "key": 70,
+      "key": 68,
       "status": "Söndürüldü",
       "occured_at": "2021-03-25 14:45:00",
       "riskStatus": "Tehlikesiz",
@@ -782,7 +760,7 @@
       "village": ""
     },
     {
-      "key": 71,
+      "key": 69,
       "status": "Söndürüldü",
       "occured_at": "2021-03-24 16:20:00",
       "riskStatus": "Az Tehlikeli",
@@ -793,7 +771,7 @@
       "village": ""
     },
     {
-      "key": 72,
+      "key": 70,
       "status": "Söndürüldü",
       "occured_at": "2021-03-24 16:15:00",
       "riskStatus": "Tehlikeli",
@@ -804,7 +782,7 @@
       "village": ""
     },
     {
-      "key": 73,
+      "key": 71,
       "status": "Söndürüldü",
       "occured_at": "2021-03-23 22:30:00",
       "riskStatus": "Az Tehlikeli",
@@ -815,7 +793,7 @@
       "village": ""
     },
     {
-      "key": 74,
+      "key": 72,
       "status": "Söndürüldü",
       "occured_at": "2021-03-23 18:30:00",
       "riskStatus": "Tehlikesiz",
@@ -826,7 +804,7 @@
       "village": ""
     },
     {
-      "key": 75,
+      "key": 73,
       "status": "Söndürüldü",
       "occured_at": "2021-03-21 14:40:00",
       "riskStatus": "Az Tehlikeli",
@@ -837,7 +815,7 @@
       "village": ""
     },
     {
-      "key": 76,
+      "key": 74,
       "status": "Söndürüldü",
       "occured_at": "2021-03-20 22:10:00",
       "riskStatus": "Az Tehlikeli",
@@ -848,7 +826,7 @@
       "village": ""
     },
     {
-      "key": 77,
+      "key": 75,
       "status": "Söndürüldü",
       "occured_at": "2021-03-20 17:14:00",
       "riskStatus": "Az Tehlikeli",
@@ -859,7 +837,7 @@
       "village": ""
     },
     {
-      "key": 78,
+      "key": 76,
       "status": "Söndürüldü",
       "occured_at": "2021-03-20 16:40:00",
       "riskStatus": "Tehlikesiz",
@@ -870,7 +848,7 @@
       "village": ""
     },
     {
-      "key": 79,
+      "key": 77,
       "status": "Söndürüldü",
       "occured_at": "2021-03-11 14:45:00",
       "riskStatus": "Tehlikesiz",
@@ -881,7 +859,7 @@
       "village": ""
     },
     {
-      "key": 80,
+      "key": 78,
       "status": "Söndürüldü",
       "occured_at": "2021-03-11 12:40:00",
       "riskStatus": "Tehlikesiz",
@@ -892,7 +870,7 @@
       "village": ""
     },
     {
-      "key": 81,
+      "key": 79,
       "status": "Söndürüldü",
       "occured_at": "2021-03-11 11:00:00",
       "riskStatus": "Tehlikesiz",
@@ -903,7 +881,7 @@
       "village": ""
     },
     {
-      "key": 82,
+      "key": 80,
       "status": "Söndürüldü",
       "occured_at": "2021-03-11 07:19:00",
       "riskStatus": "Az Tehlikeli",
@@ -914,7 +892,7 @@
       "village": ""
     },
     {
-      "key": 83,
+      "key": 81,
       "status": "Söndürüldü",
       "occured_at": "2021-03-10 23:15:00",
       "riskStatus": "Az Tehlikeli",
@@ -925,7 +903,7 @@
       "village": ""
     },
     {
-      "key": 84,
+      "key": 82,
       "status": "Söndürüldü",
       "occured_at": "2021-03-10 17:15:00",
       "riskStatus": "Tehlikesiz",
@@ -936,7 +914,7 @@
       "village": ""
     },
     {
-      "key": 85,
+      "key": 83,
       "status": "Söndürüldü",
       "occured_at": "2021-03-09 14:50:00",
       "riskStatus": "Tehlikeli",
@@ -947,7 +925,7 @@
       "village": ""
     },
     {
-      "key": 86,
+      "key": 84,
       "status": "Söndürüldü",
       "occured_at": "2021-03-08 22:50:00",
       "riskStatus": "Tehlikesiz",
@@ -958,7 +936,7 @@
       "village": ""
     },
     {
-      "key": 87,
+      "key": 85,
       "status": "Söndürüldü",
       "occured_at": "2021-03-08 17:30:00",
       "riskStatus": "Tehlikesiz",
@@ -969,7 +947,7 @@
       "village": ""
     },
     {
-      "key": 88,
+      "key": 86,
       "status": "Söndürüldü",
       "occured_at": "2021-03-08 16:40:00",
       "riskStatus": "Tehlikesiz",
@@ -980,7 +958,7 @@
       "village": ""
     },
     {
-      "key": 89,
+      "key": 87,
       "status": "Söndürüldü",
       "occured_at": "2021-03-08 14:34:00",
       "riskStatus": "Tehlikesiz",
@@ -991,7 +969,7 @@
       "village": ""
     },
     {
-      "key": 90,
+      "key": 88,
       "status": "Söndürüldü",
       "occured_at": "2021-03-06 15:35:00",
       "riskStatus": "Az Tehlikeli",
@@ -1002,7 +980,7 @@
       "village": ""
     },
     {
-      "key": 91,
+      "key": 89,
       "status": "Söndürüldü",
       "occured_at": "2021-03-05 21:15:00",
       "riskStatus": "Az Tehlikeli",
@@ -1013,7 +991,7 @@
       "village": ""
     },
     {
-      "key": 92,
+      "key": 90,
       "status": "Söndürüldü",
       "occured_at": "2021-03-05 17:15:00",
       "riskStatus": "Tehlikeli",
@@ -1024,7 +1002,7 @@
       "village": ""
     },
     {
-      "key": 93,
+      "key": 91,
       "status": "Söndürüldü",
       "occured_at": "2021-03-05 15:05:00",
       "riskStatus": "Tehlikeli",
@@ -1035,7 +1013,7 @@
       "village": ""
     },
     {
-      "key": 94,
+      "key": 92,
       "status": "Söndürüldü",
       "occured_at": "2021-03-05 14:05:00",
       "riskStatus": "Az Tehlikeli",
@@ -1046,7 +1024,7 @@
       "village": ""
     },
     {
-      "key": 95,
+      "key": 93,
       "status": "Söndürüldü",
       "occured_at": "2021-03-04 17:10:00",
       "riskStatus": "Tehlikeli",
@@ -1057,7 +1035,7 @@
       "village": ""
     },
     {
-      "key": 96,
+      "key": 94,
       "status": "Söndürüldü",
       "occured_at": "2021-03-04 14:30:00",
       "riskStatus": "Az Tehlikeli",
@@ -1068,7 +1046,7 @@
       "village": ""
     },
     {
-      "key": 97,
+      "key": 95,
       "status": "Söndürüldü",
       "occured_at": "2021-03-03 17:21:00",
       "riskStatus": "Tehlikeli",
@@ -1079,7 +1057,7 @@
       "village": ""
     },
     {
-      "key": 98,
+      "key": 96,
       "status": "Söndürüldü",
       "occured_at": "2021-03-03 14:46:00",
       "riskStatus": "Tehlikeli",
@@ -1090,7 +1068,7 @@
       "village": ""
     },
     {
-      "key": 99,
+      "key": 97,
       "status": "Söndürüldü",
       "occured_at": "2021-03-03 14:45:00",
       "riskStatus": "Tehlikeli",
@@ -1101,7 +1079,7 @@
       "village": ""
     },
     {
-      "key": 100,
+      "key": 98,
       "status": "Söndürüldü",
       "occured_at": "2021-03-03 13:40:00",
       "riskStatus": "Tehlikeli",
@@ -1112,7 +1090,7 @@
       "village": ""
     },
     {
-      "key": 101,
+      "key": 99,
       "status": "Söndürüldü",
       "occured_at": "2021-03-03 12:42:00",
       "riskStatus": "Tehlikeli",
@@ -1123,7 +1101,7 @@
       "village": ""
     },
     {
-      "key": 102,
+      "key": 100,
       "status": "Söndürüldü",
       "occured_at": "2021-03-02 20:20:00",
       "riskStatus": "Tehlikesiz",
@@ -1134,7 +1112,7 @@
       "village": ""
     },
     {
-      "key": 103,
+      "key": 101,
       "status": "Söndürüldü",
       "occured_at": "2021-03-02 15:57:00",
       "riskStatus": "Tehlikesiz",
@@ -1145,7 +1123,7 @@
       "village": ""
     },
     {
-      "key": 104,
+      "key": 102,
       "status": "Söndürüldü",
       "occured_at": "2021-03-01 14:25:00",
       "riskStatus": "Tehlikesiz",
@@ -1156,7 +1134,7 @@
       "village": ""
     },
     {
-      "key": 105,
+      "key": 103,
       "status": "Söndürüldü",
       "occured_at": "2021-03-01 11:00:00",
       "riskStatus": "Az Tehlikeli",
@@ -1167,7 +1145,7 @@
       "village": ""
     },
     {
-      "key": 106,
+      "key": 104,
       "status": "Söndürüldü",
       "occured_at": "2021-02-28 15:40:00",
       "riskStatus": "Tehlikesiz",
@@ -1178,7 +1156,7 @@
       "village": ""
     },
     {
-      "key": 107,
+      "key": 105,
       "status": "Söndürüldü",
       "occured_at": "2021-02-28 15:15:00",
       "riskStatus": "Az Tehlikeli",
@@ -1189,7 +1167,7 @@
       "village": ""
     },
     {
-      "key": 108,
+      "key": 106,
       "status": "Söndürüldü",
       "occured_at": "2021-02-28 07:00:00",
       "riskStatus": "Tehlikeli",
@@ -1200,7 +1178,7 @@
       "village": ""
     },
     {
-      "key": 109,
+      "key": 107,
       "status": "Söndürüldü",
       "occured_at": "2021-02-27 19:35:00",
       "riskStatus": "Az Tehlikeli",
@@ -1211,7 +1189,7 @@
       "village": ""
     },
     {
-      "key": 110,
+      "key": 108,
       "status": "Söndürüldü",
       "occured_at": "2021-02-27 18:15:00",
       "riskStatus": "Tehlikesiz",
@@ -1222,7 +1200,7 @@
       "village": ""
     },
     {
-      "key": 111,
+      "key": 109,
       "status": "Söndürüldü",
       "occured_at": "2021-02-27 14:00:00",
       "riskStatus": "Az Tehlikeli",
@@ -1233,7 +1211,7 @@
       "village": ""
     },
     {
-      "key": 112,
+      "key": 110,
       "status": "Söndürüldü",
       "occured_at": "2021-02-27 07:20:00",
       "riskStatus": "Tehlikesiz",
@@ -1244,7 +1222,7 @@
       "village": ""
     },
     {
-      "key": 113,
+      "key": 111,
       "status": "Söndürüldü",
       "occured_at": "2021-02-26 18:30:00",
       "riskStatus": "Tehlikeli",
@@ -1255,7 +1233,7 @@
       "village": ""
     },
     {
-      "key": 114,
+      "key": 112,
       "status": "Söndürüldü",
       "occured_at": "2021-02-26 16:00:00",
       "riskStatus": "Tehlikeli",
@@ -1266,7 +1244,7 @@
       "village": ""
     },
     {
-      "key": 115,
+      "key": 113,
       "status": "Söndürüldü",
       "occured_at": "2021-02-26 11:15:00",
       "riskStatus": "Az Tehlikeli",
@@ -1277,7 +1255,7 @@
       "village": ""
     },
     {
-      "key": 116,
+      "key": 114,
       "status": "Söndürüldü",
       "occured_at": "2021-02-25 11:00:00",
       "riskStatus": "Tehlikesiz",
@@ -1288,7 +1266,7 @@
       "village": ""
     },
     {
-      "key": 117,
+      "key": 115,
       "status": "Söndürüldü",
       "occured_at": "2021-02-24 17:45:00",
       "riskStatus": "Tehlikesiz",
@@ -1299,7 +1277,7 @@
       "village": ""
     },
     {
-      "key": 118,
+      "key": 116,
       "status": "Söndürüldü",
       "occured_at": "2021-02-24 15:00:00",
       "riskStatus": "Az Tehlikeli",
@@ -1310,7 +1288,7 @@
       "village": ""
     },
     {
-      "key": 119,
+      "key": 117,
       "status": "Söndürüldü",
       "occured_at": "2021-02-24 13:30:00",
       "riskStatus": "Tehlikesiz",
@@ -1321,7 +1299,7 @@
       "village": ""
     },
     {
-      "key": 120,
+      "key": 118,
       "status": "Söndürüldü",
       "occured_at": "2021-02-24 13:21:00",
       "riskStatus": "Tehlikeli",
@@ -1332,7 +1310,7 @@
       "village": ""
     },
     {
-      "key": 121,
+      "key": 119,
       "status": "Söndürüldü",
       "occured_at": "2021-02-24 13:00:00",
       "riskStatus": "Tehlikeli",
@@ -1343,7 +1321,7 @@
       "village": ""
     },
     {
-      "key": 122,
+      "key": 120,
       "status": "Söndürüldü",
       "occured_at": "2021-02-24 12:30:00",
       "riskStatus": "Tehlikeli",
@@ -1354,7 +1332,7 @@
       "village": ""
     },
     {
-      "key": 123,
+      "key": 121,
       "status": "Söndürüldü",
       "occured_at": "2021-02-23 15:00:00",
       "riskStatus": "Tehlikesiz",
@@ -1365,7 +1343,7 @@
       "village": ""
     },
     {
-      "key": 124,
+      "key": 122,
       "status": "Söndürüldü",
       "occured_at": "2021-02-23 11:17:00",
       "riskStatus": "Tehlikesiz",
@@ -1376,7 +1354,7 @@
       "village": ""
     },
     {
-      "key": 125,
+      "key": 123,
       "status": "Söndürüldü",
       "occured_at": "2021-02-22 17:28:00",
       "riskStatus": "Tehlikesiz",
@@ -1387,7 +1365,7 @@
       "village": ""
     },
     {
-      "key": 126,
+      "key": 124,
       "status": "Söndürüldü",
       "occured_at": "2021-02-18 11:00:00",
       "riskStatus": "Tehlikesiz",
@@ -1398,7 +1376,7 @@
       "village": ""
     },
     {
-      "key": 127,
+      "key": 125,
       "status": "Söndürüldü",
       "occured_at": "2021-02-15 19:07:00",
       "riskStatus": "Az Tehlikeli",
@@ -1409,7 +1387,7 @@
       "village": ""
     },
     {
-      "key": 128,
+      "key": 126,
       "status": "Söndürüldü",
       "occured_at": "2021-02-13 12:09:00",
       "riskStatus": "Az Tehlikeli",
@@ -1420,7 +1398,7 @@
       "village": ""
     },
     {
-      "key": 129,
+      "key": 127,
       "status": "Söndürüldü",
       "occured_at": "2021-02-10 20:00:00",
       "riskStatus": "Tehlikesiz",
@@ -1431,7 +1409,7 @@
       "village": ""
     },
     {
-      "key": 130,
+      "key": 128,
       "status": "Söndürüldü",
       "occured_at": "2021-02-10 19:10:00",
       "riskStatus": "Tehlikesiz",
@@ -1442,7 +1420,7 @@
       "village": ""
     },
     {
-      "key": 131,
+      "key": 129,
       "status": "Söndürüldü",
       "occured_at": "2021-02-10 17:00:00",
       "riskStatus": "Tehlikesiz",
@@ -1453,7 +1431,7 @@
       "village": ""
     },
     {
-      "key": 132,
+      "key": 130,
       "status": "Söndürüldü",
       "occured_at": "2021-02-09 14:00:00",
       "riskStatus": "Tehlikesiz",
@@ -1464,7 +1442,7 @@
       "village": ""
     },
     {
-      "key": 133,
+      "key": 131,
       "status": "Söndürüldü",
       "occured_at": "2021-02-09 12:06:00",
       "riskStatus": "Az Tehlikeli",
@@ -1475,7 +1453,7 @@
       "village": ""
     },
     {
-      "key": 134,
+      "key": 132,
       "status": "Söndürüldü",
       "occured_at": "2021-02-08 16:02:00",
       "riskStatus": "Az Tehlikeli",
@@ -1486,7 +1464,7 @@
       "village": ""
     },
     {
-      "key": 135,
+      "key": 133,
       "status": "Söndürüldü",
       "occured_at": "2021-02-08 13:40:00",
       "riskStatus": "Tehlikesiz",
@@ -1497,7 +1475,7 @@
       "village": ""
     },
     {
-      "key": 136,
+      "key": 134,
       "status": "Söndürüldü",
       "occured_at": "2021-02-08 13:20:00",
       "riskStatus": "Tehlikesiz",
@@ -1508,7 +1486,7 @@
       "village": ""
     },
     {
-      "key": 137,
+      "key": 135,
       "status": "Söndürüldü",
       "occured_at": "2021-02-08 13:00:00",
       "riskStatus": "Tehlikesiz",
@@ -1519,7 +1497,7 @@
       "village": ""
     },
     {
-      "key": 138,
+      "key": 136,
       "status": "Söndürüldü",
       "occured_at": "2021-02-07 19:15:00",
       "riskStatus": "Tehlikesiz",
@@ -1530,7 +1508,7 @@
       "village": ""
     },
     {
-      "key": 139,
+      "key": 137,
       "status": "Söndürüldü",
       "occured_at": "2021-02-07 14:30:00",
       "riskStatus": "Tehlikesiz",
@@ -1541,7 +1519,7 @@
       "village": ""
     },
     {
-      "key": 140,
+      "key": 138,
       "status": "Söndürüldü",
       "occured_at": "2021-02-07 14:00:00",
       "riskStatus": "Tehlikesiz",
@@ -1552,7 +1530,7 @@
       "village": ""
     },
     {
-      "key": 141,
+      "key": 139,
       "status": "Söndürüldü",
       "occured_at": "2021-02-05 13:00:00",
       "riskStatus": "Az Tehlikeli",
@@ -1563,7 +1541,7 @@
       "village": ""
     },
     {
-      "key": 142,
+      "key": 140,
       "status": "Söndürüldü",
       "occured_at": "2021-02-03 12:40:00",
       "riskStatus": "Tehlikesiz",
@@ -1574,7 +1552,7 @@
       "village": ""
     },
     {
-      "key": 143,
+      "key": 141,
       "status": "Söndürüldü",
       "occured_at": "2021-01-31 13:00:00",
       "riskStatus": "Tehlikesiz",
@@ -1585,7 +1563,7 @@
       "village": ""
     },
     {
-      "key": 144,
+      "key": 142,
       "status": "Söndürüldü",
       "occured_at": "2021-01-31 07:37:00",
       "riskStatus": "Tehlikesiz",
@@ -1596,7 +1574,7 @@
       "village": ""
     },
     {
-      "key": 145,
+      "key": 143,
       "status": "Söndürüldü",
       "occured_at": "2021-01-25 16:00:00",
       "riskStatus": "Tehlikeli",
@@ -1607,7 +1585,7 @@
       "village": ""
     },
     {
-      "key": 146,
+      "key": 144,
       "status": "Söndürüldü",
       "occured_at": "2021-01-24 09:45:00",
       "riskStatus": "Tehlikesiz",
@@ -1618,7 +1596,7 @@
       "village": ""
     },
     {
-      "key": 147,
+      "key": 145,
       "status": "Söndürüldü",
       "occured_at": "2021-01-23 18:30:00",
       "riskStatus": "Tehlikesiz",
@@ -1629,7 +1607,7 @@
       "village": ""
     },
     {
-      "key": 148,
+      "key": 146,
       "status": "Söndürüldü",
       "occured_at": "2021-01-19 19:30:00",
       "riskStatus": "Az Tehlikeli",
@@ -1640,7 +1618,7 @@
       "village": ""
     },
     {
-      "key": 149,
+      "key": 147,
       "status": "Söndürüldü",
       "occured_at": "2021-01-12 01:30:00",
       "riskStatus": "Tehlikesiz",
@@ -1651,7 +1629,7 @@
       "village": ""
     },
     {
-      "key": 150,
+      "key": 148,
       "status": "Söndürüldü",
       "occured_at": "2021-01-12 00:40:00",
       "riskStatus": "Tehlikesiz",
@@ -1662,7 +1640,7 @@
       "village": ""
     },
     {
-      "key": 151,
+      "key": 149,
       "status": "Söndürüldü",
       "occured_at": "2021-01-11 22:25:00",
       "riskStatus": "Az Tehlikeli",
@@ -1673,7 +1651,7 @@
       "village": ""
     },
     {
-      "key": 152,
+      "key": 150,
       "status": "Söndürüldü",
       "occured_at": "2021-01-09 13:40:00",
       "riskStatus": "Tehlikesiz",
@@ -1684,7 +1662,7 @@
       "village": ""
     },
     {
-      "key": 153,
+      "key": 151,
       "status": "Söndürüldü",
       "occured_at": "2021-01-08 11:00:00",
       "riskStatus": "Tehlikesiz",
@@ -1695,7 +1673,7 @@
       "village": ""
     },
     {
-      "key": 154,
+      "key": 152,
       "status": "Söndürüldü",
       "occured_at": "2021-01-08 11:00:00",
       "riskStatus": "Az Tehlikeli",
@@ -1706,7 +1684,7 @@
       "village": ""
     },
     {
-      "key": 155,
+      "key": 153,
       "status": "Söndürüldü",
       "occured_at": "2021-01-08 10:33:00",
       "riskStatus": "Tehlikesiz",
@@ -1717,7 +1695,7 @@
       "village": ""
     },
     {
-      "key": 156,
+      "key": 154,
       "status": "Söndürüldü",
       "occured_at": "2021-01-07 13:55:00",
       "riskStatus": "Tehlikesiz",
@@ -1728,7 +1706,7 @@
       "village": ""
     },
     {
-      "key": 157,
+      "key": 155,
       "status": "Söndürüldü",
       "occured_at": "2021-01-06 16:00:00",
       "riskStatus": "Tehlikesiz",
@@ -1739,7 +1717,7 @@
       "village": ""
     },
     {
-      "key": 158,
+      "key": 156,
       "status": "Söndürüldü",
       "occured_at": "2021-01-03 16:00:00",
       "riskStatus": "Az Tehlikeli",
@@ -1750,7 +1728,7 @@
       "village": ""
     },
     {
-      "key": 159,
+      "key": 157,
       "status": "Söndürüldü",
       "occured_at": "2021-01-03 14:00:00",
       "riskStatus": "Tehlikesiz",
@@ -1761,7 +1739,7 @@
       "village": ""
     },
     {
-      "key": 160,
+      "key": 158,
       "status": "Söndürüldü",
       "occured_at": "2021-01-02 16:18:00",
       "riskStatus": "Tehlikesiz",
@@ -1772,7 +1750,7 @@
       "village": ""
     },
     {
-      "key": 161,
+      "key": 159,
       "status": "Söndürüldü",
       "occured_at": "2021-01-01 17:46:00",
       "riskStatus": "Tehlikesiz",
@@ -1783,7 +1761,7 @@
       "village": ""
     },
     {
-      "key": 162,
+      "key": 160,
       "status": "Söndürüldü",
       "occured_at": "2020-12-30 14:25:00",
       "riskStatus": "Tehlikesiz",
@@ -1794,7 +1772,7 @@
       "village": ""
     },
     {
-      "key": 163,
+      "key": 161,
       "status": "Söndürüldü",
       "occured_at": "2020-12-30 12:33:00",
       "riskStatus": "Az Tehlikeli",
@@ -1805,7 +1783,7 @@
       "village": ""
     },
     {
-      "key": 164,
+      "key": 162,
       "status": "Söndürüldü",
       "occured_at": "2020-11-23 14:20:00",
       "riskStatus": "Tehlikesiz",
@@ -1816,7 +1794,7 @@
       "village": ""
     },
     {
-      "key": 165,
+      "key": 163,
       "status": "Söndürüldü",
       "occured_at": "2020-11-10 14:00:00",
       "riskStatus": "Az Tehlikeli",
@@ -1827,7 +1805,7 @@
       "village": ""
     },
     {
-      "key": 166,
+      "key": 164,
       "status": "Söndürüldü",
       "occured_at": "2020-11-06 18:38:00",
       "riskStatus": "Tehlikesiz",
@@ -1838,7 +1816,7 @@
       "village": ""
     },
     {
-      "key": 167,
+      "key": 165,
       "status": "Söndürüldü",
       "occured_at": "2020-11-05 18:40:00",
       "riskStatus": "Tehlikesiz",
@@ -1849,7 +1827,7 @@
       "village": ""
     },
     {
-      "key": 168,
+      "key": 166,
       "status": "Söndürüldü",
       "occured_at": "2020-11-01 00:30:00",
       "riskStatus": "Tehlikeli",
@@ -1860,7 +1838,7 @@
       "village": ""
     },
     {
-      "key": 169,
+      "key": 167,
       "status": "Söndürüldü",
       "occured_at": "2020-10-31 16:50:00",
       "riskStatus": "Az Tehlikeli",
@@ -1871,7 +1849,7 @@
       "village": ""
     },
     {
-      "key": 170,
+      "key": 168,
       "status": "Söndürüldü",
       "occured_at": "2020-10-31 14:50:00",
       "riskStatus": "Tehlikesiz",
@@ -1882,7 +1860,7 @@
       "village": ""
     },
     {
-      "key": 171,
+      "key": 169,
       "status": "Söndürüldü",
       "occured_at": "2020-10-31 13:40:00",
       "riskStatus": "Tehlikesiz",
@@ -1893,7 +1871,7 @@
       "village": ""
     },
     {
-      "key": 172,
+      "key": 170,
       "status": "Söndürüldü",
       "occured_at": "2020-10-30 15:35:00",
       "riskStatus": "Tehlikesiz",
@@ -1904,7 +1882,7 @@
       "village": ""
     },
     {
-      "key": 173,
+      "key": 171,
       "status": "Söndürüldü",
       "occured_at": "2020-10-30 13:45:00",
       "riskStatus": "Tehlikesiz",
@@ -1915,7 +1893,7 @@
       "village": ""
     },
     {
-      "key": 174,
+      "key": 172,
       "status": "Söndürüldü",
       "occured_at": "2020-10-28 11:50:00",
       "riskStatus": "Az Tehlikeli",
@@ -1926,7 +1904,7 @@
       "village": ""
     },
     {
-      "key": 175,
+      "key": 173,
       "status": "Söndürüldü",
       "occured_at": "2020-10-27 15:30:00",
       "riskStatus": "Tehlikesiz",
@@ -1937,7 +1915,7 @@
       "village": ""
     },
     {
-      "key": 176,
+      "key": 174,
       "status": "Söndürüldü",
       "occured_at": "2020-10-27 12:10:00",
       "riskStatus": "Az Tehlikeli",
@@ -1948,7 +1926,7 @@
       "village": ""
     },
     {
-      "key": 177,
+      "key": 175,
       "status": "Söndürüldü",
       "occured_at": "2020-10-26 14:25:00",
       "riskStatus": "Yüksek Tehlikeli",
@@ -1959,7 +1937,7 @@
       "village": ""
     },
     {
-      "key": 178,
+      "key": 176,
       "status": "Söndürüldü",
       "occured_at": "2020-10-26 10:25:00",
       "riskStatus": "Tehlikeli",
@@ -1970,7 +1948,7 @@
       "village": ""
     },
     {
-      "key": 179,
+      "key": 177,
       "status": "Söndürüldü",
       "occured_at": "2020-10-24 17:30:00",
       "riskStatus": "Tehlikesiz",
@@ -1981,7 +1959,7 @@
       "village": ""
     },
     {
-      "key": 180,
+      "key": 178,
       "status": "Söndürüldü",
       "occured_at": "2020-10-23 11:10:00",
       "riskStatus": "Az Tehlikeli",
@@ -1992,7 +1970,7 @@
       "village": ""
     },
     {
-      "key": 181,
+      "key": 179,
       "status": "Söndürüldü",
       "occured_at": "2020-10-22 01:30:00",
       "riskStatus": "Az Tehlikeli",
@@ -2003,7 +1981,7 @@
       "village": ""
     },
     {
-      "key": 182,
+      "key": 180,
       "status": "Söndürüldü",
       "occured_at": "2020-10-20 14:50:00",
       "riskStatus": "Az Tehlikeli",
@@ -2014,7 +1992,7 @@
       "village": ""
     },
     {
-      "key": 183,
+      "key": 181,
       "status": "Söndürüldü",
       "occured_at": "2020-10-19 18:00:00",
       "riskStatus": "Tehlikesiz",
@@ -2025,7 +2003,7 @@
       "village": ""
     },
     {
-      "key": 184,
+      "key": 182,
       "status": "Söndürüldü",
       "occured_at": "2020-10-19 12:34:00",
       "riskStatus": "Tehlikesiz",
@@ -2036,7 +2014,7 @@
       "village": ""
     },
     {
-      "key": 185,
+      "key": 183,
       "status": "Söndürüldü",
       "occured_at": "2020-10-18 12:45:00",
       "riskStatus": "Az Tehlikeli",
@@ -2047,7 +2025,7 @@
       "village": ""
     },
     {
-      "key": 186,
+      "key": 184,
       "status": "Söndürüldü",
       "occured_at": "2020-10-14 11:40:00",
       "riskStatus": "Tehlikesiz",
@@ -2058,7 +2036,7 @@
       "village": ""
     },
     {
-      "key": 187,
+      "key": 185,
       "status": "Söndürüldü",
       "occured_at": "2020-10-13 15:30:00",
       "riskStatus": "Az Tehlikeli",
@@ -2069,7 +2047,7 @@
       "village": ""
     },
     {
-      "key": 188,
+      "key": 186,
       "status": "Söndürüldü",
       "occured_at": "2020-10-13 14:26:00",
       "riskStatus": "Tehlikesiz",
@@ -2080,7 +2058,7 @@
       "village": ""
     },
     {
-      "key": 189,
+      "key": 187,
       "status": "Söndürüldü",
       "occured_at": "2020-10-12 14:20:00",
       "riskStatus": "Az Tehlikeli",
@@ -2091,7 +2069,7 @@
       "village": ""
     },
     {
-      "key": 190,
+      "key": 188,
       "status": "Söndürüldü",
       "occured_at": "2020-10-12 11:45:00",
       "riskStatus": "Tehlikesiz",
@@ -2102,7 +2080,7 @@
       "village": ""
     },
     {
-      "key": 191,
+      "key": 189,
       "status": "Söndürüldü",
       "occured_at": "2020-10-12 10:25:00",
       "riskStatus": "Tehlikesiz",
@@ -2113,7 +2091,7 @@
       "village": ""
     },
     {
-      "key": 192,
+      "key": 190,
       "status": "Söndürüldü",
       "occured_at": "2020-10-10 18:40:00",
       "riskStatus": "Tehlikesiz",
@@ -2124,7 +2102,7 @@
       "village": ""
     },
     {
-      "key": 193,
+      "key": 191,
       "status": "Söndürüldü",
       "occured_at": "2020-10-10 14:25:00",
       "riskStatus": "Tehlikesiz",
@@ -2135,7 +2113,7 @@
       "village": ""
     },
     {
-      "key": 194,
+      "key": 192,
       "status": "Söndürüldü",
       "occured_at": "2020-10-10 11:45:00",
       "riskStatus": "Tehlikesiz",
@@ -2146,7 +2124,7 @@
       "village": ""
     },
     {
-      "key": 195,
+      "key": 193,
       "status": "Söndürüldü",
       "occured_at": "2020-10-08 20:00:00",
       "riskStatus": "Tehlikeli",
@@ -2157,7 +2135,7 @@
       "village": ""
     },
     {
-      "key": 196,
+      "key": 194,
       "status": "Söndürüldü",
       "occured_at": "2020-10-06 21:25:00",
       "riskStatus": "Az Tehlikeli",
@@ -2168,7 +2146,7 @@
       "village": ""
     },
     {
-      "key": 197,
+      "key": 195,
       "status": "Söndürüldü",
       "occured_at": "2020-10-05 13:00:00",
       "riskStatus": "Tehlikesiz",
@@ -2179,7 +2157,7 @@
       "village": ""
     },
     {
-      "key": 198,
+      "key": 196,
       "status": "Söndürüldü",
       "occured_at": "2020-10-04 17:10:00",
       "riskStatus": "Az Tehlikeli",
@@ -2190,7 +2168,7 @@
       "village": ""
     },
     {
-      "key": 199,
+      "key": 197,
       "status": "Söndürüldü",
       "occured_at": "2020-10-04 12:24:00",
       "riskStatus": "Tehlikesiz",
@@ -2198,6 +2176,28 @@
       "longitude": 37.59778,
       "city": "Kahramanmaraş",
       "town": "Onikişubat",
+      "village": ""
+    },
+    {
+      "key": 198,
+      "status": "Söndürüldü",
+      "occured_at": "2020-10-03 09:10:00",
+      "riskStatus": "Az Tehlikeli",
+      "latitude": 42.0580559,
+      "longitude": 38.39639,
+      "city": "Bitlis",
+      "town": "Merkez",
+      "village": ""
+    },
+    {
+      "key": 199,
+      "status": "Söndürüldü",
+      "occured_at": "2020-10-01 22:22:00",
+      "riskStatus": "Az Tehlikeli",
+      "latitude": 36.1,
+      "longitude": 36.2747231,
+      "city": "Hatay",
+      "town": "Antakya",
       "village": ""
     }
   ]
