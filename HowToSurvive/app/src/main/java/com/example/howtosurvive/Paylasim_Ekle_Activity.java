@@ -321,6 +321,7 @@ public class Paylasim_Ekle_Activity extends AppCompatActivity {
             paylasim.put("content",paylasim_iceriki);
             paylasim.put("userId",id_res);
             paylasim.put("imageUrl",paylasim_foto_urli);
+            paylasim.put("authorName",username_res);
 
         }catch (JSONException e){
             e.printStackTrace();

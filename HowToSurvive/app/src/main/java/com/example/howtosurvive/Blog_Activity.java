@@ -99,10 +99,14 @@ public class Blog_Activity extends AppCompatActivity {
 
                                 paylasimlar.setBaslik(paylasim.getString("title"));
                                 paylasimlar.setIcerik(paylasim.getString("content"));
-                                paylasimlar.setUsername(paylasim.getString("author"));
+                                //paylasimlar.setUsername(paylasim.getString("author"));
 
                                 if (!(paylasim.isNull("imageUrl"))){ //image olabilir olmayabilir
                                     paylasimlar.setImage(paylasim.getString("imageUrl"));
+                                }
+
+                                if (!(paylasim.isNull("authorName"))){ //image olabilir olmayabilir
+                                    paylasimlar.setUsername(paylasim.getString("authorName"));
                                 }
 
 
