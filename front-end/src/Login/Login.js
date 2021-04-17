@@ -33,9 +33,9 @@ class Login extends Component {
     });
   };
 
-  handleLogin = async (e) => {
+  handleLogin = (e) => {
     e.preventDefault();
-    await this.props.login(this.state.username, this.state.password);
+    this.props.login(this.state.username, this.state.password);
   };
 
   render() {
@@ -68,7 +68,7 @@ class Login extends Component {
             </button>
           </div>
           {this.props.error != null ? (
-            <div>YANLIS KULLANICI ADI YA DA SIFRE</div>
+            <div className="warning"> {this.props.error.data.message + "!!!"}</div>
           ) : null}
         </form>
       </div>
