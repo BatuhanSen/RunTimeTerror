@@ -6,12 +6,10 @@ import Logo from "../HowToSurvive.png";
 
 import * as actions from "../store/actions/index";
 
-////// Eklendi baslangic
 import Register from "../Register/Register";
 
 import FacebookLogin from 'react-facebook-login';
 import GoogleLogin from 'react-google-login';
-////// bitis
 
 
 class Login extends Component {
@@ -41,16 +39,12 @@ class Login extends Component {
     });
   };
 
-  handleLogin = async (e) => {
+  handleLogin = (e) => {
     e.preventDefault();
-    await this.props.login(this.state.username, this.state.password);
+    this.props.login(this.state.username, this.state.password);
   };
 
-
-  //// Eklendi -  baslangic
   responseFacebook = async (e) => {
-    console.log(e);
-    console.log(e.name + " " + e.email + " " + e.id);
 
     await this.props.register(e.name, e.id, e.email, e.name, "5340203593", "m");
     await this.props.login(e.name, e.id);
@@ -59,14 +53,11 @@ class Login extends Component {
 
   responseGoogle = async (e) => {
     
-    console.log(e);
-    console.log(e.Qs.AT +" "+ e.googleId +" "+ e.profileObj.email +" "+ e.Qs.AT +" " +"5340203593" +" "+ "m");
     await this.props.register(e.profileObj.familyName, e.googleId, e.profileObj.email,e.profileObj.familyName, "5340203593","m");
     await this.props.login(e.profileObj.familyName, e.googleId);
     window.location.href = "/";
     
   }
-//// Eklendi -  bitis
 
   render() {
     return (
@@ -85,7 +76,7 @@ class Login extends Component {
           <div className="field">
             <label>Password</label>
             <input
-              type="text"
+              type="password"
               placeholder="e.g testuser"
               onChange={this.handlePassword}
               required
@@ -93,17 +84,15 @@ class Login extends Component {
           </div>
           <div className="field buttons">
             <button type="submit">Login</button>
-
-
             <button onClick={() => (window.location = "/register")}>
               Register
             </button>
           </div>
           {this.props.error != null ? (
-            <div>YANLIS KULLANICI ADI YA DA SIFRE</div>
+            <div className="warning"> {this.props.error.data.message + "!!!"}</div>
           ) : null}
 
-        <div style={{display: "inline-block"}}>
+<div style={{display: "inline-block"}}>
          {/* Eklendi baslangic*/}
         <FacebookLogin
           appId="3725536324209409"

@@ -16,6 +16,7 @@ export const login = (username, password) => {
       .then((response) => {
         if (response.status === 200) {
           localStorage.setItem("token", response.data.data.token);
+          localStorage.setItem("userId", response.data.data.userId);
           dispatch(setAuth(response.data.data.user, response.data.data.token));
           window.location.href = "/";
         } else {
@@ -27,7 +28,7 @@ export const login = (username, password) => {
         }
       })
       .catch((err) => {
-        dispatch(authFail(err));
+        dispatch(authFail(err.response));
       });
   };
 };
@@ -41,6 +42,7 @@ export const register = (
   gender
 ) => {
   return (dispatch) => {
+    console.log(phone);
     axios
       .put(
         "https://how-to-survive.herokuapp.com/api/auth/signup",
@@ -55,6 +57,7 @@ export const register = (
         { "Content-type": "application/json" }
       )
       .then((response) => {
+        console.log("register response", response);
         if (response.status === 201) {
           dispatch(login(username, password));
         } else {
@@ -66,8 +69,7 @@ export const register = (
         }
       })
       .catch((err) => {
-        console.log(err.response);
-        dispatch(authFail(err));
+        dispatch(authFail(err.response));
       });
   };
 };

@@ -58,9 +58,9 @@ class Register extends Component {
     });
   };
 
-  handleRegister =  (e) => {
+  handleRegister = (e) => {
     e.preventDefault();
-     this.props.register(
+    this.props.register(
       this.state.username,
       this.state.password,
       this.state.email,
@@ -87,7 +87,7 @@ class Register extends Component {
           <div className="field">
             <label>Password</label>
             <input
-              type="text"
+              type="password"
               placeholder="e.g testuser"
               onChange={this.handlePassword}
               required
@@ -96,7 +96,7 @@ class Register extends Component {
           <div className="field">
             <label>Email</label>
             <input
-              type="text"
+              type="email"
               placeholder="e.g test@test.com"
               onChange={this.handleEmail}
               required
@@ -134,6 +134,9 @@ class Register extends Component {
               Login
             </button>
           </div>
+          {this.props.error != null ? (
+            <div className="warning"> {this.props.error.data.data[0].msg + "!!!"}</div>
+          ) : null}
         </form>
       </div>
     );
@@ -144,6 +147,7 @@ const mapDispatchToState = (state) => {
   return {
     user: state.auth.user,
     token: state.auth.token,
+    error: state.auth.error,
   };
 };
 
