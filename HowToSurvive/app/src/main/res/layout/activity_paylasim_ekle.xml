@@ -6,22 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".Paylasim_Ekle_Activity">
 
+
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="97dp"
-        android:layout_marginLeft="97dp"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="97dp"
-        android:layout_marginRight="97dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginLeft="42dp"
+        android:layout_marginTop="16dp"
         android:gravity="center_horizontal"
         android:text="Paylaşım Ekleme"
         android:textAlignment="center"
         android:textColor="#FB8E7E"
         android:textSize="28dp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -31,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         android:text="Sizde paylaşımda bulunun..."
         android:textSize="16dp"
         android:textStyle="italic"
@@ -44,7 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="32dp"
         android:text="Başlık:"
         android:textSize="18dp"
         android:textStyle="bold"
@@ -53,11 +51,11 @@
 
     <EditText
         android:id="@+id/paylasim_baslik"
-        android:layout_width="215dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="7dp"
-        android:layout_marginLeft="7dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="198dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/edit_text_border_blog"
         android:hint="İlk Paylaşım"
         android:inputType="text"
@@ -80,7 +78,7 @@
 
     <EditText
         android:id="@+id/paylasim_icerik"
-        android:layout_width="214dp"
+        android:layout_width="197dp"
         android:layout_height="100dp"
         android:layout_marginStart="12dp"
         android:layout_marginLeft="12dp"
@@ -108,11 +106,10 @@
 
     <ImageView
         android:id="@+id/foto"
-        android:layout_width="214dp"
-        android:layout_height="175dp"
-        android:layout_marginStart="85dp"
-        android:layout_marginLeft="85dp"
-        android:layout_marginTop="10dp"
+        android:layout_width="195dp"
+        android:layout_height="189dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginLeft="84dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/foto_cek" />
 
@@ -120,9 +117,8 @@
         android:id="@+id/paylas_but"
         android:layout_width="122dp"
         android:layout_height="48dp"
-        android:layout_marginStart="176dp"
-        android:layout_marginLeft="176dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginStart="152dp"
+        android:layout_marginLeft="152dp"
         android:backgroundTint="#FB8E7E"
         android:baselineAligned="false"
         android:text="Paylaş"
@@ -146,9 +142,9 @@
         android:id="@+id/foto_ekle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="13dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginLeft="76dp"
+        android:layout_marginTop="12dp"
         app:layout_constraintStart_toEndOf="@+id/textView6"
         app:layout_constraintTop_toBottomOf="@+id/paylasim_icerik"
         app:srcCompat="@drawable/ic_baseline_camera_roll_24"

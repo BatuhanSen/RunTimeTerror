@@ -1,5 +1,6 @@
 package com.example.howtosurvive;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -91,7 +93,7 @@ public class Blog_Activity extends AppCompatActivity {
                             JSONArray posts = data_object.getJSONArray("posts");
                             //System.out.println(response.toString());
 
-                            for (int i=0; i<posts.length();i++){
+                            for (int i=posts.length()-1; i>=0;i--){
                                 JSONObject paylasim = posts.getJSONObject(i);
                                 PaylasimList paylasimlar = new PaylasimList();
 
@@ -223,6 +225,7 @@ public class Blog_Activity extends AppCompatActivity {
         kullanici_sayfasina_gec();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public void ClickExit(View view){cikis(this);}
 
     public void dogal_afet_sayfasina_gec(){
@@ -302,6 +305,7 @@ public class Blog_Activity extends AppCompatActivity {
         startActivity(intent_paylasim_ekle);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static void cikis(Activity activity){
         activity.finishAffinity();
         System.exit(0);

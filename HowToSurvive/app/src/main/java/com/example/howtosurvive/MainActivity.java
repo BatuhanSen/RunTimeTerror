@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
         Intent service_intent = new Intent(this, ArkaplanServis.class);
         service_intent.putExtra("token",token_res);
+        service_intent.putExtra("id",id_res);
 
         startService(service_intent);
 
@@ -124,6 +125,7 @@ public class MainActivity extends AppCompatActivity {
         kullanici_sayfasina_gec();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public void ClickExit(View view){cikis(this);}
 
     public void dogal_afet_sayfasina_gec(){
@@ -181,6 +183,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent_kullanici);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static void cikis(Activity activity){
         activity.finishAffinity();
         System.exit(0);

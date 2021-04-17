@@ -37,6 +37,7 @@ public class AdapterLokasyon extends RecyclerView.Adapter<AdapterLokasyon.Custom
         holder.konumAd.setText(lokasyon.get(position).getKonum_ad());
         holder.il.setText(lokasyon.get(position).getIl());
         holder.ilce.setText(lokasyon.get(position).getIlce());
+        holder.adres.setText(lokasyon.get(position).getAdres());
 
     }
 
@@ -50,6 +51,7 @@ public class AdapterLokasyon extends RecyclerView.Adapter<AdapterLokasyon.Custom
         TextView konumAd;
         TextView il;
         TextView ilce;
+        TextView adres;
 
 
         public CustomViewHolderLok(@NonNull View itemView) {
@@ -57,6 +59,7 @@ public class AdapterLokasyon extends RecyclerView.Adapter<AdapterLokasyon.Custom
             konumAd=itemView.findViewById(R.id.get_konumAd);
             il=itemView.findViewById(R.id.get_il);
             ilce=itemView.findViewById(R.id.get_ilce);
+            adres=itemView.findViewById(R.id.get_adres);
         }
     }
 

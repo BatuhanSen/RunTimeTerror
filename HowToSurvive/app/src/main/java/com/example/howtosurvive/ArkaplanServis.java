@@ -4,12 +4,19 @@ import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.IBinder;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -24,9 +31,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -38,8 +49,11 @@ public class ArkaplanServis extends Service {
 
     private static final String deprem_url="https://how-to-survive.herokuapp.com/api/earthquake";
     private static final String yangin_url="https://how-to-survive.herokuapp.com/api/fire";
+    private static final String lokasyon_url = "https://how-to-survive.herokuapp.com/api/location";
     RequestQueue requestQueue;
     PendingIntent pendingIntent;
+    ArrayList<LatLng> konumlar = new ArrayList<>();
+    String id_res;
 
 
     @Nullable
@@ -58,6 +72,7 @@ public class ArkaplanServis extends Service {
        // return super.onStartCommand(intent, flags, startId);
 
         String token_res = intent.getStringExtra("token");
+        id_res = intent.getStringExtra("id");
         Intent notificationIntent = new Intent(this,Giris_Activity.class);
         pendingIntent = PendingIntent.getActivity(this,0,notificationIntent,0);
 
@@ -69,6 +84,8 @@ public class ArkaplanServis extends Service {
         startForeground(2,notification);
 
         requestQueue = Volley.newRequestQueue(this);
+
+        getLokasyon(token_res);
 
         Timer timerDeprem = new Timer ();
         TimerTask taskDeprem = new TimerTask () {
@@ -94,13 +111,72 @@ public class ArkaplanServis extends Service {
 
     }
 
+    private void getLokasyon(String token_res){
+        String headerSecondPart="Bearer "+ token_res;
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, lokasyon_url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            JSONObject data_object= response.getJSONObject("data");
+                            JSONArray locationRecord = data_object.getJSONArray("locationRecords");
+
+
+                            for (int i=0; i<locationRecord.length();i++){
+
+                                JSONObject locationRec = locationRecord.getJSONObject(i);
+                                LokasyonList lokasyonlar = new LokasyonList();
+
+                                if (locationRec.getString("user").equals(id_res)){
+
+                                    double lat = Double.parseDouble(locationRec.getString("latitude"));
+                                    double longi = Double.parseDouble(locationRec.getString("longitude"));
+                                    LatLng loc = new LatLng(lat,longi);
+                                    konumlar.add(loc);
+
+                                }
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+                    }
+
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+
+        })
+        {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<>();
+                //headers.put("Content-Type","application/json");
+                headers.put("Authorization",headerSecondPart);
+                return headers;
+            }
+
+            @Override
+            public String getBodyContentType() {
+                return "application/json";
+            }
+        };
+        requestQueue.add(request);
+    }
+
     private void getDeprem(String token_res) {
         String headerSecondPart="Bearer "+ token_res;
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, deprem_url, null,
                 new Response.Listener<JSONObject>() {
 
-                    @RequiresApi(api = Build.VERSION_CODES.O)
+
                     public void onResponse(JSONObject response) {
+                        float[] results = new float[1];
+
                         try {
                             JSONObject data_object= response.getJSONObject("data");
                             JSONArray depremler_response = data_object.getJSONArray("earthquakeRecords");
@@ -109,39 +185,57 @@ public class ArkaplanServis extends Service {
                                 JSONObject deprem = depremler_response.getJSONObject(i);
 
 
-                                if ((!(deprem.isNull("longitude")) && !(deprem.isNull("latitude")) )){
-                                    //System.out.println(deprem.getString("longitude")+" "+deprem.getString("latitude"));
-                                    double longitude = Double.parseDouble(deprem.getString("longitude"));
-                                    double latitude = Double.parseDouble(deprem.getString("latitude"));
-                                    LatLng templocation = new LatLng(latitude,longitude);
-
-                                    String konum = deprem.getString("location");
-                                    String gerceklesme= deprem.getString("updated_at");
-                                    String deprem_tarih=gerceklesme.substring(0,gerceklesme.indexOf('Z'));
-                                    String buyukluk=deprem.getString("magnitude");
+                                for (int j=0;j<konumlar.size();j++){
 
 
-                                    LocalDateTime deprem_tarihi = LocalDateTime.parse(deprem_tarih).plusHours(3);
 
-                                    LocalDateTime simdi = LocalDateTime.now();
+                                    if ((!(deprem.isNull("longitude")) && !(deprem.isNull("latitude")) )){
+                                        //System.out.println(deprem.getString("longitude")+" "+deprem.getString("latitude"));
 
-                                    long kacDakika =  ChronoUnit.MINUTES.between(deprem_tarihi,simdi);
+                                        double longitude = Double.parseDouble(deprem.getString("longitude"));
+                                        double latitude = Double.parseDouble(deprem.getString("latitude"));
+
+                                        Location.distanceBetween(konumlar.get(j).latitude,konumlar.get(j).longitude,latitude,longitude,results);
+                                        double uzaklık = (results[0]/1000); // straigt line veriyo onu km yapma
 
 
-                                    if (kacDakika == 0){
-                                        String mesaj = konum+" konumunda "+buyukluk+" büyüklüğünde deprem gerçekleşmiştir. Artçıl depremler yaşanabilir";
-                                        Notification notification = new NotificationCompat.Builder(getApplicationContext(),CHANNEL_ID)
-                                                .setStyle(new NotificationCompat.BigTextStyle().bigText(mesaj))
-                                                .setContentTitle("Deprem Gerçekleşti.")
-                                                .setContentText(mesaj)
-                                                .setSmallIcon(R.drawable.ic_baseline_notifications_24)
-                                                .setContentIntent(pendingIntent).build();
+                                        LatLng templocation = new LatLng(latitude,longitude);
 
-                                        startForeground(1,notification);
+                                        String konum = deprem.getString("location");
+                                        String gerceklesme= deprem.getString("updated_at");
+                                        String deprem_tarih=gerceklesme.substring(0,gerceklesme.indexOf('Z'));
+                                        String buyukluk=deprem.getString("magnitude");
+
+
+
+                                        LocalDateTime deprem_tarihi = LocalDateTime.parse(deprem_tarih).plusHours(3);
+
+                                        LocalDateTime simdi = LocalDateTime.now();
+
+                                        long kacDakika =  ChronoUnit.MINUTES.between(deprem_tarihi,simdi);
+
+
+
+                                        if (kacDakika==0 && uzaklık<=100){
+                                            Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                                            String mesaj = konum+" konumunda "+buyukluk+" büyüklüğünde deprem gerçekleşmiştir. Artçıl depremler yaşanabilir";
+                                            NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext());
+                                            builder
+                                                    .setStyle(new NotificationCompat.BigTextStyle().bigText(mesaj))
+                                                    .setContentTitle("Deprem Gerçekleşti.")
+                                                    .setContentText(mesaj)
+                                                    .setSmallIcon(R.drawable.ic_baseline_notifications_24)
+                                                    .setSound(defaultSoundUri)
+                                                    .setContentIntent(pendingIntent).build();
+                                            Notification notification = builder.build();
+                                            NotificationManagerCompat.from(getApplicationContext()).notify(1,notification);
+                                            //startForeground(1,notification);
+                                        }
 
                                     }
 
                                 }
+
 
                             }
 
@@ -180,9 +274,9 @@ public class ArkaplanServis extends Service {
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, yangin_url, null,
                 new Response.Listener<JSONObject>() {
 
-                    @RequiresApi(api = Build.VERSION_CODES.O)
+
                     public void onResponse(JSONObject response) {
-                        System.out.println(response);
+                        float[] results = new float[1];
                         try {
                             JSONObject data_object= response.getJSONObject("data");
                             JSONArray yanginlar_response = data_object.getJSONArray("fireRecords");
@@ -190,29 +284,40 @@ public class ArkaplanServis extends Service {
                             for (int i=0; i<yanginlar_response.length();i++) {
                                 JSONObject yangin = yanginlar_response.getJSONObject(i);
 
-                                if ((!(yangin.isNull("longitude")) && !(yangin.isNull("latitude"))) ) {
-                                    double longitude = Double.parseDouble(yangin.getString("longitude"));
-                                    double latitude = Double.parseDouble(yangin.getString("latitude"));
-                                    LatLng templocation = new LatLng(latitude, longitude);
+                                for (int j=0;j<konumlar.size();j++){
 
-                                    String sehir = yangin.getString("city");
-                                    String ilce = yangin.getString("town");
-                                    String gerceklesme = yangin.getString("occured_at");
-                                    String gerceklesme_tarih = gerceklesme.substring(0, gerceklesme.indexOf('Z'));
+                                    if ((!(yangin.isNull("longitude")) && !(yangin.isNull("latitude"))) ) {
+                                        double longitude = Double.parseDouble(yangin.getString("longitude"));
+                                        double latitude = Double.parseDouble(yangin.getString("latitude"));
 
-
-                                    LocalDateTime yangin_tarihi = LocalDateTime.parse(gerceklesme_tarih);
-
-                                    LocalDateTime yangin_tarih_son = yangin_tarihi.plusHours(3);
-
-                                    LocalDateTime simdi = LocalDateTime.now();
+                                        Location.distanceBetween(konumlar.get(j).latitude,konumlar.get(j).longitude,longitude,latitude,results); //yangin dbde ters long sonra lat
+                                        double uzaklık = (results[0]/1000);
 
 
-                                    long kacDakika =  ChronoUnit.MINUTES.between(yangin_tarih_son,simdi);
+                                        LatLng templocation = new LatLng(latitude, longitude);
 
-                                    System.out.println(kacDakika);
+                                        String sehir = yangin.getString("city");
+                                        String ilce = yangin.getString("town");
+                                        String gerceklesme = yangin.getString("occured_at");
+                                        String gerceklesme_tarih = gerceklesme.substring(0, gerceklesme.indexOf('Z'));
 
-                                    if (kacDakika <=1){
+
+
+                                        LocalDateTime yangin_tarihi = LocalDateTime.parse(gerceklesme_tarih);
+
+                                        LocalDateTime yangin_tarih_son = yangin_tarihi.plusHours(3);
+
+                                        LocalDateTime simdi = LocalDateTime.now();
+
+
+                                        long kacDakika = ChronoUnit.MINUTES.between(yangin_tarih_son, simdi);
+
+                                        //System.out.println(kacDakika);
+
+                                        if (kacDakika == 0 && uzaklık<=100) {
+                                            System.out.println(uzaklık+" "+ sehir);
+                                            /*
+
                                         String mesaj = sehir+ " "+ ilce +" konumunda tehlikeli statüsünde "+ kacDakika+ " dakika önce yangın başlamıştır.";
 
                                         Notification notification = new NotificationCompat.Builder(getApplicationContext(),CHANNEL_ID)
@@ -222,9 +327,23 @@ public class ArkaplanServis extends Service {
                                                 .setSmallIcon(R.drawable.ic_baseline_notifications_24)
                                                 .setContentIntent(pendingIntent).build();
 
-                                        startForeground(1,notification);
-                                    }
+                                        startForeground(1,notification);*/
 
+                                            Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                                            String mesaj = sehir + " " + ilce + " konumunda " + kacDakika + " dakika önce yangın başlamıştır.";
+                                            NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext());
+                                            builder
+                                                    .setStyle(new NotificationCompat.BigTextStyle().bigText(mesaj))
+                                                    .setContentTitle("Yangın Başladı.")
+                                                    .setContentText(mesaj)
+                                                    .setSmallIcon(R.drawable.ic_baseline_notifications_24)
+                                                    .setSound(defaultSoundUri)
+                                                    .setContentIntent(pendingIntent).build();
+                                            Notification notification = builder.build();
+                                            NotificationManagerCompat.from(getApplicationContext()).notify(0, notification);
+
+                                        }
+                                    }
                                 }
                             }
 

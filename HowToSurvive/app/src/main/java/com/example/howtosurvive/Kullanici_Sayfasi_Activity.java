@@ -1,5 +1,6 @@
 package com.example.howtosurvive;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -8,6 +9,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -26,9 +30,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class Kullanici_Sayfasi_Activity extends AppCompatActivity {
@@ -125,11 +131,21 @@ public class Kullanici_Sayfasi_Activity extends AppCompatActivity {
                                     lokasyonlar.setIl(locationRec.getString("city"));
                                     lokasyonlar.setIlce(locationRec.getString("town"));
 
+                                    double lat = Double.parseDouble(locationRec.getString("latitude"));
+                                    double longi = Double.parseDouble(locationRec.getString("longitude"));
+
+                                    Geocoder geocoder = new Geocoder(Kullanici_Sayfasi_Activity.this, Locale.getDefault());
+                                    List<Address> addresses = geocoder.getFromLocation(lat, longi, 1);
+                                    String adres = addresses.get(0).getAddressLine(0);
+
+                                    lokasyonlar.setAdres(adres);
+
+
                                     lokasyonList.add(lokasyonlar);
                                 }
                             }
 
-                        } catch (JSONException e) {
+                        } catch (JSONException | IOException e) {
                             e.printStackTrace();
                         }
 
@@ -195,6 +211,7 @@ public class Kullanici_Sayfasi_Activity extends AppCompatActivity {
         recreate();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public void ClickExit(View view){cikis(this);}
 
     public void dogal_afet_sayfasina_gec(){
@@ -285,6 +302,7 @@ public class Kullanici_Sayfasi_Activity extends AppCompatActivity {
         startActivity(intent_bilgi_guncelle);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static void cikis(Activity activity){
         activity.finishAffinity();
         System.exit(0);

@@ -7,273 +7,286 @@ android:layout_height="match_parent"
 android:id="@+id/drawer_layout"
 tools:context=".Kullanici_Sayfasi_Activity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+   <ScrollView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/kullaniciBilgileri_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="41dp"
-            android:layout_marginLeft="41dp"
-            android:layout_marginTop="76dp"
-            android:layout_marginEnd="41dp"
-            android:layout_marginRight="41dp"
-            android:gravity="center_horizontal"
-            android:text="KULLANICI BİLGİLERİ"
-            android:textAlignment="center"
-            android:textColor="#FA6E4F"
-            android:textSize="30dp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.486"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+       <androidx.constraintlayout.widget.ConstraintLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:focusable="true"
+           android:focusableInTouchMode="true">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/kullaniciGuncelle_card"
-            android:layout_width="365dp"
-            android:layout_height="198dp"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:layout_gravity="fill"
-            android:layout_margin="8dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="13dp"
-            android:layout_marginRight="13dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/kullaniciBilgileri_text">
+           <TextView
+               android:id="@+id/kullaniciBilgileri_text"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginStart="41dp"
+               android:layout_marginLeft="41dp"
+               android:layout_marginTop="76dp"
+               android:layout_marginEnd="41dp"
+               android:layout_marginRight="41dp"
+               android:gravity="center_horizontal"
+               android:text="KULLANICI BİLGİLERİ"
+               android:textAlignment="center"
+               android:textColor="#FA6E4F"
+               android:textSize="30dp"
+               android:textStyle="bold"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintHorizontal_bias="0.486"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+           <androidx.cardview.widget.CardView
+               android:id="@+id/kullaniciGuncelle_card"
+               android:layout_width="365dp"
+               android:layout_height="198dp"
+               android:layout_row="0"
+               android:layout_column="0"
+               android:layout_gravity="fill"
+               android:layout_margin="8dp"
+               android:layout_marginStart="5dp"
+               android:layout_marginLeft="5dp"
+               android:layout_marginTop="16dp"
+               android:layout_marginEnd="13dp"
+               android:layout_marginRight="13dp"
+               app:cardCornerRadius="8dp"
+               app:cardElevation="8dp"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/kullaniciBilgileri_text">
 
-                <ImageButton
-                    android:id="@+id/bilgiDüzenle"
-                    android:layout_width="51dp"
-                    android:layout_height="32dp"
-                    android:layout_marginEnd="14dp"
-                    android:layout_marginRight="14dp"
-                    android:layout_marginBottom="155dp"
-                    android:backgroundTint="#00000000"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="1.0"
-                    app:srcCompat="@drawable/ic_baseline_edit_24"
-                    tools:ignore="VectorDrawableCompat" />
+               <androidx.constraintlayout.widget.ConstraintLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/bilgilerim"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="284dp"
-                    android:layout_marginRight="284dp"
-                    android:text="Bilgilerim"
-                    android:textSize="16dp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                   <ImageButton
+                       android:id="@+id/bilgiDüzenle"
+                       android:layout_width="51dp"
+                       android:layout_height="32dp"
+                       android:layout_marginEnd="14dp"
+                       android:layout_marginRight="14dp"
+                       android:layout_marginBottom="155dp"
+                       android:backgroundTint="#00000000"
+                       app:layout_constraintBottom_toBottomOf="parent"
+                       app:layout_constraintEnd_toEndOf="parent"
+                       app:layout_constraintTop_toTopOf="parent"
+                       app:layout_constraintVertical_bias="1.0"
+                       app:srcCompat="@drawable/ic_baseline_edit_24"
+                       tools:ignore="VectorDrawableCompat" />
 
-                <TextView
-                    android:id="@+id/kul_ad"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginTop="13dp"
-                    android:text="Ad: "
-                    android:textColor="#FA6E4F"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/bilgilerim" />
+                   <TextView
+                       android:id="@+id/bilgilerim"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginTop="16dp"
+                       android:layout_marginEnd="284dp"
+                       android:layout_marginRight="284dp"
+                       android:text="Bilgilerim"
+                       android:textSize="16dp"
+                       android:textStyle="bold"
+                       app:layout_constraintEnd_toEndOf="parent"
+                       app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/kul_username"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginTop="8dp"
-                    android:text="Kullanıcı Adı: "
-                    android:textColor="#FA6E4F"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/kul_ad" />
+                   <TextView
+                       android:id="@+id/kul_ad"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="12dp"
+                       android:layout_marginLeft="12dp"
+                       android:layout_marginTop="13dp"
+                       android:text="Ad: "
+                       android:textColor="#FA6E4F"
+                       app:layout_constraintStart_toStartOf="parent"
+                       app:layout_constraintTop_toBottomOf="@+id/bilgilerim" />
 
-                <TextView
-                    android:id="@+id/kul_mail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginTop="8dp"
-                    android:text="E-mail: "
-                    android:textColor="#FA6E4F"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/kul_username" />
+                   <TextView
+                       android:id="@+id/kul_username"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="12dp"
+                       android:layout_marginLeft="12dp"
+                       android:layout_marginTop="8dp"
+                       android:text="Kullanıcı Adı: "
+                       android:textColor="#FA6E4F"
+                       app:layout_constraintStart_toStartOf="parent"
+                       app:layout_constraintTop_toBottomOf="@+id/kul_ad" />
 
-                <TextView
-                    android:id="@+id/kul_cins"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginTop="8dp"
-                    android:text="Cinsiyet: "
-                    android:textColor="#FA6E4F"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/kul_mail" />
+                   <TextView
+                       android:id="@+id/kul_mail"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="12dp"
+                       android:layout_marginLeft="12dp"
+                       android:layout_marginTop="8dp"
+                       android:text="E-mail: "
+                       android:textColor="#FA6E4F"
+                       app:layout_constraintStart_toStartOf="parent"
+                       app:layout_constraintTop_toBottomOf="@+id/kul_username" />
 
-                <TextView
-                    android:id="@+id/kul_sif"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginTop="8dp"
-                    android:text="Şifre: "
-                    android:textColor="#FA6E4F"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/kul_cins" />
+                   <TextView
+                       android:id="@+id/kul_cins"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="12dp"
+                       android:layout_marginLeft="12dp"
+                       android:layout_marginTop="8dp"
+                       android:text="Cinsiyet: "
+                       android:textColor="#FA6E4F"
+                       app:layout_constraintStart_toStartOf="parent"
+                       app:layout_constraintTop_toBottomOf="@+id/kul_mail" />
 
-                <TextView
-                    android:id="@+id/kul_sifre"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginBottom="16dp"
-                    android:text="* * * * * "
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/kul_sif" />
+                   <TextView
+                       android:id="@+id/kul_sif"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="12dp"
+                       android:layout_marginLeft="12dp"
+                       android:layout_marginTop="8dp"
+                       android:text="Şifre: "
+                       android:textColor="#FA6E4F"
+                       app:layout_constraintStart_toStartOf="parent"
+                       app:layout_constraintTop_toBottomOf="@+id/kul_cins" />
 
-                <TextView
-                    android:id="@+id/kul_ad_gelen"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="1dp"
-                    android:layout_marginLeft="1dp"
-                    android:layout_marginTop="6dp"
-                    android:text="TextView"
-                    app:layout_constraintStart_toEndOf="@+id/kul_ad"
-                    app:layout_constraintTop_toBottomOf="@+id/bilgiDüzenle" />
+                   <TextView
+                       android:id="@+id/kul_sifre"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="8dp"
+                       android:layout_marginLeft="8dp"
+                       android:layout_marginBottom="16dp"
+                       android:text="* * * * * "
+                       app:layout_constraintBottom_toBottomOf="parent"
+                       app:layout_constraintStart_toEndOf="@+id/kul_sif" />
 
-                <TextView
-                    android:id="@+id/kul_username_gelen"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="1dp"
-                    android:layout_marginLeft="1dp"
-                    android:layout_marginTop="34dp"
-                    android:text="TextView"
-                    app:layout_constraintStart_toEndOf="@+id/kul_username"
-                    app:layout_constraintTop_toBottomOf="@+id/bilgiDüzenle" />
+                   <TextView
+                       android:id="@+id/kul_ad_gelen"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="1dp"
+                       android:layout_marginLeft="1dp"
+                       android:layout_marginTop="6dp"
+                       android:text="TextView"
+                       app:layout_constraintStart_toEndOf="@+id/kul_ad"
+                       app:layout_constraintTop_toBottomOf="@+id/bilgiDüzenle" />
 
-                <TextView
-                    android:id="@+id/kul_mail_gelen"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="1dp"
-                    android:layout_marginLeft="1dp"
-                    android:layout_marginTop="7dp"
-                    android:text="TextView"
-                    app:layout_constraintStart_toEndOf="@+id/kul_mail"
-                    app:layout_constraintTop_toBottomOf="@+id/kul_username" />
+                   <TextView
+                       android:id="@+id/kul_username_gelen"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="1dp"
+                       android:layout_marginLeft="1dp"
+                       android:layout_marginTop="34dp"
+                       android:text="TextView"
+                       app:layout_constraintStart_toEndOf="@+id/kul_username"
+                       app:layout_constraintTop_toBottomOf="@+id/bilgiDüzenle" />
 
-                <TextView
-                    android:id="@+id/kul_gender_gelen"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="1dp"
-                    android:layout_marginLeft="1dp"
-                    android:layout_marginTop="10dp"
-                    android:text="TextView"
-                    app:layout_constraintStart_toEndOf="@+id/kul_cins"
-                    app:layout_constraintTop_toBottomOf="@+id/kul_mail_gelen" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                   <TextView
+                       android:id="@+id/kul_mail_gelen"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="1dp"
+                       android:layout_marginLeft="1dp"
+                       android:layout_marginTop="7dp"
+                       android:text="TextView"
+                       app:layout_constraintStart_toEndOf="@+id/kul_mail"
+                       app:layout_constraintTop_toBottomOf="@+id/kul_username" />
 
-        </androidx.cardview.widget.CardView>
+                   <TextView
+                       android:id="@+id/kul_gender_gelen"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="1dp"
+                       android:layout_marginLeft="1dp"
+                       android:layout_marginTop="10dp"
+                       android:text="TextView"
+                       app:layout_constraintStart_toEndOf="@+id/kul_cins"
+                       app:layout_constraintTop_toBottomOf="@+id/kul_mail_gelen" />
+               </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/lokasyon_card"
-            android:layout_width="365dp"
-            android:layout_height="350dp"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:layout_gravity="fill"
-            android:layout_margin="8dp"
-            android:layout_marginStart="23dp"
-            android:layout_marginLeft="23dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="38dp"
-            android:layout_marginRight="38dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/kullaniciGuncelle_card">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/lokasyon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="16dp"
-                    android:text="Eklenen Konumlarım"
-                    android:textStyle="bold"
-                    android:textSize="16dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageButton
-                    android:id="@+id/lokasyon_ekle"
-                    android:layout_width="54dp"
-                    android:layout_height="37dp"
-                    android:layout_marginStart="133dp"
-                    android:layout_marginLeft="133dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginRight="16dp"
-                    android:backgroundTint="#00000000"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/lokasyon"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_baseline_add_location_alt_24"
-                    tools:ignore="VectorDrawableCompat" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerViewLokasyon"
-                    android:layout_width="333dp"
-                    android:layout_height="292dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginBottom="10dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/lokasyon_ekle" />
+           </androidx.cardview.widget.CardView>
 
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
+           <androidx.cardview.widget.CardView
+               android:id="@+id/lokasyon_card"
+               android:layout_width="365dp"
+               android:layout_height="350dp"
+               android:layout_row="0"
+               android:layout_column="0"
+               android:layout_gravity="fill"
+               android:layout_margin="8dp"
+               android:layout_marginStart="23dp"
+               android:layout_marginLeft="23dp"
+               android:layout_marginTop="16dp"
+               android:layout_marginEnd="38dp"
+               android:layout_marginRight="38dp"
+               app:cardCornerRadius="8dp"
+               app:cardElevation="8dp"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/kullaniciGuncelle_card">
+
+               <androidx.constraintlayout.widget.ConstraintLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent">
+
+                   <TextView
+                       android:id="@+id/lokasyon"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="16dp"
+                       android:layout_marginLeft="16dp"
+                       android:layout_marginTop="16dp"
+                       android:text="Eklenen Konumlarım"
+                       android:textStyle="bold"
+                       android:textSize="16dp"
+                       app:layout_constraintStart_toStartOf="parent"
+                       app:layout_constraintTop_toTopOf="parent" />
+
+                   <ImageButton
+                       android:id="@+id/lokasyon_ekle"
+                       android:layout_width="54dp"
+                       android:layout_height="37dp"
+                       android:layout_marginStart="133dp"
+                       android:layout_marginLeft="133dp"
+                       android:layout_marginTop="5dp"
+                       android:layout_marginEnd="16dp"
+                       android:layout_marginRight="16dp"
+                       android:backgroundTint="#00000000"
+                       app:layout_constraintEnd_toEndOf="parent"
+                       app:layout_constraintStart_toEndOf="@+id/lokasyon"
+                       app:layout_constraintTop_toTopOf="parent"
+                       app:srcCompat="@drawable/ic_baseline_add_location_alt_24"
+                       tools:ignore="VectorDrawableCompat" />
+
+                   <androidx.recyclerview.widget.RecyclerView
+                       android:id="@+id/recyclerViewLokasyon"
+                       android:layout_width="333dp"
+                       android:layout_height="292dp"
+                       android:layout_marginStart="16dp"
+                       android:layout_marginLeft="16dp"
+                       android:layout_marginTop="6dp"
+                       android:layout_marginEnd="16dp"
+                       android:layout_marginRight="16dp"
+                       android:layout_marginBottom="10dp"
+                       app:layout_constraintBottom_toBottomOf="parent"
+                       app:layout_constraintEnd_toEndOf="parent"
+                       app:layout_constraintStart_toStartOf="parent"
+                       app:layout_constraintTop_toBottomOf="@+id/lokasyon_ekle" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+               </androidx.constraintlayout.widget.ConstraintLayout>
+           </androidx.cardview.widget.CardView>
+
+
+       </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
+   </ScrollView>
 
     <LinearLayout
         android:layout_width="match_parent"

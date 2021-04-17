@@ -1,6 +1,7 @@
 package com.example.howtosurvive;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -10,6 +11,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
@@ -17,7 +19,9 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -35,23 +39,27 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-public class Acil_Durum_Activity extends AppCompatActivity implements LocationListener {
+public class Acil_Durum_Activity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     String username_res, id_res;
     String name_res, mail_res, gender_res,token_res;
     EditText ekstra_ihtiyac, kac_kisi;
     Button acil_but;
     double latitude,longitude;
-    String adres,ekstra_ihtiyaci;
+    String adres="";
+    String ekstra_ihtiyaci;
     int kisi_sayi;
     RequestQueue requestQueue;
 
     LocationManager locationManager;
+    LocationListener locationListener;
+    static boolean check=true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,123 +90,110 @@ public class Acil_Durum_Activity extends AppCompatActivity implements LocationLi
             }, 100);
         }
 
+
+
         requestQueue = Volley.newRequestQueue(this);
 
         acil_but.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
-            public void onClick(View v) {
-                adresBul();
+            public void onClick(View v)
+            {
+                try {
+                    konumBul();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
 
-    @SuppressLint("MissingPermission")
-    public void adresBul() {
 
-        /*if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                // TODO: Consider calling
-                //    ActivityCompat#requestPermissions
-                // here to request the missing permissions, and then overriding
-                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                //                                          int[] grantResults)
-                // to handle the case where the user grants the permission. See the documentation
-                // for ActivityCompat#requestPermissions for more details.
-                return;
-            }*/
-        try {
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public void konumBul() throws IOException {
 
-            locationManager = (LocationManager) getApplicationContext().getSystemService(LOCATION_SERVICE);
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 5, Acil_Durum_Activity.this);
-        }catch (Exception e){
-            e.getStackTrace();
-        };
+        LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        String locationProvider = LocationManager.NETWORK_PROVIDER;
+        // I suppressed the missing-permission warning because this wouldn't be executed in my
+        // case without location services being enabled
+        @SuppressLint("MissingPermission")
+        android.location.Location lastKnownLocation = locationManager.getLastKnownLocation(locationProvider);
+        latitude = lastKnownLocation.getLatitude();
+        longitude = lastKnownLocation.getLongitude();
+        Toast.makeText(Acil_Durum_Activity.this,"Konum: "+latitude+" "+longitude,Toast.LENGTH_LONG).show();
+
+        Geocoder geocoder = new Geocoder(Acil_Durum_Activity.this, Locale.getDefault());
+        List<Address> addresses = geocoder.getFromLocation(latitude,longitude,1);
+        adres = addresses.get(0).getAddressLine(0);
+
+        if (adres.length()>0){
+            String url = "https://how-to-survive.herokuapp.com/api/emergency";
+
+            String kisi=kac_kisi.getText().toString().trim();
+            if (kisi.length()!=0){
+                kisi_sayi=Integer.parseInt(kisi); // personCount
+            }
+            ekstra_ihtiyaci=ekstra_ihtiyac.getText().toString().trim(); //message
+            String headerSecondPart="Bearer "+ token_res;
+
+            JSONObject acil = new JSONObject();
+            try {
+                acil.put("personCount",kisi_sayi);
+                acil.put("message",ekstra_ihtiyaci);
+                acil.put("user",id_res);
+                acil.put("latitude",latitude);
+                acil.put("longitude",longitude);
+                acil.put("address",adres);
+
+            }catch (JSONException e){
+                e.printStackTrace();
+            }
+
+            JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url,acil,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+
+                            Log.d("Response", response.toString());
+                            if (response.toString().contains("successfully") ){
+                                Toast.makeText(Acil_Durum_Activity.this,"Konumunuz alındı,sisteme eklendi. Konum: "+adres,Toast.LENGTH_LONG).show();
+                                anasayfaya_gec();
+                            }
+                            else{
+                                Toast.makeText(Acil_Durum_Activity.this,"Konumunuz sisteme eklenemedi.",Toast.LENGTH_LONG).show();
+                            }
+
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.d("Error.Response", error.toString());
+                    Toast.makeText(Acil_Durum_Activity.this,"Konumunuz sisteme eklenemedi.",Toast.LENGTH_LONG).show();
+                }
+            })
+            {
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    HashMap<String, String> headers = new HashMap<>();
+                    headers.put("Content-Type","application/json");
+                    headers.put("Authorization",headerSecondPart);
+                    return headers;
+                }
+
+                @Override
+                public String getBodyContentType() {
+                    return "application/json";
+                }
+            };
+            requestQueue.add(request);
+        }
 
     }
 
-    @Override
-    public void onLocationChanged(@NonNull Location location) {
 
-        //Toast.makeText(this,""+location.getLatitude()+","+location.getLongitude(),Toast.LENGTH_SHORT).show(); post mesajı gozuksun
-        latitude=location.getLatitude();
-        longitude=location.getLongitude();
+    public void jsonPost_acil() throws IOException {
 
 
-        try {
-            Geocoder geocoder = new Geocoder(Acil_Durum_Activity.this, Locale.getDefault());
-            List<Address> addresses = geocoder.getFromLocation(location.getLatitude(),location.getLongitude(),1);
-            adres = addresses.get(0).getAddressLine(0);
-
-            //adresi ekranda gosterme
-            //Toast.makeText(Acil_Durum_Activity.this,"Konumunuz alındı.\n"+adres,Toast.LENGTH_LONG).show(); post mesajı gozuksun
-            jsonPost_acil();
-
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-    }
-
-    public void jsonPost_acil(){
-
-        String url = "https://how-to-survive.herokuapp.com/api/emergency";
-
-        String kisi=kac_kisi.getText().toString().trim();
-        if (kisi.length()!=0){
-            kisi_sayi=Integer.parseInt(kisi); // personCount
-        }
-        ekstra_ihtiyaci=ekstra_ihtiyac.getText().toString().trim(); //message
-        String headerSecondPart="Bearer "+ token_res;
-
-        JSONObject acil = new JSONObject();
-        try {
-            acil.put("personCount",kisi_sayi);
-            acil.put("message",ekstra_ihtiyaci);
-            acil.put("user",id_res);
-            acil.put("latitude",latitude);
-            acil.put("longitude",longitude);
-            acil.put("address",adres);
-
-        }catch (JSONException e){
-            e.printStackTrace();
-        }
-
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url,acil,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-
-                        Log.d("Response", response.toString());
-                        if (response.toString().contains("successfully") ){
-                            Toast.makeText(Acil_Durum_Activity.this,"Konumunuz alındı,sisteme eklendi. Konum: "+adres,Toast.LENGTH_LONG).show();
-                            anasayfaya_gec();
-                        }
-                        else{
-                            Toast.makeText(Acil_Durum_Activity.this,"Konumunuz sisteme eklenemedi.",Toast.LENGTH_LONG).show();
-                        }
-
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d("Error.Response", error.toString());
-                Toast.makeText(Acil_Durum_Activity.this,"Konumunuz sisteme eklenemedi.",Toast.LENGTH_LONG).show();
-            }
-        })
-        {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                HashMap<String, String> headers = new HashMap<>();
-                headers.put("Content-Type","application/json");
-                headers.put("Authorization",headerSecondPart);
-                return headers;
-            }
-
-            @Override
-            public String getBodyContentType() {
-                return "application/json";
-            }
-        };
-        requestQueue.add(request);
 
     }
 
@@ -234,6 +229,7 @@ public class Acil_Durum_Activity extends AppCompatActivity implements LocationLi
         kullanici_sayfasina_gec();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public void ClickExit(View view){cikis(this);}
 
     public void dogal_afet_sayfasina_gec(){
@@ -302,6 +298,7 @@ public class Acil_Durum_Activity extends AppCompatActivity implements LocationLi
         startActivity(intent_anasayfa);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static void cikis(Activity activity){
         activity.finishAffinity();
         System.exit(0);
